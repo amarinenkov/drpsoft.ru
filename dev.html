@@ -188,15 +188,11 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; }
 }
 .nav-brand { display: inline-flex; align-items: center; height: 32px; }
 .brand-logo {
-  font-family: 'Manrope', sans-serif;
-  font-weight: 800;
-  font-size: 20px;
-  letter-spacing: -0.02em;
-  color: var(--ink);
+  height: 22px;
+  width: auto;
+  mix-blend-mode: multiply;
   user-select: none;
-  line-height: 1;
 }
-.brand-logo em { color: var(--brand); font-style: normal; }
 .nav-links { display: flex; gap: 28px; }
 .nav-links a {
   font-size: 14px;
@@ -812,7 +808,7 @@ footer {
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-brand" aria-label="DRPSoft — главная">
-      <span class="brand-logo">DRP<em>Soft</em></span>
+      <img src="logo.png" alt="DRPSoft" class="brand-logo">
     </a>
     <div class="nav-menu">
       <div class="nav-dropdown">
@@ -1230,7 +1226,7 @@ footer {
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="index.html" class="nav-brand" aria-label="DRPSoft — главная" style="margin-bottom: 18px">
-          <span class="brand-logo" style="font-size:23px">DRP<em>Soft</em></span>
+          <img src="logo.png" alt="DRPSoft" class="brand-logo" style="height: 26px">
         </a>
         <p>Опытная IT-команда: разработка, интеграции, 1С, AI / ML. Прозрачные ставки за час без НДС.</p>
       </div>
