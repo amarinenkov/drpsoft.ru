@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FoFo — Видеоаналитика производства: ПВ/НПВ, OEE, потери времени</title>
+<title>DRPSoft — Видеоаналитика производства: ПВ/НПВ, OEE, потери времени</title>
 <meta name="description" content="Замеряем производительное и непроизводительное время на участке: работа сотрудников, оборудования, операции сборки. Находим потери и точки роста — за 1–2 недели.">
 <meta name="keywords" content="видеоаналитика производства, измерение производительности, диагностика производственного участка, потери на производстве, ПВ НПВ, хронометраж, простои оборудования, OEE, промышленный AI">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://drpsoft.ru/production">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
-<meta property="og:site_name" content="FoFo">
-<meta property="og:title" content="FoFo — Видеоаналитика производства: ПВ/НПВ, OEE, потери времени">
+<meta property="og:site_name" content="DRPSoft">
+<meta property="og:title" content="DRPSoft — Видеоаналитика производства: ПВ/НПВ, OEE, потери времени">
 <meta property="og:description" content="Замеряем производительное и непроизводительное время на участке. Находим потери и точки роста — результат за 1–2 недели.">
 <meta property="og:url" content="https://drpsoft.ru/production">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="FoFo — Видеоаналитика производства: ПВ/НПВ, OEE, потери времени">
+<meta name="twitter:title" content="DRPSoft — Видеоаналитика производства: ПВ/НПВ, OEE, потери времени">
 <meta name="twitter:description" content="Замеряем производительное и непроизводительное время на участке. Находим потери и точки роста — результат за 1–2 недели.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap">
 <style>
 /* ============================================
-   FoFo Landing — design tokens
+   DRPSoft Landing — design tokens
    ============================================ */
 :root {
   --bg:           #efe8de;
@@ -217,11 +217,15 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; }
   height: 32px;
 }
 .brand-logo {
-  height: 22px;
-  width: auto;
-  mix-blend-mode: multiply;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
   user-select: none;
+  line-height: 1;
 }
+.brand-logo em { color: var(--brand); font-style: normal; }
 .brand-logo.on-dark {
   mix-blend-mode: screen;
   filter: invert(1);
@@ -1226,8 +1230,8 @@ footer {
 <!-- ============ NAV ============ -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-brand" aria-label="FoFo — главная">
-      <img src="FoFo logo.png" alt="FoFo" class="brand-logo">
+    <a href="index.html" class="nav-brand" aria-label="DRPSoft — главная">
+      <span class="brand-logo">DRP<em>Soft</em></span>
     </a>
     <div class="nav-menu">
       <div class="nav-dropdown">
@@ -1597,7 +1601,7 @@ footer {
             <th>Хронометраж нормировщиком</th>
             <th>Консалтинг / аудит</th>
             <th>Датчики на оборудовании</th>
-            <th class="fofo-col">FoFo · видеоаналитика</th>
+            <th class="fofo-col">DRPSoft · видеоаналитика</th>
           </tr>
         </thead>
         <tbody>
@@ -1760,7 +1764,7 @@ footer {
           </p>
           <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px">
             <a href="mailto:info@drpsoft.ru" class="btn btn-primary btn-lg">Заказать диагностику →</a>
-            <a href="mailto:info@drpsoft.ru?subject=Запрос%20презентации%20FoFo" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.2)">Получить презентацию</a>
+            <a href="mailto:info@drpsoft.ru?subject=Запрос%20презентации%20DRPSoft" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.2)">Получить презентацию</a>
           </div>
         </div>
 
@@ -1798,8 +1802,8 @@ footer {
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
-        <a href="#top" class="nav-brand" aria-label="FoFo — вверх страницы" style="margin-bottom: 18px">
-          <img src="FoFo logo.png" alt="FoFo" class="brand-logo" style="height: 26px">
+        <a href="#top" class="nav-brand" aria-label="DRPSoft — вверх страницы" style="margin-bottom: 18px">
+          <span class="brand-logo" style="font-size:23px">DRP<em>Soft</em></span>
         </a>
         <p>Видеоаналитика производства. Измеряем, как реально работает участок — и превращаем потери в рост.</p>
       </div>
@@ -1811,7 +1815,7 @@ footer {
         <a href="#roi">Эффект</a>
       </div>
       <div class="footer-col">
-        <h5>FoFo</h5>
+        <h5>DRPSoft</h5>
         <a href="index.html">Все направления</a>
         <a href="automation.html">AI-автоматизация</a>
         <a href="dev.html">Разработка и интеграции</a>
@@ -1835,7 +1839,7 @@ footer {
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "FoFo",
+    "name": "DRPSoft",
     "url": "https://drpsoft.ru",
     "email": "info@drpsoft.ru",
     "telephone": "+79201560081",
@@ -1851,7 +1855,7 @@ footer {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Диагностика производительности производственного участка",
-    "provider": { "@type": "Organization", "name": "FoFo", "url": "https://drpsoft.ru" },
+    "provider": { "@type": "Organization", "name": "DRPSoft", "url": "https://drpsoft.ru" },
     "description": "Замеряем производительное и непроизводительное время на производственном участке: работа сотрудников, оборудования и операций сборки. Выявляем потери, простои и точки роста в цифрах за 1–2 недели.",
     "areaServed": "RU",
     "availableChannel": {
