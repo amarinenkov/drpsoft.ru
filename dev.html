@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FoFo — Разработка и интеграции: 1С, web, mobile, AI / ML</title>
+<meta name="description" content="Опытная IT-команда: 20+ лет в разработке. Web и серверная разработка, мобильные приложения, 1С / ERP, AI / ML. Прозрачные почасовые ставки — открыто и без скрытых наценок.">
+<meta name="keywords" content="разработка ПО, заказная разработка, разработка 1С, разработка SAP, интеграция систем, мобильная разработка, AI разработка, ML разработка, прайс разработка, ставки разработчиков">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://fofo.io/dev">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="FoFo">
+<meta property="og:title" content="FoFo — Разработка и интеграции: 1С, web, mobile, AI / ML">
+<meta property="og:description" content="Опытная IT-команда: 20+ лет в разработке. Web, mobile, 1С, AI / ML. Прозрачные почасовые ставки.">
+<meta property="og:url" content="https://fofo.io/dev">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FoFo — Разработка и интеграции: 1С, web, mobile, AI / ML">
+<meta name="twitter:description" content="Опытная IT-команда: 20+ лет в разработке. Web, mobile, 1С, AI / ML. Прозрачные почасовые ставки.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap">
+<style>
+/* ============================================
+   Design tokens
+   ============================================ */
+:root {
+  --bg:           #efe8de;
+  --bg-deep:      #e6dfd2;
+  --surface:      #ffffff;
+  --surface-soft: #faf7f1;
+  --surface-tint: #f3ede1;
+  --ink-dark:     #111216;
+  --ink:          #0f1012;
+  --ink-2:        #4a4a50;
+  --ink-3:        #8a8a92;
+  --line:         #ece6d8;
+  --line-2:       #d9d2c2;
+  --line-3:       #eeece6;
+  --brand:        #dc5719;
+  --brand-deep:   #b8420c;
+  --brand-soft:   #fbe4d4;
+  --shadow-sm:    0 1px 3px rgba(0,0,0,.04);
+  --shadow-md:    0 8px 24px rgba(20,16,10,.06);
+  --shadow-lg:    0 24px 60px rgba(20,16,10,.10);
+  --radius:       16px;
+  --radius-lg:    24px;
+  --radius-xl:    32px;
+  --container:    1240px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv02","cv03","cv04","cv11","ss01";
+  line-height: 1.5;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: 0; background: none; }
+.container { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+
+/* Typography */
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1.5px;
+  background: var(--brand);
+  border-radius: 2px;
+}
+.eyebrow.muted { color: var(--ink-3); }
+.eyebrow.muted::before { background: var(--ink-3); }
+
+.h-display {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(44px, 6.5vw, 92px);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+.h-display em { color: var(--brand); font-style: normal; }
+.h1 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(34px, 4.2vw, 52px);
+  line-height: 1.06;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+}
+.h2 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(26px, 2.8vw, 36px);
+  line-height: 1.12;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+}
+.h3 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.h4 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.lead {
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 64ch;
+  font-weight: 400;
+}
+.body-xs {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  letter-spacing: 0.005em;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.005em;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+  white-space: nowrap;
+}
+.btn-primary { background: var(--brand); color: #fff; box-shadow: 0 6px 16px rgba(220,87,25,.25); }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 22px rgba(220,87,25,.32); }
+.btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line-2); }
+.btn-ghost:hover { background: var(--surface); border-color: var(--ink); }
+.btn-dark { background: var(--ink-dark); color: #fff; }
+.btn-dark:hover { transform: translateY(-1px); }
+.btn-sm { height: 42px; padding: 0 18px; font-size: 14px; }
+.btn-lg { height: 60px; padding: 0 34px; font-size: 16px; }
+
+/* Navigation */
+.nav {
+  position: sticky;
+  top: 16px;
+  z-index: 50;
+  margin: 16px auto 0;
+  max-width: var(--container);
+  padding: 0 32px;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(0,0,0,0.04);
+  border-radius: 999px;
+  padding: 10px 14px 10px 22px;
+  box-shadow: 0 4px 24px rgba(20,16,10,.06);
+}
+.nav-brand { display: inline-flex; align-items: center; height: 32px; }
+.brand-logo {
+  height: 22px;
+  width: auto;
+  mix-blend-mode: multiply;
+  user-select: none;
+}
+.nav-links { display: flex; gap: 28px; }
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-2);
+  transition: color .15s;
+}
+.nav-links a:hover { color: var(--brand); }
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+
+/* Nav menu: 4 inline dropdowns */
+.nav-menu { display: flex; align-items: center; gap: 2px; }
+.nav-dropdown { position: relative; }
+.dd-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 42px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-2);
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  transition: color .15s ease;
+}
+.dd-trigger:hover { color: var(--brand); }
+.dd-trigger.is-current { color: var(--brand); font-weight: 600; }
+.nav-dropdown .chev {
+  font-size: 9px;
+  line-height: 1;
+  display: inline-block;
+  transition: transform .25s ease;
+  opacity: 0.6;
+}
+.nav-dropdown:hover .chev,
+.nav-dropdown:focus-within .chev { transform: rotate(180deg); opacity: 1; color: var(--brand); }
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-top: 12px;
+  min-width: 280px;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 12px 40px rgba(20,16,10,.14);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-6px);
+  transition: opacity .15s, transform .15s;
+  z-index: 100;
+}
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0; right: 0;
+  height: 12px;
+}
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.dd-head {
+  padding: 10px 12px 12px;
+  border-bottom: 1px solid var(--line-3);
+  margin-bottom: 4px;
+}
+.dd-head-title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  margin-bottom: 4px;
+}
+.dd-head-sub {
+  font-size: 11.5px;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+.dropdown-head {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 8px 12px 6px;
+}
+.dd-item {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+  transition: background .12s, color .12s;
+}
+.dd-item:hover {
+  background: var(--surface-soft);
+  color: var(--brand);
+}
+
+@media (max-width: 1100px) {
+  .nav-menu { display: none; }
+}
+@media (max-width: 860px) {
+  .nav-actions .btn-dark { display: none; }
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  padding: clamp(32px, 5vh, 72px) 0 clamp(40px, 6vh, 88px);
+  overflow: hidden;
+}
+.hero-decor {
+  position: absolute;
+  top: -240px; right: -260px;
+  width: 820px; height: 820px;
+  background: radial-gradient(circle, rgba(220,87,25,0.10) 0%, rgba(220,87,25,0) 60%);
+  pointer-events: none;
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center top, black 0%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse at center top, black 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-top { position: relative; margin-bottom: clamp(24px, 3.5vh, 48px); }
+.hero-top .eyebrow { margin-bottom: clamp(14px, 1.6vh, 22px); }
+.hero-top .h-display {
+  font-size: clamp(34px, calc(2.6vw + 1.8vh), 84px);
+  line-height: 1.0;
+  letter-spacing: -0.032em;
+  max-width: 22ch;
+}
+
+.hero-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 4vw, 56px);
+  align-items: start;
+}
+.hero-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.4vh, 30px);
+}
+.hero-bottom { display: flex; flex-direction: column; gap: clamp(20px, 2.4vh, 30px); }
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .hero-top .h-display { font-size: clamp(32px, 7vw, 56px); max-width: none; }
+  .stack-panel { min-height: 0; }
+}
+.hero-content .lead {
+  margin-bottom: 0;
+  font-size: clamp(16px, calc(0.5vw + 1.05vh), 20px);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 0; }
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2vw, 32px);
+}
+.hero-meta-item .body-xs { margin-bottom: 2px; }
+.hero-meta-item .h4 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(15px, 1.05vw, 18px);
+}
+
+/* Hero right panel — stack */
+.stack-panel {
+  position: relative;
+  background: var(--ink-dark);
+  border-radius: var(--radius-lg);
+  padding: clamp(22px, 2.1vw, 30px);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255,255,255,0.06);
+  min-height: clamp(360px, 32vw, 430px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: hidden;
+}
+.stack-panel::before {
+  content: '';
+  position: absolute;
+  right: -160px; bottom: -180px;
+  width: 420px; height: 420px;
+  background: radial-gradient(circle, rgba(220,87,25,0.32) 0%, rgba(220,87,25,0) 68%);
+  pointer-events: none;
+}
+.sp-head {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.sp-head strong {
+  color: var(--brand);
+  letter-spacing: 0.14em;
+}
+.sp-headline {
+  position: relative;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 2.6vw, 36px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: #fff;
+}
+.sp-headline em { color: var(--brand); font-style: normal; }
+.sp-sub {
+  position: relative;
+  color: rgba(255,255,255,0.66);
+  font-size: 13px;
+  line-height: 1.4;
+  max-width: 36ch;
+}
+.sp-list {
+  position: relative;
+  margin-top: clamp(10px, 1.4vw, 16px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sp-list-item {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  align-items: center;
+  gap: 13px;
+  min-height: 66px;
+  padding: 12px 15px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  color: #fff;
+}
+.sp-list-item .ico {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(220,87,25,0.18);
+  border-radius: 12px;
+}
+.sp-list-item .ico svg {
+  width: 19px;
+  height: 19px;
+  stroke: var(--brand);
+}
+.sp-list-item .name {
+  display: block;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(14.5px, 1.1vw, 16px);
+  letter-spacing: -0.005em;
+  margin-bottom: 3px;
+}
+.sp-list-item .meta {
+  display: block;
+  color: rgba(255,255,255,0.56);
+  font-size: 11.5px;
+  line-height: 1.35;
+}
+/* Section base */
+section.s {
+  padding: 120px 0;
+  position: relative;
+}
+.s-head { max-width: 760px; margin-bottom: 48px; }
+.s-head .eyebrow { margin-bottom: 20px; }
+.s-head .h1, .s-head .h2 { margin-bottom: 20px; }
+
+.s-light { background: var(--surface); border-top-left-radius: 48px; border-top-right-radius: 48px; margin-top: 60px; }
+.s-warm  { background: var(--bg); }
+
+/* Team section */
+.team-inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+@media (max-width: 1024px) { .team-inner { grid-template-columns: 1fr; gap: 40px; } }
+.team-text p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin-bottom: 18px;
+  max-width: 60ch;
+}
+.team-text p:last-child { margin-bottom: 0; }
+.team-text p strong { color: var(--ink); font-weight: 600; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.stat-card {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 22px;
+}
+.stat-num {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 36px;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.stat-num em { color: var(--brand); font-style: normal; }
+.stat-label {
+  font-size: 12.5px;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+
+/* Directions */
+.dir-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+@media (max-width: 860px) { .dir-grid { grid-template-columns: 1fr; } }
+.dir-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 32px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.dir-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--brand);
+  box-shadow: var(--shadow-md);
+}
+.dir-card .dir-tag {
+  display: inline-flex;
+  align-self: flex-start;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--brand);
+}
+.dir-card h3 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.018em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.dir-card p {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.dir-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.dir-chip {
+  display: inline-flex;
+  padding: 5px 10px;
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.dir-support {
+  margin-top: 28px;
+  padding: 22px 28px;
+  background: var(--ink-dark);
+  color: rgba(255,255,255,0.85);
+  border-radius: var(--radius);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  font-size: 14px;
+}
+.dir-support .lbl {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  color: var(--brand);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.dir-support .role {
+  padding: 5px 12px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 999px;
+  font-size: 13px;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Pricing */
+.price-intro {
+  font-size: 13.5px;
+  color: var(--ink-3);
+  line-height: 1.5;
+  margin-bottom: 28px;
+  max-width: 72ch;
+}
+.price-block { margin-bottom: 36px; }
+.price-block:last-child { margin-bottom: 0; }
+.price-block-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.price-block-title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.price-block-sub {
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+.tbl {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.tbl th, .tbl td {
+  padding: 15px 22px;
+  text-align: left;
+  border-bottom: 1px solid var(--line-3);
+  vertical-align: middle;
+}
+.tbl thead th {
+  background: var(--surface-soft);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 13px 22px;
+}
+.tbl tbody td.role {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 14px;
+}
+.tbl tbody td.desc {
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.45;
+}
+.tbl tbody td.num {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.tbl thead th.num-h { text-align: right; }
+.tbl tr:last-child td { border-bottom: 0; }
+.tbl td.dash { color: var(--ink-3); font-weight: 400; }
+
+.price-note {
+  margin-top: 18px;
+  padding: 16px 20px;
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--brand);
+  border-radius: 12px;
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .tbl-wrap { overflow-x: auto; }
+  .tbl { min-width: 640px; }
+}
+
+/* CTA */
+.s-cta {
+  background: var(--bg);
+  padding: 60px 0 140px;
+}
+.cta-card {
+  position: relative;
+  background: var(--ink-dark);
+  color: #fff;
+  border-radius: var(--radius-xl);
+  padding: 80px 64px;
+  overflow: hidden;
+  text-align: center;
+}
+.cta-card .cta-decor {
+  position: absolute;
+  bottom: -200px; right: -100px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(220,87,25,0.25) 0%, rgba(220,87,25,0) 65%);
+  pointer-events: none;
+}
+.cta-card .eyebrow { color: var(--brand); justify-content: center; display: inline-flex; }
+.cta-card .eyebrow::before { background: var(--brand); }
+.cta-card .h1 { color: #fff; margin: 18px auto 20px; max-width: 22ch; }
+.cta-card .lead { color: rgba(255,255,255,0.75); margin: 0 auto 36px; max-width: 56ch; }
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+@media (max-width: 900px) { .cta-card { padding: 56px 28px; } }
+
+/* Footer */
+footer {
+  padding: 60px 0 48px;
+  border-top: 1px solid var(--line-2);
+  background: var(--bg);
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+@media (max-width: 900px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .footer-inner { grid-template-columns: 1fr; } }
+.footer-brand .nav-brand { font-size: 22px; margin-bottom: 16px; }
+.footer-brand p { font-size: 13.5px; color: var(--ink-3); line-height: 1.55; max-width: 32ch; }
+.footer-col h5 {
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.footer-col a {
+  display: block;
+  font-size: 14px;
+  color: var(--ink-2);
+  margin-bottom: 10px;
+  transition: color .15s;
+}
+.footer-col a:hover { color: var(--brand); }
+.footer-bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line-2);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body id="top">
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand" aria-label="FoFo — главная">
+      <img src="FoFo logo.png" alt="FoFo" class="brand-logo">
+    </a>
+    <div class="nav-menu">
+      <div class="nav-dropdown">
+        <a href="index.html" class="dd-trigger">Потери времени <span class="chev">▾</span></a>
+        <div class="dropdown-menu">
+          <div class="dd-head">
+            <div class="dd-head-title">Потери времени</div>
+            <div class="dd-head-sub">Простои, ожидания, ручная работа</div>
+          </div>
+          <div class="dropdown-head">Разделы</div>
+          <a href="index.html#problem" class="dd-item">Проблема</a>
+          <a href="index.html#modules" class="dd-item">Услуги</a>
+          <a href="index.html#approach" class="dd-item">Подход</a>
+          <a href="index.html#audience" class="dd-item">Для кого</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="production.html" class="dd-trigger">Видеоаналитика <span class="chev">▾</span></a>
+        <div class="dropdown-menu">
+          <div class="dd-head">
+            <div class="dd-head-title">Видеоаналитика производства</div>
+            <div class="dd-head-sub">Производство · OEE · операции · простои</div>
+          </div>
+          <div class="dropdown-head">Разделы</div>
+          <a href="production.html#problem" class="dd-item">Проблема</a>
+          <a href="production.html#solution" class="dd-item">Решение</a>
+          <a href="production.html#case" class="dd-item">Кейс</a>
+          <a href="production.html#roi" class="dd-item">Эффект</a>
+          <a href="production.html#stages" class="dd-item">Этапы</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="automation.html" class="dd-trigger">AI-автоматизация <span class="chev">▾</span></a>
+        <div class="dropdown-menu">
+          <div class="dd-head">
+            <div class="dd-head-title">AI-автоматизация</div>
+            <div class="dd-head-sub">AI-агенты · базы знаний · документы</div>
+          </div>
+          <div class="dropdown-head">Разделы</div>
+          <a href="automation.html#why" class="dd-item">Проблема</a>
+          <a href="automation.html#process" class="dd-item">Процесс</a>
+          <a href="automation.html#what" class="dd-item">Сценарии</a>
+          <a href="automation.html#result" class="dd-item">Результат</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="dev.html" class="dd-trigger is-current">Разработка <span class="chev">▾</span></a>
+        <div class="dropdown-menu">
+          <div class="dd-head">
+            <div class="dd-head-title">Разработка и интеграции</div>
+            <div class="dd-head-sub">1С · SAP · AI / ML · web · mobile</div>
+          </div>
+          <div class="dropdown-head">Разделы</div>
+          <a href="dev.html#team" class="dd-item">Команда</a>
+          <a href="dev.html#directions" class="dd-item">Услуги</a>
+          <a href="dev.html#pricing" class="dd-item">Ставки</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <a href="#cta" class="btn btn-dark btn-sm">Обсудить задачу</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-decor"></div>
+  <div class="hero-grid"></div>
+
+  <div class="container hero-top">
+    <div class="eyebrow">Разработка и интеграции</div>
+    <h1 class="h-display">
+      20+ лет в IT.<br>
+      <em>Команда экспертов<br>под ваш проект.</em>
+    </h1>
+  </div>
+
+  <div class="container hero-inner">
+
+    <div class="hero-content">
+      <p class="lead">
+        Когда нужна не просто разработка, а команда, которая вникает в бизнес
+        и доводит проект до результата. Подключаемся точечно или закрываем
+        весь цикл — от архитектуры до запуска.
+      </p>
+      <div class="hero-bottom">
+        <div class="hero-cta">
+          <a href="#cta" class="btn btn-primary btn-lg">Обсудить проект →</a>
+          <a href="#pricing" class="btn btn-ghost btn-lg">Смотреть ставки</a>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <div class="body-xs">Опыт</div>
+            <div class="h4">20+ лет в IT</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="body-xs">Формат</div>
+            <div class="h4">команда под задачу</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="body-xs">Старт</div>
+            <div class="h4">1–2 недели</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack-panel">
+      <div class="sp-head">
+        <span>Услуги</span>
+        <strong>направления</strong>
+      </div>
+      <div class="sp-headline">Полный цикл — от проектирования <em>до эксплуатации.</em></div>
+      <p class="sp-sub">Аналитика → Проектирование → Разработка → Тестирование → Эксплуатация</p>
+
+      <div class="sp-list">
+        <div class="sp-list-item">
+          <span class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="4" width="16" height="16" rx="2"/>
+              <path d="M9 9h6M9 13h6M9 17h3"/>
+            </svg>
+          </span>
+          <span>
+            <span class="name">1С · SAP</span>
+            <span class="meta">Архитектура · аналитика · разработка · интеграции</span>
+          </span>
+        </div>
+        <div class="sp-list-item">
+          <span class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v3M12 18v3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M3 12h3M18 12h3M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </span>
+          <span>
+            <span class="name">AI / ML и аналитика</span>
+            <span class="meta">Модели · данные · BI · аналитические системы</span>
+          </span>
+        </div>
+        <div class="sp-list-item">
+          <span class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 9l-4 3 4 3"/>
+              <path d="M16 9l4 3-4 3"/>
+              <path d="M14 5l-4 14"/>
+            </svg>
+          </span>
+          <span>
+            <span class="name">Web, mobile и backend</span>
+            <span class="meta">Кабинеты · сервисы · приложения · API</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============ TEAM ============ -->
+<section class="s s-light" id="team">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow muted">Команда</div>
+      <h2 class="h1">Опытные сеньоры, тимлиды и архитекторы.</h2>
+    </div>
+
+    <div class="team-inner">
+      <div class="team-text">
+        <p>
+          <strong>Более 20 лет в IT-разработке.</strong> В команде — разработчики,
+          аналитики, архитекторы, DevOps, QA, дизайнеры и руководители проектов
+          с опытом 3–15+ лет.
+        </p>
+        <p>
+          Делаем корпоративные системы и ERP-внедрения, высоконагруженные
+          сервисы, мобильные приложения и AI-решения.
+        </p>
+        <p>
+          Команда формируется под задачу — от одного специалиста на консультацию
+          до полной проектной команды на месяцы. Можем зайти на старте проекта,
+          забрать систему на поддержку или усилить ваш ин-хаус выделенными
+          сотрудниками.
+        </p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num"><em>20+</em></div>
+          <div class="stat-label">лет в IT-разработке</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3–15</div>
+          <div class="stat-label">лет средний опыт специалистов</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">4</div>
+          <div class="stat-label">направления разработки</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">7+</div>
+          <div class="stat-label">ролей в команде: от аналитика до архитектора</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIRECTIONS ============ -->
+<section class="s s-warm" id="directions">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow">Услуги</div>
+      <h2 class="h1">Четыре направления — один проектный подход.</h2>
+      <p class="lead">
+        От продукта на этапе MVP до развития и поддержки корпоративных систем.
+        Подбираем команду и стек под конкретную задачу.
+      </p>
+    </div>
+
+    <div class="dir-grid">
+      <div class="dir-card">
+        <div class="dir-tag">01 · 1С</div>
+        <h3>Разработка и поддержка 1С</h3>
+        <p>Доработка конфигураций, интеграции между системами, отчёты и обработки. Поддержка действующих внедрений.</p>
+        <div class="dir-stack">
+          <span class="dir-chip">1С: ERP</span>
+          <span class="dir-chip">УТ</span>
+          <span class="dir-chip">УХ</span>
+          <span class="dir-chip">ДО</span>
+          <span class="dir-chip">БП</span>
+          <span class="dir-chip">ЗУП</span>
+        </div>
+      </div>
+
+      <div class="dir-card">
+        <div class="dir-tag">02 · SAP</div>
+        <h3>Разработка и поддержка SAP</h3>
+        <p>Доработки, интеграции и сопровождение SAP-ландшафта. Помогаем связать SAP с 1С, web-сервисами и внутренними системами.</p>
+        <div class="dir-stack">
+          <span class="dir-chip">SAP ERP</span>
+          <span class="dir-chip">ABAP</span>
+          <span class="dir-chip">интеграции</span>
+        </div>
+      </div>
+
+      <div class="dir-card">
+        <div class="dir-tag">03 · AI / DATA</div>
+        <h3>AI / ML и аналитика данных</h3>
+        <p>Модели машинного обучения, обработка данных, BI-отчётность и аналитические системы.</p>
+        <div class="dir-stack">
+          <span class="dir-chip">Machine Learning</span>
+          <span class="dir-chip">Data Engineering</span>
+          <span class="dir-chip">BI · аналитика</span>
+        </div>
+      </div>
+
+      <div class="dir-card">
+        <div class="dir-tag">04 · WEB / MOBILE</div>
+        <h3>Web, мобильная и серверная разработка</h3>
+        <p>Backend-сервисы, API, микросервисы, личные кабинеты, SPA и мобильные приложения. От архитектуры до запуска и поддержки.</p>
+        <div class="dir-stack">
+          <span class="dir-chip">Java</span>
+          <span class="dir-chip">Python</span>
+          <span class="dir-chip">.NET</span>
+          <span class="dir-chip">Node.js</span>
+          <span class="dir-chip">React</span>
+          <span class="dir-chip">Angular</span>
+          <span class="dir-chip">Vue</span>
+          <span class="dir-chip">Android · Kotlin</span>
+          <span class="dir-chip">iOS · Swift</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dir-support">
+      <span class="lbl">в составе команды:</span>
+      <span class="role">DevOps</span>
+      <span class="role">QA / автотесты</span>
+      <span class="role">Аналитики</span>
+      <span class="role">UI/UX-дизайн</span>
+      <span class="role">Тимлид</span>
+      <span class="role">Руководитель проекта</span>
+      <span class="role">Архитектор</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="s" id="pricing">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow muted">Ставки</div>
+      <h2 class="h1">Ставки специалистов.</h2>
+      <p class="lead">
+        Открытые ставки за час работы — без скрытых наценок. Команда
+        разработки и 1С-команда показаны отдельными блоками: у них разные
+        специализации и логика оценки.
+      </p>
+    </div>
+
+    <p class="price-intro">
+      Все ставки в рублях за час, без НДС. Финальная стоимость проекта
+      зависит от состава команды, длительности и сложности задач.
+    </p>
+
+    <!-- Block 1: Development -->
+    <div class="price-block">
+      <div class="price-block-head">
+        <div class="price-block-title">Команда разработки</div>
+        <div class="price-block-sub">₽/час · без НДС</div>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>Специалист</th>
+              <th class="num-h">Middle</th>
+              <th class="num-h">Senior</th>
+              <th class="num-h">Lead</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="role">Backend-разработчик</td><td class="num">3 250</td><td class="num">3 500</td><td class="num">4 000</td></tr>
+            <tr><td class="role">Frontend-разработчик</td><td class="num">3 000</td><td class="num">3 250</td><td class="num">3 750</td></tr>
+            <tr><td class="role">Mobile-разработчик</td><td class="num">3 250</td><td class="num">3 625</td><td class="num">4 000</td></tr>
+            <tr><td class="role">Аналитик</td><td class="num">3 250</td><td class="num">3 500</td><td class="num">3 750</td></tr>
+            <tr><td class="role">DevOps Engineer</td><td class="num">3 500</td><td class="num">3 750</td><td class="num">4 125</td></tr>
+            <tr><td class="role">QA Engineer</td><td class="num">2 500</td><td class="num">2 750</td><td class="num">3 000</td></tr>
+            <tr><td class="role">QA Automation Engineer</td><td class="num">3 000</td><td class="num">3 250</td><td class="num">3 500</td></tr>
+            <tr><td class="role">Data Engineer</td><td class="num">3 500</td><td class="num">3 750</td><td class="num">4 000</td></tr>
+            <tr><td class="role">ML Engineer</td><td class="num">3 500</td><td class="num">4 000</td><td class="num">4 500</td></tr>
+            <tr><td class="role">UI / UX-дизайнер</td><td class="num">2 750</td><td class="num">3 000</td><td class="num">3 250</td></tr>
+            <tr><td class="role">Технический писатель</td><td class="num">2 750</td><td class="num">3 000</td><td class="num dash">—</td></tr>
+            <tr><td class="role">Архитектор</td><td class="num dash">—</td><td class="num">4 500</td><td class="num dash">—</td></tr>
+            <tr><td class="role">Руководитель проекта</td><td class="num">3 250</td><td class="num">4 250</td><td class="num dash">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Block 2: 1С -->
+    <div class="price-block">
+      <div class="price-block-head">
+        <div class="price-block-title">1С-команда</div>
+        <div class="price-block-sub">₽/час · без НДС · опыт 3–15+ лет (ERP, УТ, УХ, ДО, БП, ЗУП)</div>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>Роль</th>
+              <th>Основные задачи</th>
+              <th class="num-h">Ставка ₽/час</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="role">1С-разработчик</td>
+              <td class="desc">Доработка конфигураций, интеграции, отчёты и обработки</td>
+              <td class="num">3 400</td>
+            </tr>
+            <tr>
+              <td class="role">1С-аналитик</td>
+              <td class="desc">Сбор требований, постановка задач, описание бизнес-процессов</td>
+              <td class="num">3 600</td>
+            </tr>
+            <tr>
+              <td class="role">1С-архитектор</td>
+              <td class="desc">Архитектура решений, аудит, проектирование сложных интеграций</td>
+              <td class="num">3 900</td>
+            </tr>
+            <tr>
+              <td class="role">Консультант 1С</td>
+              <td class="desc">Внедрение, обучение пользователей, функциональная поддержка</td>
+              <td class="num">2 800</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="price-note">
+      Финальная оценка зависит от состава команды, сроков и сложности задач.
+      Возможны фиксированные пакеты (Fixed Price), Time &amp; Material и выделенная
+      команда — формат сотрудничества подбираем под проект.
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="s-cta" id="cta">
+  <div class="container">
+    <div class="cta-card">
+      <div class="cta-decor"></div>
+      <div class="eyebrow">Расскажите о проекте</div>
+      <h2 class="h1">Обсудим, какая команда нужна для вашей задачи.</h2>
+      <p class="lead">
+        Опишите задачу — мы предложим состав команды, оценку трудоёмкости
+        и формат сотрудничества. Можем стартовать с консультации или короткого
+        первого этапа с конкретным результатом.
+      </p>
+      <div class="cta-btns">
+        <a href="mailto:mac@fofo.io?subject=Запрос%20FoFo%20%E2%80%94%20разработка" class="btn btn-primary btn-lg">Написать на почту →</a>
+        <a href="https://t.me/marinenkov" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.2)">Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-brand" aria-label="FoFo — главная" style="margin-bottom: 18px">
+          <img src="FoFo logo.png" alt="FoFo" class="brand-logo" style="height: 26px">
+        </a>
+        <p>Опытная IT-команда: разработка, интеграции, 1С, AI / ML. Прозрачные ставки за час без НДС.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Разделы</h5>
+        <a href="#team">Команда</a>
+        <a href="#directions">Услуги</a>
+        <a href="#pricing">Ставки</a>
+      </div>
+      <div class="footer-col">
+        <h5>FoFo</h5>
+        <a href="index.html">Все направления</a>
+        <a href="production.html">Видеоаналитика производства</a>
+        <a href="automation.html">AI-автоматизация</a>
+      </div>
+      <div class="footer-col">
+        <h5>Контакты</h5>
+        <a href="mailto:mac@fofo.io">mac@fofo.io</a>
+        <a href="tel:+79998406869">+7 (999) 840 68 69</a>
+        <a href="https://t.me/marinenkov">t.me/marinenkov</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© FoFo, 2026. Все права защищены.</span>
+      <span>Москва · Россия</span>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "FoFo",
+    "url": "https://fofo.io",
+    "email": "mac@fofo.io",
+    "telephone": "+79998406869",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Москва",
+      "addressCountry": "RU"
+    },
+    "description": "Разработка ПО и интеграции: web, mobile, 1С / ERP, AI / ML. Опытная команда с 20+ годами в IT.",
+    "sameAs": ["https://t.me/marinenkov"]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Разработка ПО и интеграции",
+    "provider": { "@type": "Organization", "name": "FoFo", "url": "https://fofo.io" },
+    "description": "Разработка web и backend-систем, мобильных приложений, 1С / ERP-доработки и интеграции, внедрение AI / ML и аналитики данных. Опытная команда с почасовой оплатой.",
+    "areaServed": "RU"
+  }
+]
+</script>
+
+<script>
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.s-head, .stat-card, .dir-card, .dir-support, .price-block, .cta-card').forEach(el => {
+  el.classList.add('reveal');
+  io.observe(el);
+});
+</script>
+
+</body>
+</html>

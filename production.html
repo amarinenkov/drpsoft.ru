@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FoFo — Видеоаналитика производства: ПВ/НПВ, OEE, потери времени</title>
+<meta name="description" content="Замеряем производительное и непроизводительное время на участке: работа сотрудников, оборудования, операции сборки. Находим потери и точки роста — за 1–2 недели.">
+<meta name="keywords" content="видеоаналитика производства, измерение производительности, диагностика производственного участка, потери на производстве, ПВ НПВ, хронометраж, простои оборудования, OEE, промышленный AI">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://fofo.io/production">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="FoFo">
+<meta property="og:title" content="FoFo — Видеоаналитика производства: ПВ/НПВ, OEE, потери времени">
+<meta property="og:description" content="Замеряем производительное и непроизводительное время на участке. Находим потери и точки роста — результат за 1–2 недели.">
+<meta property="og:url" content="https://fofo.io/production">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FoFo — Видеоаналитика производства: ПВ/НПВ, OEE, потери времени">
+<meta name="twitter:description" content="Замеряем производительное и непроизводительное время на участке. Находим потери и точки роста — результат за 1–2 недели.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap">
+<style>
+/* ============================================
+   FoFo Landing — design tokens
+   ============================================ */
+:root {
+  --bg:           #efe8de;
+  --bg-deep:      #e6dfd2;
+  --surface:      #ffffff;
+  --surface-soft: #faf7f1;
+  --surface-tint: #f3ede1;
+  --ink-dark:     #111216;
+  --ink:          #0f1012;
+  --ink-2:        #4a4a50;
+  --ink-3:        #8a8a92;
+  --line:         #ece6d8;
+  --line-2:       #d9d2c2;
+  --line-3:       #eeece6;
+  --brand:        #dc5719;
+  --brand-deep:   #b8420c;
+  --brand-soft:   #fbe4d4;
+  --success:      #2a8f4c;
+  --shadow-sm:    0 1px 3px rgba(0,0,0,.04);
+  --shadow-md:    0 8px 24px rgba(20,16,10,.06);
+  --shadow-lg:    0 24px 60px rgba(20,16,10,.10);
+  --radius-sm:    10px;
+  --radius:       16px;
+  --radius-lg:    24px;
+  --radius-xl:    32px;
+
+  --container:    1240px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv02","cv03","cv04","cv11","ss01";
+  line-height: 1.5;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: 0; background: none; }
+.container { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+
+/* ============================================
+   Typography
+   ============================================ */
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1.5px;
+  background: var(--brand);
+  border-radius: 2px;
+}
+.eyebrow.muted { color: var(--ink-3); }
+.eyebrow.muted::before { background: var(--ink-3); }
+
+.h-display {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(44px, 6.5vw, 92px);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+.h1 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(36px, 4.5vw, 56px);
+  line-height: 1.04;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+}
+.h2 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+}
+.h3 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.h4 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.lead {
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 64ch;
+  font-weight: 400;
+}
+.body {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+.body-xs {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  letter-spacing: 0.005em;
+}
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* ============================================
+   Buttons
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.005em;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(220,87,25,.25);
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 22px rgba(220,87,25,.32); }
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line-2);
+}
+.btn-ghost:hover { background: var(--surface); border-color: var(--ink); }
+.btn-dark {
+  background: var(--ink-dark);
+  color: #fff;
+}
+.btn-dark:hover { transform: translateY(-1px); }
+.btn-sm { height: 42px; padding: 0 18px; font-size: 14px; }
+.btn-lg { height: 60px; padding: 0 34px; font-size: 16px; }
+
+/* ============================================
+   Navigation
+   ============================================ */
+.nav {
+  position: sticky;
+  top: 16px;
+  z-index: 50;
+  margin: 16px auto 0;
+  max-width: var(--container);
+  padding: 0 32px;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(0,0,0,0.04);
+  border-radius: 999px;
+  padding: 10px 14px 10px 22px;
+  box-shadow: 0 4px 24px rgba(20,16,10,.06);
+}
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+}
+.brand-logo {
+  height: 22px;
+  width: auto;
+  mix-blend-mode: multiply;
+  user-select: none;
+}
+.brand-logo.on-dark {
+  mix-blend-mode: screen;
+  filter: invert(1);
+}
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-2);
+  transition: color .15s;
+}
+.nav-links a:hover { color: var(--brand); }
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Nav menu: 4 inline dropdowns */
+.nav-menu { display: flex; align-items: center; gap: 2px; }
+.nav-dropdown { position: relative; }
+.dd-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 42px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-2);
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  transition: color .15s ease;
+}
+.dd-trigger:hover { color: var(--brand); }
+.dd-trigger.is-current { color: var(--brand); font-weight: 600; }
+.nav-dropdown .chev {
+  font-size: 9px;
+  line-height: 1;
+  display: inline-block;
+  transition: transform .25s ease;
+  opacity: 0.6;
+}
+.nav-dropdown:hover .chev,
+.nav-dropdown:focus-within .chev { transform: rotate(180deg); opacity: 1; color: var(--brand); }
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-top: 12px;
+  min-width: 280px;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 12px 40px rgba(20,16,10,.14);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-6px);
+  transition: opacity .15s, transform .15s;
+  z-index: 100;
+}
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0; right: 0;
+  height: 12px;
+}
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.dd-head {
+  padding: 10px 12px 12px;
+  border-bottom: 1px solid var(--line-3);
+  margin-bottom: 4px;
+}
+.dd-head-title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  margin-bottom: 4px;
+}
+.dd-head-sub {
+  font-size: 11.5px;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+.dropdown-head {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 8px 12px 6px;
+}
+.dd-item {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+  transition: background .12s, color .12s;
+}
+.dd-item:hover {
+  background: var(--surface-soft);
+  color: var(--brand);
+}
+
+@media (max-width: 1100px) {
+  .nav-menu { display: none; }
+}
+@media (max-width: 860px) {
+  .nav-actions .btn-dark { display: none; }
+}
+
+/* ============================================
+   Hero
+   ============================================ */
+.hero {
+  position: relative;
+  padding: clamp(32px, 5vh, 72px) 0 clamp(40px, 6vh, 88px);
+  min-height: calc(100svh - 116px);
+  overflow: hidden;
+}
+.hero-decor {
+  position: absolute;
+  top: -200px; right: -250px;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(220,87,25,0.10) 0%, rgba(220,87,25,0) 60%);
+  pointer-events: none;
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center top, black 0%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse at center top, black 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-top {
+  position: relative;
+  margin-bottom: clamp(24px, 3.5vh, 48px);
+}
+.hero-top .eyebrow { margin-bottom: clamp(14px, 1.6vh, 22px); }
+.hero-top .h-display {
+  font-size: clamp(34px, calc(2.6vw + 1.8vh), 84px);
+  line-height: 1.0;
+  letter-spacing: -0.032em;
+  max-width: 22ch;
+}
+.hero-top .h-display em {
+  color: var(--brand);
+  font-style: normal;
+}
+
+.hero-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 4vw, 56px);
+  align-items: start;
+}
+.hero-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2.2vh, 28px);
+}
+.hero-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.4vh, 30px);
+}
+.hero-visual { min-width: 0; }
+@media (max-width: 1024px) {
+  .hero { min-height: 0; }
+  .hero-inner { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .hero-content { justify-content: flex-start; }
+  .hero-top .h-display { font-size: clamp(32px, 7vw, 56px); max-width: none; }
+  .hero-visual { min-height: 0; }
+}
+.hero-content .lead {
+  margin-bottom: 0;
+  font-size: clamp(16px, calc(0.55vw + 1.05vh), 21px);
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2vw, 32px);
+  padding-top: 0;
+  border-top: 0;
+}
+.hero-meta-item .body-xs { margin-bottom: 2px; }
+.hero-meta-item .h4 { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(15px, 1.05vw, 18px); }
+
+/* Hero visual — animated proof */
+.hero-visual {
+  position: relative;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: clamp(20px, 2.4vw, 32px);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(0,0,0,0.04);
+  min-height: clamp(360px, 32vw, 455px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+.hero-visual::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, transparent 60%, rgba(220,87,25,0.20));
+  z-index: -1;
+}
+.shop-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0;
+}
+.shop-label .body-xs { display: inline-flex; align-items: center; gap: 8px; }
+.live-dot {
+  width: 8px; height: 8px;
+  background: var(--success);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.time-bar {
+  display: flex;
+  height: 74px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--surface-tint);
+  margin-bottom: 0;
+}
+.time-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  transition: flex .9s cubic-bezier(.7,0,.2,1);
+}
+.time-seg span { font-size: 11px; font-weight: 500; opacity: 0.9; }
+.time-seg b { font-size: 18px; line-height: 1; margin-bottom: 4px; }
+.seg-work    { background: var(--ink-dark); flex: 173; }
+.seg-idle    { background: var(--brand); flex: 200; }
+.seg-setup   { background: #b8420c; flex: 60; min-width: 64px; }
+.seg-empty   { background: var(--line-2); color: var(--ink-3); flex: 47; min-width: 64px; }
+.time-seg.compact b { font-size: 14px; }
+
+.time-legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.legend-swatch {
+  width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0;
+}
+.swatch-work  { background: var(--ink-dark); }
+.swatch-idle  { background: var(--brand); }
+.swatch-setup { background: #b8420c; }
+.swatch-empty { background: var(--line-2); }
+
+.hero-stat-inline {
+  margin: 0;
+  background: transparent;
+  color: var(--ink);
+  padding: 0;
+  border-radius: 0;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+.hero-stat-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hero-stat-copy .kicker {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.hero-stat-copy .title {
+  max-width: 15ch;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: clamp(24px, 1.85vw, 30px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+.hero-stat-inline .kpi-flow {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: clamp(9px, 1vw, 14px);
+  flex-wrap: nowrap;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: clamp(66px, 5.6vw, 96px);
+  line-height: 0.84;
+  letter-spacing: -0.065em;
+  color: var(--brand);
+  width: 100%;
+}
+.hero-stat-inline .kpi-flow b,
+.hero-stat-inline .kpi-flow strong {
+  font: inherit;
+  white-space: nowrap;
+}
+.hero-stat-inline .kpi-flow b {
+  color: var(--ink);
+  font-size: 0.74em;
+}
+.hero-stat-inline .kpi-flow strong { color: var(--brand); }
+.hero-stat-inline .pct {
+  font-size: 0.72em;
+  letter-spacing: -0.05em;
+}
+.hero-stat-inline .kpi-flow i {
+  font-style: normal;
+  color: rgba(63,66,74,0.48);
+  font: inherit;
+  font-size: 0.58em;
+  transform: none;
+}
+.hero-stat-note {
+  max-width: 30ch;
+  font-size: clamp(15px, 1.1vw, 18px);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink-2);
+}
+.hero-proof-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.shift-explain {
+  font-size: 12.5px;
+  line-height: 1.35;
+  color: var(--ink-3);
+}
+
+/* ============================================
+   Section base
+   ============================================ */
+section.s {
+  padding: 120px 0;
+  position: relative;
+}
+.s-head {
+  max-width: 760px;
+  margin-bottom: 64px;
+}
+.s-head .eyebrow { margin-bottom: 20px; }
+.s-head .h1 { margin-bottom: 20px; }
+
+/* ============================================
+   Problem section
+   ============================================ */
+.s-problem {
+  background: var(--surface);
+  border-top-left-radius: 48px;
+  border-top-right-radius: 48px;
+  margin-top: 60px;
+}
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 56px;
+}
+@media (max-width: 1024px) { .problem-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .problem-grid { grid-template-columns: 1fr; } }
+.problem-card {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 200px;
+}
+.problem-card .num {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--brand);
+  letter-spacing: 0.06em;
+}
+.problem-card .h4 {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.problem-quote {
+  background: var(--ink-dark);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 36px 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.problem-quote-icon {
+  flex-shrink: 0;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--brand);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 26px; color: #fff;
+}
+.problem-quote .h3 { color: #fff; font-size: 20px; font-weight: 600; line-height: 1.4; letter-spacing: -0.01em; }
+
+/* ============================================
+   Solution / Steps
+   ============================================ */
+.s-solution {
+  background: var(--surface);
+  padding-bottom: 140px;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  position: relative;
+}
+@media (max-width: 1100px) { .steps { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+@media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+.step {
+  position: relative;
+  padding: 36px 28px 32px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.step:hover {
+  transform: translateY(-4px);
+  border-color: var(--brand);
+  box-shadow: var(--shadow-md);
+  z-index: 2;
+}
+.step + .step { margin-left: -1px; }
+@media (max-width: 1100px) { .step + .step { margin-left: 0; } }
+.step-num {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  color: var(--brand);
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+.step h4 { font-size: 16px; }
+.step p { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; }
+
+/* ============================================
+   Case study
+   ============================================ */
+.s-case {
+  padding: 140px 0;
+  background: var(--bg);
+}
+.case-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: center;
+}
+@media (max-width: 1024px) { .case-inner { grid-template-columns: 1fr; gap: 56px; } }
+.case-text .h1 {
+  margin-bottom: 24px;
+  font-size: clamp(40px, 5vw, 64px);
+}
+.case-text .h1 em {
+  font-style: normal;
+  color: var(--brand);
+}
+.case-visual {
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  box-shadow: var(--shadow-lg);
+}
+.case-clock {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.case-clock .big {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 88px;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--ink-dark);
+}
+.case-clock .small {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  color: var(--ink-3);
+  letter-spacing: -0.02em;
+}
+.case-clock .arrow { font-size: 22px; color: var(--ink-3); padding: 0 6px; }
+.case-bar {
+  position: relative;
+  height: 14px;
+  background: var(--surface-tint);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.case-bar-fill {
+  position: absolute;
+  inset: 0 0 0 0;
+  width: 36%;
+  background: linear-gradient(90deg, var(--ink-dark), #2a2c33);
+  border-radius: 999px;
+}
+.case-bar-label {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.case-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.case-stat .num {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.case-stat .num.brand { color: var(--brand); }
+.case-stat .label { font-size: 12px; color: var(--ink-3); }
+
+/* ============================================
+   ROI calculator
+   ============================================ */
+.s-roi {
+  padding: 140px 0;
+  background: var(--ink-dark);
+  color: #fff;
+}
+.s-roi .eyebrow { color: var(--brand); }
+.s-roi .eyebrow::before { background: var(--brand); }
+.s-roi .h1 { color: #fff; }
+.s-roi .lead { color: rgba(255,255,255,0.72); }
+
+.calc {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  margin-top: 24px;
+}
+@media (max-width: 1024px) { .calc { grid-template-columns: 1fr; gap: 40px; } }
+
+.calc-controls {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+}
+.calc-row { margin-bottom: 28px; }
+.calc-row:last-child { margin-bottom: 0; }
+.calc-row label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+}
+.calc-row label .name { font-size: 14px; color: rgba(255,255,255,0.6); }
+.calc-row label .val {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.calc-row label .val em { color: var(--brand); font-style: normal; }
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 999px;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px; height: 22px;
+  background: var(--brand);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 12px rgba(220,87,25,0.4);
+  transition: transform .15s;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
+input[type="range"]::-moz-range-thumb {
+  width: 22px; height: 22px;
+  background: var(--brand);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 4px solid #fff;
+}
+
+.calc-result {
+  position: relative;
+}
+.calc-amount {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: clamp(56px, 7vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: #fff;
+  margin-bottom: 18px;
+}
+.calc-amount em {
+  color: var(--brand);
+  font-style: normal;
+}
+.calc-period { font-size: 16px; color: rgba(255,255,255,0.55); margin-bottom: 32px; }
+
+.calc-yearly {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: rgba(220,87,25,0.10);
+  border: 1px solid rgba(220,87,25,0.25);
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+}
+.calc-yearly .label { color: rgba(255,255,255,0.7); font-size: 13px; }
+.calc-yearly .amount {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #fff;
+  margin-left: auto;
+  letter-spacing: -0.01em;
+}
+
+.calc-fineprint {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.55;
+}
+
+/* ============================================
+   Comparison
+   ============================================ */
+.s-vs { background: var(--surface); padding: 140px 0; }
+.vs-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 16px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.vs-table th, .vs-table td {
+  padding: 22px 24px;
+  text-align: left;
+  border-bottom: 1px solid var(--line-3);
+  font-size: 14.5px;
+  color: var(--ink-2);
+  vertical-align: middle;
+}
+.vs-table thead th {
+  background: var(--surface-soft);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 18px 24px;
+}
+.vs-table thead th.fofo-col {
+  background: var(--brand-soft);
+  color: var(--brand-deep);
+}
+.vs-table tbody td:first-child {
+  font-weight: 600;
+  color: var(--ink);
+}
+.vs-table tbody td.fofo {
+  background: rgba(251,228,212,0.4);
+  font-weight: 600;
+  color: var(--ink);
+}
+.vs-table tr:last-child td { border-bottom: 0; }
+@media (max-width: 860px) {
+  .vs-wrap { overflow-x: auto; }
+  .vs-table { min-width: 720px; }
+}
+
+/* ============================================
+   Stages
+   ============================================ */
+.s-stages {
+  padding: 140px 0;
+  background: var(--bg);
+}
+.stages {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  position: relative;
+}
+@media (max-width: 1100px) { .stages { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+@media (max-width: 560px) { .stages { grid-template-columns: 1fr; } }
+.stage {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 220px;
+  position: relative;
+  transition: all .3s ease;
+}
+.stage.now {
+  background: var(--ink-dark);
+  color: #fff;
+  border-color: transparent;
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+.stage.now .h4 { color: #fff; }
+.stage.now p { color: rgba(255,255,255,0.7); }
+.stage.now .stage-pill {
+  background: var(--brand);
+  color: #fff;
+}
+.stage-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  padding: 5px 11px;
+  background: var(--surface-tint);
+  color: var(--ink-2);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.stage h4 { font-size: 16px; }
+.stage p { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+.stage-now-mark {
+  position: absolute;
+  top: -12px;
+  right: 16px;
+  padding: 4px 10px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+}
+
+/* ============================================
+   Audience
+   ============================================ */
+.s-audience { background: var(--surface); padding: 140px 0; }
+.aud-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 900px) { .aud-grid { grid-template-columns: 1fr; } }
+.aud-card {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.aud-card .ico {
+  width: 52px; height: 52px;
+  background: var(--brand-soft);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.aud-card .ico svg { width: 26px; height: 26px; stroke: var(--brand); }
+.aud-card h3 { font-size: 18px; }
+.aud-card p { font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+
+/* ============================================
+   CTA
+   ============================================ */
+.s-cta {
+  padding: 60px 0 140px;
+  background: var(--surface);
+}
+.cta-card {
+  position: relative;
+  background: var(--ink-dark);
+  color: #fff;
+  border-radius: var(--radius-xl);
+  padding: 80px 64px;
+  overflow: hidden;
+}
+.cta-decor {
+  position: absolute;
+  bottom: -200px; right: -100px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(220,87,25,0.25) 0%, rgba(220,87,25,0) 65%);
+  pointer-events: none;
+}
+.cta-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+@media (max-width: 900px) { .cta-inner { grid-template-columns: 1fr; gap: 40px; } padding: 56px 32px; }
+.cta-inner .eyebrow { color: var(--brand); }
+.cta-inner .eyebrow::before { background: var(--brand); }
+.cta-inner .h1 { color: #fff; margin: 18px 0 18px; }
+.cta-inner .lead { color: rgba(255,255,255,0.75); margin-bottom: 32px; }
+.cta-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.cta-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 22px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+}
+.cta-step b {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  background: var(--brand);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+}
+.cta-step .txt b { all: unset; font-weight: 600; color: #fff; }
+.cta-step .txt { font-size: 14.5px; color: rgba(255,255,255,0.85); line-height: 1.5; }
+.cta-step .txt .h4 { color: #fff; font-size: 15px; margin-bottom: 4px; }
+
+/* ============================================
+   Footer
+   ============================================ */
+footer {
+  padding: 60px 0 48px;
+  border-top: 1px solid var(--line-2);
+  background: var(--bg);
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+@media (max-width: 900px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .footer-inner { grid-template-columns: 1fr; } }
+.footer-brand .nav-brand { font-size: 22px; margin-bottom: 16px; }
+.footer-brand p { font-size: 13.5px; color: var(--ink-3); line-height: 1.55; max-width: 32ch; }
+.footer-col h5 {
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.footer-col a {
+  display: block;
+  font-size: 14px;
+  color: var(--ink-2);
+  margin-bottom: 10px;
+  transition: color .15s;
+}
+.footer-col a:hover { color: var(--brand); }
+.footer-bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line-2);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+/* ============================================
+   Scroll reveal helper
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body id="top">
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand" aria-label="FoFo — главная">
+      <img src="FoFo logo.png" alt="FoFo" class="brand-logo">
+    </a>
+    <div class="nav-menu">
+      <div class="nav-dropdown">
+        <a href="index.html" class="dd-trigger">Потери времени <span class="chev">▾</span></a>
+        <div class="dropdown-menu">
+          <div class="dd-head">
+            <div class="dd-head-title">Потери времени</div>
+            <div class="dd-head-sub">Простои, ожидания, ручная работа</div>
+          </div>
+          <div class="dropdown-head">Разделы</div>
+          <a href="index.html#problem" class="dd-item">Проблема</a>
+          <a href="index.html#modules" class="dd-item">Услуги</a>
+          <a href="index.html#approach" class="dd-item">Подход</a>
+          <a href="index.html#audience" class="dd-item">Для кого</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="production.html" class="dd-trigger is-current">Видеоаналитика <span class="chev">▾</span></a>
+        <div class="dropdown-menu">
+          <div class="dd-head">
+            <div class="dd-head-title">Видеоаналитика производства</div>
+            <div class="dd-head-sub">Производство · OEE · операции · простои</div>
+          </div>
+          <div class="dropdown-head">Разделы</div>
+          <a href="production.html#problem" class="dd-item">Проблема</a>
+          <a href="production.html#solution" class="dd-item">Решение</a>
+          <a href="production.html#case" class="dd-item">Кейс</a>
+          <a href="production.html#roi" class="dd-item">Эффект</a>
+          <a href="production.html#stages" class="dd-item">Этапы</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="automation.html" class="dd-trigger">AI-автоматизация <span class="chev">▾</span></a>
+        <div class="dropdown-menu">
+          <div class="dd-head">
+            <div class="dd-head-title">AI-автоматизация</div>
+            <div class="dd-head-sub">AI-агенты · базы знаний · документы</div>
+          </div>
+          <div class="dropdown-head">Разделы</div>
+          <a href="automation.html#why" class="dd-item">Проблема</a>
+          <a href="automation.html#process" class="dd-item">Процесс</a>
+          <a href="automation.html#what" class="dd-item">Сценарии</a>
+          <a href="automation.html#result" class="dd-item">Результат</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="dev.html" class="dd-trigger">Разработка <span class="chev">▾</span></a>
+        <div class="dropdown-menu">
+          <div class="dd-head">
+            <div class="dd-head-title">Разработка и интеграции</div>
+            <div class="dd-head-sub">1С · SAP · AI / ML · web · mobile</div>
+          </div>
+          <div class="dropdown-head">Разделы</div>
+          <a href="dev.html#team" class="dd-item">Команда</a>
+          <a href="dev.html#directions" class="dd-item">Услуги</a>
+          <a href="dev.html#pricing" class="dd-item">Ставки</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <a href="#cta" class="btn btn-dark btn-sm">Обсудить задачу</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-decor"></div>
+  <div class="hero-grid"></div>
+
+  <div class="container hero-top">
+    <div class="eyebrow">Видеоаналитика производства · Замер ПВ / НПВ</div>
+    <h1 class="h-display">
+      Директор: «Наши работают больше 60% времени».
+      <br>
+      <em>Замерили — 36%.</em>
+    </h1>
+  </div>
+
+  <div class="container hero-inner">
+
+    <div class="hero-content">
+      <p class="lead">
+        Замеряем производительное и непроизводительное время на производственном
+        участке: работу сотрудников и оборудования, операции сборки, ожидания
+        и любые повторяющиеся действия. Показываем потери и точки роста —
+        до изменений и после внедрения.
+      </p>
+      <div class="hero-bottom">
+        <div class="hero-cta">
+          <a href="#cta" class="btn btn-primary btn-lg">Заказать диагностику участка →</a>
+          <a href="#case" class="btn btn-ghost btn-lg">Смотреть кейс</a>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <div class="body-xs">Первый результат</div>
+            <div class="h4">1–2 недели</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="body-xs">Участок</div>
+            <div class="h4">сборка, станки, линии</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="body-xs">Без капвложений</div>
+            <div class="h4">в инфраструктуру</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-stat-copy">
+        <div class="kicker">результат замера</div>
+        <div class="title">Реальная производительность</div>
+      </div>
+
+      <div class="hero-stat-inline">
+        <div class="kpi-flow">
+          <strong>36<span class="pct">%</span></strong>
+        </div>
+      </div>
+
+      <div class="hero-stat-note">в работе. Остальное — простои, наладка, ожидания</div>
+
+      <div class="hero-proof-detail">
+        <div class="shop-label">
+          <div class="body-xs"><span class="live-dot"></span> Цех №3 · участок сборки · смена 1</div>
+        </div>
+
+        <div class="time-bar">
+          <div class="time-seg seg-work"><b>2:53</b><span>работа</span></div>
+          <div class="time-seg seg-idle"><b>3:20</b><span>простой</span></div>
+          <div class="time-seg seg-setup compact"><b>1:00</b><span>наладка</span></div>
+          <div class="time-seg seg-empty compact"><b>0:47</b><span>пусто</span></div>
+        </div>
+
+        <div class="shift-explain">2:53 продуктивной работы из 8 часов смены = 36%.</div>
+      </div>
+
+    </div>
+
+  </div>
+</header>
+
+<!-- ============ PROBLEM ============ -->
+<section class="s s-problem" id="problem">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow muted">Проблема</div>
+      <h2 class="h1">Кажется, что производство работает.</h2>
+      <p class="lead">
+        Никто точно не знает, сколько времени реально работает участок,
+        где теряются минуты смены и сколько из них — полезная работа,
+        а сколько — ожидание, простой или вспомогательные операции.
+      </p>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="num">01</div>
+        <div class="h4">Сколько времени реально работает участок</div>
+      </div>
+      <div class="problem-card">
+        <div class="num">02</div>
+        <div class="h4">Сколько занимает каждая операция</div>
+      </div>
+      <div class="problem-card">
+        <div class="num">03</div>
+        <div class="h4">Сколько времени уходит в ожидание между операциями</div>
+      </div>
+      <div class="problem-card">
+        <div class="num">04</div>
+        <div class="h4">Где производительное, а где непроизводительное время</div>
+      </div>
+      <div class="problem-card">
+        <div class="num">05</div>
+        <div class="h4">Где скрытые потери внутри смены</div>
+      </div>
+    </div>
+
+    <div class="problem-quote">
+      <div class="problem-quote-icon">!</div>
+      <div class="h3">Мастера говорят «всё нормально». План не выполняется. А ответа нет.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOLUTION ============ -->
+<section class="s s-solution" id="solution">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow">Решение</div>
+      <h2 class="h1">Замеряем — и показываем в цифрах.</h2>
+      <p class="lead">
+        Не консалтинг. Не аудит. Конкретное измерение того, что реально
+        происходит на участке — с видео-доказательствами по каждой минуте смены.
+      </p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4 class="h4">Съёмка</h4>
+        <p>Используем текущую систему видеонаблюдения на участке, при необходимости подключаемся к сигналам с оборудования.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4 class="h4">Разметка</h4>
+        <p>Размечаем операции: работа, ожидание, наладка, перемещение, простой, вспомогательные действия, отсутствие оператора.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4 class="h4">Расчёт</h4>
+        <p>Производительное и непроизводительное время, загрузка, время цикла, повторяющиеся задержки.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4 class="h4">Отчёт</h4>
+        <p>Где потери, сколько, во что это конвертируется в деньгах, что конкретно улучшить в первую очередь.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <h4 class="h4">До / После</h4>
+        <p>После внедрения изменений — повторный замер с конкретными цифрами роста производительности.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASE STUDY ============ -->
+<section class="s s-case" id="case">
+  <div class="container case-inner">
+
+    <div class="case-text">
+      <div class="eyebrow muted">Кейс</div>
+      <h2 class="h1 mt-3" style="margin-top:24px">
+        Из 8 часов смены — <em>только 2:53</em> реальной работы.
+      </h2>
+      <p class="lead" style="margin-top:24px">
+        Сборочный участок, ~30 рабочих мест, полуавтоматические станки.
+        До замера директор по производству был уверен: «наши сотрудники
+        работают более чем на&nbsp;60%». Замер показал — <strong>36%</strong>.
+        И сразу стало видно конкретные точки потерь.
+      </p>
+      <p class="body" style="margin-top:24px;font-size:15px">
+        Все цифры подтверждены видеозаписью — каждую минуту можно пересмотреть.
+        Это не «экспертное мнение», а измерение факта.
+      </p>
+    </div>
+
+    <div class="case-visual">
+      <div class="body-xs" style="margin-bottom:8px;text-transform:uppercase;letter-spacing:0.12em">Загрузка оборудования</div>
+      <div class="case-clock">
+        <span class="big tnum">2:53</span>
+        <span class="arrow">/</span>
+        <span class="small tnum">8:00</span>
+      </div>
+
+      <div class="case-bar">
+        <div class="case-bar-fill"></div>
+      </div>
+      <div class="case-bar-label">
+        <span>0 ч</span>
+        <span style="color:var(--brand-deep);font-weight:600">36%</span>
+        <span>8 ч</span>
+      </div>
+
+      <div class="case-stats">
+        <div class="case-stat">
+          <div class="num brand tnum">64%</div>
+          <div class="label">непроизводительного времени</div>
+        </div>
+        <div class="case-stat">
+          <div class="num tnum">5:07</div>
+          <div class="label">потерь внутри смены</div>
+        </div>
+        <div class="case-stat">
+          <div class="num tnum">30</div>
+          <div class="label">станков на участке</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ ROI CALCULATOR ============ -->
+<section class="s s-roi" id="roi">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow">Эффект</div>
+      <h2 class="h1">Даже +5% производительности — заметные деньги уже в первый месяц.</h2>
+      <p class="lead">
+        Пример: участок сборки газовых котлов, 20 сотрудников.
+        Подвигайте ползунок — посмотрите, как растёт прибыль с ростом производительности.
+      </p>
+    </div>
+
+    <div class="calc">
+
+      <div class="calc-controls">
+        <div class="calc-row">
+          <label>
+            <span class="name">Рост производительности</span>
+            <span class="val"><em id="pctOut">5</em>%</span>
+          </label>
+          <input type="range" id="pct" min="3" max="50" value="5" step="1">
+        </div>
+        <div class="calc-row">
+          <label>
+            <span class="name">Выпуск изделий в день, шт</span>
+            <span class="val"><span id="outpOut">50</span></span>
+          </label>
+          <input type="range" id="outp" min="20" max="500" value="50" step="10">
+        </div>
+        <div class="calc-row">
+          <label>
+            <span class="name">Маржа с изделия, ₽</span>
+            <span class="val"><span id="marOut">12 000</span></span>
+          </label>
+          <input type="range" id="mar" min="2000" max="50000" value="12000" step="1000">
+        </div>
+        <div class="calc-row">
+          <label>
+            <span class="name">Рабочих дней в месяц</span>
+            <span class="val"><span id="daysOut">22</span></span>
+          </label>
+          <input type="range" id="days" min="15" max="30" value="22" step="1">
+        </div>
+      </div>
+
+      <div class="calc-result">
+        <div class="body-xs" style="color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px">
+          Дополнительная прибыль
+        </div>
+        <div class="calc-amount">+<em id="profitOut">660 000</em>&nbsp;₽</div>
+        <div class="calc-period">в месяц · при тех же ресурсах</div>
+
+        <div class="calc-yearly">
+          <span class="label">В год это</span>
+          <span class="amount tnum">+<span id="yearOut">7 920 000</span>&nbsp;₽</span>
+        </div>
+
+        <p class="calc-fineprint">
+          Расчёт без расширения штата, без нового оборудования, без строительства цеха.
+          Только за счёт более эффективного использования текущего времени и ресурсов.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPARISON ============ -->
+<section class="s s-vs">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow muted">Чем отличаемся</div>
+      <h2 class="h1">Не обещаем эффективность. Показываем потери в цифрах.</h2>
+    </div>
+
+    <div class="vs-wrap">
+      <table class="vs-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Хронометраж нормировщиком</th>
+            <th>Консалтинг / аудит</th>
+            <th>Датчики на оборудовании</th>
+            <th class="fofo-col">FoFo · видеоаналитика</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Срок старта</td>
+            <td>недели</td>
+            <td>месяцы</td>
+            <td>месяцы</td>
+            <td class="fofo">1–2 недели</td>
+          </tr>
+          <tr>
+            <td>Стоимость старта</td>
+            <td>средняя</td>
+            <td>высокая</td>
+            <td>очень высокая</td>
+            <td class="fofo">низкая</td>
+          </tr>
+          <tr>
+            <td>Формат контроля</td>
+            <td>разово</td>
+            <td>разово</td>
+            <td>постоянно, но только машина</td>
+            <td class="fofo">постоянно: люди + оборудование</td>
+          </tr>
+          <tr>
+            <td>Видит людей и операции</td>
+            <td>да (выборка)</td>
+            <td>да (выборка)</td>
+            <td>нет — только машину</td>
+            <td class="fofo">да (вся смена)</td>
+          </tr>
+          <tr>
+            <td>Видит оборудование</td>
+            <td>косвенно</td>
+            <td>косвенно</td>
+            <td>да</td>
+            <td class="fofo">да</td>
+          </tr>
+          <tr>
+            <td>Объективность</td>
+            <td>субъективно</td>
+            <td>экспертное мнение</td>
+            <td>данные с датчиков</td>
+            <td class="fofo">видео-доказательства</td>
+          </tr>
+          <tr>
+            <td>Результат в деньгах</td>
+            <td>нет</td>
+            <td>редко</td>
+            <td>косвенно</td>
+            <td class="fofo">сразу</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STAGES ============ -->
+<section class="s s-stages" id="stages">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow muted">Этапы</div>
+      <h2 class="h1">Диагностика — только вход. Дальше можно достраивать систему.</h2>
+      <p class="lead">
+        Каждая ступень — отдельный понятный шаг с измеримым результатом.
+        Не нужно решаться сразу на «трансформацию».
+      </p>
+    </div>
+
+    <div class="stages">
+      <div class="stage now">
+        <div class="stage-now-mark">Старт</div>
+        <span class="stage-pill">Этап 1</span>
+        <h4 class="h4">Измерение ПВ / НПВ</h4>
+        <p>Замер производительного и непроизводительного времени на участке.</p>
+      </div>
+      <div class="stage">
+        <span class="stage-pill">Этап 2</span>
+        <h4 class="h4">Аналитика причин</h4>
+        <p>Почему возникают простои, что повторяется, где системные потери.</p>
+      </div>
+      <div class="stage">
+        <span class="stage-pill">Этап 3</span>
+        <h4 class="h4">Рекомендации</h4>
+        <p>Конкретные изменения процессов с ожидаемым эффектом.</p>
+      </div>
+      <div class="stage">
+        <span class="stage-pill">Этап 4</span>
+        <h4 class="h4">Интеграция</h4>
+        <p>Связь с ERP, 1С, BI — данные с участка попадают в финансовый контур.</p>
+      </div>
+      <div class="stage">
+        <span class="stage-pill">Этап 5</span>
+        <h4 class="h4">AI и помощник мастера</h4>
+        <p>Прогнозирование загрузки, цифровой помощник мастера, рекомендации в реальном времени.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AUDIENCE ============ -->
+<section class="s s-audience">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow muted">Где виден эффект</div>
+      <h2 class="h1">Когда диагностика быстро даёт пользу</h2>
+    </div>
+
+    <div class="aud-grid">
+      <div class="aud-card">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="8" width="18" height="13" rx="2"/>
+            <path d="M7 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/>
+            <path d="M7 14h.01M12 14h.01M17 14h.01"/>
+          </svg>
+        </div>
+        <h3 class="h3">Есть ручной труд: сборка, работа со станками или операции без оборудования</h3>
+        <p>Сотрудник влияет на ритм, простои, ожидания, наладку и вспомогательные операции.</p>
+      </div>
+      <div class="aud-card">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21V9l9-6 9 6v12"/>
+            <path d="M9 21V12h6v9"/>
+          </svg>
+        </div>
+        <h3 class="h3">Есть повторяющиеся операции и смены</h3>
+        <p>Можно сравнивать участки, смены и операции — и видеть, где стабильно теряется время.</p>
+      </div>
+      <div class="aud-card">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+          </svg>
+        </div>
+        <h3 class="h3">Есть ощущение потерь, но нет точных цифр</h3>
+        <p>План есть, отклонения есть, но непонятно, что именно съедает смену и где начинать улучшения.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="s s-cta" id="cta">
+  <div class="container">
+    <div class="cta-card">
+      <div class="cta-decor"></div>
+      <div class="cta-inner">
+
+        <div>
+          <div class="eyebrow">Начните с одного участка</div>
+          <h2 class="h1">Измерим потери времени в производственном процессе.</h2>
+          <p class="lead">
+            Бесплатная первичная консультация. Покажем, как замер будет
+            выглядеть именно на вашем участке, и предложим план работ
+            с понятным результатом и сроками.
+          </p>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px">
+            <a href="mailto:mac@fofo.io" class="btn btn-primary btn-lg">Заказать диагностику →</a>
+            <a href="mailto:mac@fofo.io?subject=Запрос%20презентации%20FoFo" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.2)">Получить презентацию</a>
+          </div>
+        </div>
+
+        <div class="cta-steps">
+          <div class="cta-step">
+            <b>1</b>
+            <div class="txt">
+              <div class="h4">Заявка и созвон</div>
+              Обсуждаем участок, оборудование, цели и формат работы.
+            </div>
+          </div>
+          <div class="cta-step">
+            <b>2</b>
+            <div class="txt">
+              <div class="h4">Выезд и съёмка</div>
+              Подключаемся к текущей системе видеонаблюдения, фиксируем смену, размечаем операции по нашей методологии.
+            </div>
+          </div>
+          <div class="cta-step">
+            <b>3</b>
+            <div class="txt">
+              <div class="h4">Отчёт через 1–2 недели</div>
+              Цифры по каждой операции и рабочему месту, карта потерь и точки роста — в деньгах.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#top" class="nav-brand" aria-label="FoFo — вверх страницы" style="margin-bottom: 18px">
+          <img src="FoFo logo.png" alt="FoFo" class="brand-logo" style="height: 26px">
+        </a>
+        <p>Видеоаналитика производства. Измеряем, как реально работает участок — и превращаем потери в рост.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Разделы</h5>
+        <a href="#problem">Проблема</a>
+        <a href="#solution">Решение</a>
+        <a href="#case">Кейс</a>
+        <a href="#roi">Эффект</a>
+      </div>
+      <div class="footer-col">
+        <h5>FoFo</h5>
+        <a href="index.html">Все направления</a>
+        <a href="automation.html">AI-автоматизация</a>
+        <a href="dev.html">Разработка и интеграции</a>
+      </div>
+      <div class="footer-col">
+        <h5>Контакты</h5>
+        <a href="mailto:mac@fofo.io">mac@fofo.io</a>
+        <a href="tel:+79998406869">+7 (999) 840 68 69</a>
+        <a href="https://t.me/marinenkov">t.me/marinenkov</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© FoFo, 2026. Все права защищены.</span>
+      <span>Москва · Россия</span>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "FoFo",
+    "url": "https://fofo.io",
+    "email": "mac@fofo.io",
+    "telephone": "+79998406869",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Москва",
+      "addressCountry": "RU"
+    },
+    "description": "Измерение производительности труда на производстве. Замеряем производительное и непроизводительное время на участке, находим потери и точки роста в цифрах.",
+    "sameAs": ["https://t.me/marinenkov"]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Диагностика производительности производственного участка",
+    "provider": { "@type": "Organization", "name": "FoFo", "url": "https://fofo.io" },
+    "description": "Замеряем производительное и непроизводительное время на производственном участке: работа сотрудников, оборудования и операций сборки. Выявляем потери, простои и точки роста в цифрах за 1–2 недели.",
+    "areaServed": "RU",
+    "availableChannel": {
+      "@type": "ServiceChannel",
+      "serviceUrl": "https://fofo.io",
+      "contactType": "sales"
+    }
+  }
+]
+</script>
+
+<script>
+/* ============ ROI Calculator ============ */
+const $ = id => document.getElementById(id);
+const pct = $('pct'), outp = $('outp'), mar = $('mar'), days = $('days');
+const fmt = n => new Intl.NumberFormat('ru-RU').format(Math.round(n));
+
+function calc() {
+  const p = +pct.value;
+  const o = +outp.value;
+  const m = +mar.value;
+  const d = +days.value;
+
+  $('pctOut').textContent  = p;
+  $('outpOut').textContent = o;
+  $('marOut').textContent  = fmt(m);
+  $('daysOut').textContent = d;
+
+  const extraPerDay = o * (p / 100);
+  const extraPerMonth = extraPerDay * d;
+  const profitMonth = extraPerMonth * m;
+  const profitYear = profitMonth * 12;
+
+  $('profitOut').textContent = fmt(profitMonth);
+  $('yearOut').textContent   = fmt(profitYear);
+}
+[pct, outp, mar, days].forEach(el => el.addEventListener('input', calc));
+calc();
+
+/* ============ Reveal on scroll ============ */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.s-head, .problem-card, .step, .case-visual, .case-text, .calc, .vs-table, .stage, .aud-card, .cta-card').forEach(el => {
+  el.classList.add('reveal');
+  io.observe(el);
+});
+</script>
+
+</body>
+</html>

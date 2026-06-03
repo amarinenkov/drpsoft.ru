@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FoFo — AI-автоматизация рутины: отчёты, документы, база знаний</title>
+<meta name="description" content="Изучаем повторяющиеся задачи команды и внедряем AI-инструменты: базы знаний, ассистенты, автоматизация отчётов и документов. Сравниваем эффект до и после в цифрах.">
+<meta name="keywords" content="AI автоматизация, автоматизация рутины, база знаний AI, AI ассистент для бизнеса, GigaChat, YandexGPT, автоматизация отчётов, автоматизация документов, корпоративный AI, knowledge base">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://fofo.io/automation">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="FoFo">
+<meta property="og:title" content="FoFo — AI-автоматизация рутины: отчёты, документы, база знаний">
+<meta property="og:description" content="Изучаем повторяющиеся задачи команды и внедряем AI-инструменты: базы знаний, ассистенты, автоматизация отчётов и документов.">
+<meta property="og:url" content="https://fofo.io/automation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FoFo — AI-автоматизация рутины: отчёты, документы, база знаний">
+<meta name="twitter:description" content="Изучаем повторяющиеся задачи команды и внедряем AI-инструменты: базы знаний, ассистенты, автоматизация отчётов и документов.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap">
+<style>
+/* ============================================
+   FoFo Landing — design tokens
+   ============================================ */
+:root {
+  --bg:           #efe8de;
+  --bg-deep:      #e6dfd2;
+  --surface:      #ffffff;
+  --surface-soft: #faf7f1;
+  --surface-tint: #f3ede1;
+  --ink-dark:     #111216;
+  --ink:          #0f1012;
+  --ink-2:        #4a4a50;
+  --ink-3:        #8a8a92;
+  --line:         #ece6d8;
+  --line-2:       #d9d2c2;
+  --line-3:       #eeece6;
+  --brand:        #dc5719;
+  --brand-deep:   #b8420c;
+  --brand-soft:   #fbe4d4;
+  --success:      #2a8f4c;
+  --shadow-sm:    0 1px 3px rgba(0,0,0,.04);
+  --shadow-md:    0 8px 24px rgba(20,16,10,.06);
+  --shadow-lg:    0 24px 60px rgba(20,16,10,.10);
+  --radius-sm:    10px;
+  --radius:       16px;
+  --radius-lg:    24px;
+  --radius-xl:    32px;
+
+  --container:    1240px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv02","cv03","cv04","cv11","ss01";
+  line-height: 1.5;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: 0; background: none; }
+.container { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+
+/* ============================================
+   Typography
+   ============================================ */
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1.5px;
+  background: var(--brand);
+  border-radius: 2px;
+}
+.eyebrow.muted { color: var(--ink-3); }
+.eyebrow.muted::before { background: var(--ink-3); }
+
+.h-display {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(44px, 6.5vw, 92px);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+.h1 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(36px, 4.5vw, 56px);
+  line-height: 1.04;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+}
+.h2 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+}
+.h3 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.h4 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.lead {
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 64ch;
+  font-weight: 400;
+}
+.body-xs {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  letter-spacing: 0.005em;
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.005em;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(220,87,25,.25);
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 22px rgba(220,87,25,.32); }
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line-2);
+}
+.btn-ghost:hover { background: var(--surface); border-color: var(--ink); }
+.btn-dark {
+  background: var(--ink-dark);
+  color: #fff;
+}
+.btn-dark:hover { transform: translateY(-1px); }
+.btn-sm { height: 42px; padding: 0 18px; font-size: 14px; }
+.btn-lg { height: 60px; padding: 0 34px; font-size: 16px; }
+
+/* ============================================
+   Navigation
+   ============================================ */
+.nav {
+  position: sticky;
+  top: 16px;
+  z-index: 50;
+  margin: 16px auto 0;
+  max-width: var(--container);
+  padding: 0 32px;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(0,0,0,0.04);
+  border-radius: 999px;
+  padding: 10px 14px 10px 22px;
+  box-shadow: 0 4px 24px rgba(20,16,10,.06);
+}
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+}
+.brand-logo {
+  height: 22px;
+  width: auto;
+  mix-blend-mode: multiply;
+  user-select: none;
+}
+.brand-logo.on-dark {
+  mix-blend-mode: screen;
+  filter: invert(1);
+}
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-2);
+  transition: color .15s;
+}
+.nav-links a:hover { color: var(--brand); }
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Nav menu: 4 inline dropdowns */
+.nav-menu { display: flex; align-items: center; gap: 2px; }
+.nav-dropdown { position: relative; }
+.dd-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 42px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-2);
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  transition: color .15s ease;
+}
+.dd-trigger:hover { color: var(--brand); }
+.dd-trigger.is-current { color: var(--brand); font-weight: 600; }
+.nav-dropdown .chev {
+  font-size: 9px;
+  line-height: 1;
+  display: inline-block;
+  transition: transform .25s ease;
+  opacity: 0.6;
+}
+.nav-dropdown:hover .chev,
+.nav-dropdown:focus-within .chev { transform: rotate(180deg); opacity: 1; color: var(--brand); }
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-top: 12px;
+  min-width: 280px;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 12px 40px rgba(20,16,10,.14);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-6px);
+  transition: opacity .15s, transform .15s;
+  z-index: 100;
+}
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0; right: 0;
+  height: 12px;
+}
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.dd-head {
+  padding: 10px 12px 12px;
+  border-bottom: 1px solid var(--line-3);
+  margin-bottom: 4px;
+}
+.dd-head-title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  margin-bottom: 4px;
+}
+.dd-head-sub {
+  font-size: 11.5px;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+.dropdown-head {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 8px 12px 6px;
+}
+.dd-item {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+  transition: background .12s, color .12s;
+}
+.dd-item:hover {
+  background: var(--surface-soft);
+  color: var(--brand);
+}
+
+@media (max-width: 1100px) {
+  .nav-menu { display: none; }
+}
+@media (max-width: 860px) {
+  .nav-actions .btn-dark { display: none; }
+}
+
+/* ============================================
+   Hero
+   ============================================ */
+.hero {
+  position: relative;
+  padding: clamp(32px, 5vh, 72px) 0 clamp(40px, 6vh, 88px);
+  overflow: hidden;
+}
+.hero-decor {
+  position: absolute;
+  top: -200px; right: -250px;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(220,87,25,0.10) 0%, rgba(220,87,25,0) 60%);
+  pointer-events: none;
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center top, black 0%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse at center top, black 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-top {
+  position: relative;
+  margin-bottom: clamp(24px, 3.5vh, 48px);
+}
+.hero-top .eyebrow { margin-bottom: clamp(14px, 1.6vh, 22px); }
+.hero-top .h-display {
+  font-size: clamp(34px, calc(2.6vw + 1.8vh), 84px);
+  line-height: 1.0;
+  letter-spacing: -0.032em;
+  max-width: 22ch;
+}
+.hero-top .h-display em {
+  color: var(--brand);
+  font-style: normal;
+}
+
+.hero-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 4vw, 56px);
+  align-items: start;
+}
+.hero-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2.2vh, 28px);
+}
+.hero-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.4vh, 30px);
+}
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .hero-content { justify-content: flex-start; }
+  .hero-top .h-display { font-size: clamp(32px, 7vw, 56px); max-width: none; }
+  .sp-panel { min-height: 0; }
+}
+.hero-content .lead {
+  margin-bottom: 0;
+  font-size: clamp(16px, calc(0.55vw + 1.05vh), 21px);
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2vw, 32px);
+  padding-top: 0;
+  border-top: 0;
+}
+.hero-meta-item .body-xs { margin-bottom: 2px; }
+.hero-meta-item .h4 { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(15px, 1.05vw, 18px); }
+
+/* ============================================
+   Section base
+   ============================================ */
+section.s {
+  padding: 120px 0;
+  position: relative;
+}
+.s-head {
+  max-width: 760px;
+  margin-bottom: 64px;
+}
+.s-head .eyebrow { margin-bottom: 20px; }
+.s-head .h1 { margin-bottom: 20px; }
+
+/* ============================================
+   Footer
+   ============================================ */
+footer {
+  padding: 60px 0 48px;
+  border-top: 1px solid var(--line-2);
+  background: var(--bg);
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+@media (max-width: 900px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .footer-inner { grid-template-columns: 1fr; } }
+.footer-brand .nav-brand { font-size: 22px; margin-bottom: 16px; }
+.footer-brand p { font-size: 13.5px; color: var(--ink-3); line-height: 1.55; max-width: 32ch; }
+.footer-col h5 {
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.footer-col a {
+  display: block;
+  font-size: 14px;
+  color: var(--ink-2);
+  margin-bottom: 10px;
+  transition: color .15s;
+}
+.footer-col a:hover { color: var(--brand); }
+.footer-bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line-2);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+/* ============================================
+   Scroll reveal helper
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   Hero proof panel (sp-panel)
+   ============================================ */
+.sp-panel {
+  position: relative;
+  background: var(--ink-dark);
+  border-radius: var(--radius-lg);
+  padding: clamp(24px, 2.2vw, 34px);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255,255,255,0.06);
+  min-height: clamp(380px, 34vw, 470px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+}
+.sp-panel::before {
+  content: '';
+  position: absolute;
+  right: -130px;
+  bottom: -150px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(220,87,25,0.34) 0%, rgba(220,87,25,0) 68%);
+  pointer-events: none;
+}
+.sp-head {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.sp-head strong {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(22px, 1.8vw, 28px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  text-transform: none;
+  color: #fff;
+  max-width: 19ch;
+}
+.sp-kpi {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: clamp(68px, 5.2vw, 94px);
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+  color: var(--brand);
+}
+.sp-kpi span {
+  max-width: 17ch;
+  font-size: clamp(18px, 1.35vw, 22px);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: rgba(255,255,255,0.88);
+}
+.sp-note {
+  position: relative;
+  max-width: 36ch;
+  color: rgba(255,255,255,0.66);
+  font-size: clamp(12px, 0.9vw, 13.5px);
+  line-height: 1.32;
+}
+.sp-grid {
+  position: relative;
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.sp-card {
+  position: relative;
+  padding: 12px;
+  min-height: 76px;
+  background: rgba(255,255,255,0.075);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  align-items: end;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.sp-card + .sp-card { border-top: 1px solid rgba(255,255,255,0.1); }
+.sp-card:hover {
+  background: rgba(255,255,255,0.09);
+  border-color: rgba(220,87,25,0.35);
+  transform: translateY(-2px);
+}
+.sp-card .task {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(12px, 0.95vw, 15px);
+  line-height: 1.25;
+  color: #fff;
+  letter-spacing: -0.005em;
+}
+.sp-card .times {
+  justify-self: start;
+  white-space: nowrap;
+  font-size: clamp(11px, 0.85vw, 13px);
+  color: rgba(255,255,255,0.58);
+  font-variant-numeric: tabular-nums;
+}
+.sp-card .times s {
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+  color: rgba(255,255,255,0.42);
+}
+.sp-card .times b {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  color: var(--brand);
+  font-size: clamp(11px, 0.85vw, 13px);
+}
+
+/* ============================================
+   Info cards grid
+   ============================================ */
+.cards-grid {
+  display: grid;
+  gap: 18px;
+}
+.cards-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.cards-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 1100px) {
+  .cards-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cards-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .cards-4, .cards-5 { grid-template-columns: 1fr; }
+}
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 200px;
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.info-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--brand);
+  box-shadow: var(--shadow-md);
+}
+.info-card .step-num {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--brand);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.info-card h3, .info-card h4 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.012em;
+  line-height: 1.25;
+}
+.info-card h3 { font-size: 18px; }
+.info-card h4 { font-size: 16px; }
+.info-card p {
+  font-size: 13.5px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+.info-card.tint { background: var(--surface-soft); }
+.info-card.dark {
+  background: var(--ink-dark);
+  border-color: transparent;
+}
+.info-card.dark h3, .info-card.dark h4 { color: #fff; }
+.info-card.dark p { color: rgba(255,255,255,0.72); }
+.info-card.dark .step-num { color: var(--brand); }
+
+/* ============================================
+   Accent formula block
+   ============================================ */
+.accent-formula {
+  margin-top: 40px;
+  padding: 36px 40px;
+  background: var(--ink-dark);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+@media (max-width: 900px) { .accent-formula { grid-template-columns: 1fr; padding: 28px 28px; } }
+.accent-formula .h3 {
+  color: #fff;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.25;
+  letter-spacing: -0.018em;
+}
+.accent-formula .flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.accent-formula .flow .step-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 999px;
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.9);
+  font-weight: 500;
+}
+.accent-formula .flow .arr {
+  color: var(--brand);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* ============================================
+   Section backgrounds
+   ============================================ */
+.s-why { background: var(--surface); border-top-left-radius: 48px; border-top-right-radius: 48px; margin-top: 60px; }
+.s-process { background: var(--bg); }
+.s-what { background: var(--surface); }
+.s-result { background: var(--bg); }
+
+/* ============================================
+   CTA (automation page)
+   ============================================ */
+.cta-decor {
+  position: absolute;
+  bottom: -200px; right: -100px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(220,87,25,0.25) 0%, rgba(220,87,25,0) 65%);
+  pointer-events: none;
+}
+.s-cta-auto {
+  background: var(--surface);
+  padding: 60px 0 140px;
+}
+.cta-card-auto {
+  position: relative;
+  background: var(--ink-dark);
+  color: #fff;
+  border-radius: var(--radius-xl);
+  padding: 80px 64px;
+  overflow: hidden;
+  text-align: center;
+}
+.cta-card-auto .eyebrow { color: var(--brand); justify-content: center; display: inline-flex; }
+.cta-card-auto .eyebrow::before { background: var(--brand); }
+.cta-card-auto .h1 { color: #fff; margin: 18px auto 20px; max-width: 22ch; }
+.cta-card-auto .lead { color: rgba(255,255,255,0.75); margin: 0 auto 36px; max-width: 56ch; }
+.cta-card-auto .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+@media (max-width: 900px) { .cta-card-auto { padding: 56px 28px; } }
+
+</style>
+</head>
+<body id="top">
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand" aria-label="FoFo — главная">
+      <img src="FoFo logo.png" alt="FoFo" class="brand-logo">
+    </a>
+    <div class="nav-menu">
+      <div class="nav-dropdown">
+        <a href="index.html" class="dd-trigger">Потери времени <span class="chev">▾</span></a>
+        <div class="dropdown-menu">
+          <div class="dd-head">
+            <div class="dd-head-title">Потери времени</div>
+            <div class="dd-head-sub">Простои, ожидания, ручная работа</div>
+          </div>
+          <div class="dropdown-head">Разделы</div>
+          <a href="index.html#problem" class="dd-item">Проблема</a>
+          <a href="index.html#modules" class="dd-item">Услуги</a>
+          <a href="index.html#approach" class="dd-item">Подход</a>
+          <a href="index.html#audience" class="dd-item">Для кого</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="production.html" class="dd-trigger">Видеоаналитика <span class="chev">▾</span></a>
+        <div class="dropdown-menu">
+          <div class="dd-head">
+            <div class="dd-head-title">Видеоаналитика производства</div>
+            <div class="dd-head-sub">Производство · OEE · операции · простои</div>
+          </div>
+          <div class="dropdown-head">Разделы</div>
+          <a href="production.html#problem" class="dd-item">Проблема</a>
+          <a href="production.html#solution" class="dd-item">Решение</a>
+          <a href="production.html#case" class="dd-item">Кейс</a>
+          <a href="production.html#roi" class="dd-item">Эффект</a>
+          <a href="production.html#stages" class="dd-item">Этапы</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="automation.html" class="dd-trigger is-current">AI-автоматизация <span class="chev">▾</span></a>
+        <div class="dropdown-menu">
+          <div class="dd-head">
+            <div class="dd-head-title">AI-автоматизация</div>
+            <div class="dd-head-sub">AI-агенты · базы знаний · документы</div>
+          </div>
+          <div class="dropdown-head">Разделы</div>
+          <a href="automation.html#why" class="dd-item">Проблема</a>
+          <a href="automation.html#process" class="dd-item">Процесс</a>
+          <a href="automation.html#what" class="dd-item">Сценарии</a>
+          <a href="automation.html#result" class="dd-item">Результат</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="dev.html" class="dd-trigger">Разработка <span class="chev">▾</span></a>
+        <div class="dropdown-menu">
+          <div class="dd-head">
+            <div class="dd-head-title">Разработка и интеграции</div>
+            <div class="dd-head-sub">1С · SAP · AI / ML · web · mobile</div>
+          </div>
+          <div class="dropdown-head">Разделы</div>
+          <a href="dev.html#team" class="dd-item">Команда</a>
+          <a href="dev.html#directions" class="dd-item">Услуги</a>
+          <a href="dev.html#pricing" class="dd-item">Ставки</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <a href="#cta" class="btn btn-dark btn-sm">Обсудить задачу</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-decor"></div>
+  <div class="hero-grid"></div>
+
+  <div class="container hero-top">
+    <div class="eyebrow">AI-автоматизация ежедневной работы</div>
+    <h1 class="h-display">
+      Сокращаем время на отчёты, документы
+      <em>и поиск информации.</em>
+    </h1>
+  </div>
+
+  <div class="container hero-inner">
+
+    <div class="hero-content">
+      <p class="lead">
+        Изучаем, как команда работает с отчётами, Excel, документами, почтой,
+        внутренними системами и базами знаний. Находим повторяющиеся задачи
+        и внедряем AI-инструменты, которые сокращают время на рутину.
+      </p>
+      <div class="hero-bottom">
+        <div class="hero-cta">
+          <a href="#cta" class="btn btn-primary btn-lg">Обсудить автоматизацию →</a>
+          <a href="#what" class="btn btn-ghost btn-lg">Что можно автоматизировать</a>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <div class="body-xs">Старт</div>
+            <div class="h4">с одного процесса</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="body-xs">Инструменты</div>
+            <div class="h4">GigaChat · YandexGPT · корп. AI</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="body-xs">Эффект</div>
+            <div class="h4">сравнение до / после</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-panel">
+      <div class="sp-head">
+        <span>После автоматизации</span>
+        <strong>Показываем эффект в цифрах</strong>
+      </div>
+
+      <div class="sp-kpi">до 3–5× <span>на типовых задачах<br>после внедрения</span></div>
+      <p class="sp-note">
+        Убираем повторяющиеся действия и показываем эффект в часах и деньгах.
+      </p>
+
+      <div class="sp-grid">
+        <div class="sp-card">
+          <div class="task">Отчёты и Excel</div>
+          <div class="times"><s>3 ч</s> → <b>1 ч</b></div>
+        </div>
+        <div class="sp-card">
+          <div class="task">Поиск в базе знаний</div>
+          <div class="times"><s>30 мин</s> → <b>5 мин</b></div>
+        </div>
+        <div class="sp-card">
+          <div class="task">Документы и письма</div>
+          <div class="times"><s>40 мин</s> → <b>10 мин</b></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</header>
+
+<!-- ============ WHY (Block 1) ============ -->
+<section class="s s-why" id="why">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow muted">Проблема</div>
+      <h2 class="h1">Все при деле. Но процессы идут медленнее, чем должны.</h2>
+      <p class="lead">
+        Формально работа идёт весь день. Но значительная часть времени уходит
+        не на результат, а на поиск нужного файла, переписывание данных,
+        уточнения у коллег и повторяющиеся операции.
+      </p>
+    </div>
+
+    <div class="cards-grid cards-4">
+      <div class="info-card">
+        <h3>Поиск информации</h3>
+        <p>Регламенты, инструкции, документы и данные есть — но сотрудникам сложно быстро найти нужный ответ.</p>
+      </div>
+      <div class="info-card">
+        <h3>Ручные отчёты и Excel</h3>
+        <p>Данные собираются вручную, копируются между файлами, проверяются и сводятся в таблицы.</p>
+      </div>
+      <div class="info-card">
+        <h3>Повторяющиеся документы</h3>
+        <p>Письма, договоры, служебные записки, отчёты и резюме встреч готовятся по одним и тем же шаблонам.</p>
+      </div>
+      <div class="info-card">
+        <h3>Согласования и ожидания</h3>
+        <p>Процессы тормозят из-за ожидания ответов, статусов, уточнений и ручных напоминаний.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS (Block 2) ============ -->
+<section class="s s-process" id="process">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow">Процесс</div>
+      <h2 class="h1">Сначала разбираемся в процессе, потом внедряем инструменты.</h2>
+      <p class="lead">
+        Сначала смотрим, как сотрудники реально работают и где теряется время.
+        Потом собираем инициативы команды, подбираем инструменты и внедряем
+        там, где эффект будет понятным и измеримым.
+      </p>
+    </div>
+
+    <div class="cards-grid cards-5">
+      <div class="info-card">
+        <div class="step-num">01</div>
+        <h4>Изучаем текущую работу</h4>
+        <p>Смотрим, с какими задачами, отчётами, таблицами, документами, системами и согласованиями сотрудники работают каждый день.</p>
+      </div>
+      <div class="info-card">
+        <div class="step-num">02</div>
+        <h4>Находим рутину и потери времени</h4>
+        <p>Фиксируем, где сотрудники тратят время на поиск, переписывание данных, подготовку отчётов и ожидание ответов.</p>
+      </div>
+      <div class="info-card">
+        <div class="step-num">03</div>
+        <h4>Собираем инициативы команды</h4>
+        <p>Выясняем, что сами сотрудники хотели бы автоматизировать: какие задачи раздражают, где не хватает базы знаний, шаблонов или помощника.</p>
+      </div>
+      <div class="info-card">
+        <div class="step-num">04</div>
+        <h4>Подбираем AI-инструменты</h4>
+        <p>GigaChat, YandexGPT, корпоративные AI-ассистенты, knowledge base, автоматизация отчётов, Excel, генерация документов, интеграции с 1С / ERP / CRM / BI.</p>
+      </div>
+      <div class="info-card">
+        <div class="step-num">05</div>
+        <h4>Сравниваем до / после</h4>
+        <p>Замеряем, сколько времени уходило на процесс до внедрения, что изменилось после и какой эффект получила команда.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT (Block 3) ============ -->
+<section class="s s-what" id="what">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow muted">Сценарии</div>
+      <h2 class="h1">Автоматизируем не всё подряд, а конкретные повторяющиеся задачи.</h2>
+      <p class="lead">
+        Эффект появляется не в «большой трансформации», а в конкретных
+        ежедневных задачах — там, где сотрудники теряют время на одно и то же.
+      </p>
+    </div>
+
+    <div class="cards-grid cards-5">
+      <div class="info-card tint">
+        <h4>Работа с данными</h4>
+        <p>Excel, отчёты, сводки, проверка данных, подготовка аналитики.</p>
+      </div>
+      <div class="info-card tint">
+        <h4>Документы</h4>
+        <p>Генерация текстов, шаблоны, договоры, служебные записки, резюме встреч.</p>
+      </div>
+      <div class="info-card tint">
+        <h4>Внутренние знания</h4>
+        <p>Регламенты, инструкции, база знаний, поиск ответов, onboarding.</p>
+      </div>
+      <div class="info-card tint">
+        <h4>Рутина сотрудников</h4>
+        <p>Повторяющиеся задачи, переписывание данных, подготовка писем, обработка заявок.</p>
+      </div>
+      <div class="info-card tint">
+        <h4>Управление процессами</h4>
+        <p>Согласования, статусы, напоминания, контроль SLA, workflow automation.</p>
+      </div>
+    </div>
+
+    <div class="accent-formula">
+      <div class="h3">Убираем рутину, которая мешает команде работать на результат.</div>
+      <div class="flow">
+        <span class="step-chip">Замеряем как сейчас</span>
+        <span class="arr">→</span>
+        <span class="step-chip">Находим рутину</span>
+        <span class="arr">→</span>
+        <span class="step-chip">Внедряем AI</span>
+        <span class="arr">→</span>
+        <span class="step-chip">До / после</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULT (Block 4) ============ -->
+<section class="s s-result" id="result">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow muted">Результат</div>
+      <h2 class="h1">Не просто «внедрили AI» — а сократили время на конкретные задачи.</h2>
+      <p class="lead">
+        После внедрения компания получает не абстрактный AI-инструмент, а набор
+        конкретных улучшений: какие задачи ускорили, сколько ручных действий
+        убрали, где появился быстрый поиск, какие отчёты или документы начали
+        готовиться быстрее.
+      </p>
+    </div>
+
+    <div class="cards-grid cards-4">
+      <div class="info-card">
+        <h3>Освобождённые часы команды</h3>
+        <p>Сколько часов в месяц команда получает обратно от убранной рутины.</p>
+      </div>
+      <div class="info-card">
+        <h3>Ускоренные процессы</h3>
+        <p>Конкретные задачи с цифрами «до и после»: например, отчёт — было 3 часа, стало 30 минут.</p>
+      </div>
+      <div class="info-card">
+        <h3>AI-инструменты в работе</h3>
+        <p>Что осталось работать в команде после внедрения: агенты, базы знаний, шаблоны.</p>
+      </div>
+      <div class="info-card dark">
+        <h3>План расширения</h3>
+        <p>Следующие сценарии и команды, куда логично распространить автоматизацию.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="s-cta-auto" id="cta">
+  <div class="container">
+    <div class="cta-card-auto">
+      <div class="cta-decor"></div>
+      <div class="eyebrow">Начните с одного процесса</div>
+      <h2 class="h1">Один отчёт, одно согласование, одна задача — и понятный план автоматизации.</h2>
+      <p class="lead">
+        Выберите одну команду и 2–3 сценария: отчёт, процесс согласования,
+        поиск в базе знаний или повторяющуюся задачу. Мы разберём, как это
+        работает сейчас, покажем, где теряется время, и составим план автоматизации.
+      </p>
+      <div class="cta-btns">
+        <a href="mailto:mac@fofo.io" class="btn btn-primary btn-lg">Обсудить автоматизацию →</a>
+        <a href="production.html" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.2)">Видеоаналитика производства →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#top" class="nav-brand" aria-label="FoFo — вверх страницы" style="margin-bottom: 18px">
+          <img src="FoFo logo.png" alt="FoFo" class="brand-logo" style="height: 26px">
+        </a>
+        <p>AI-автоматизация ежедневной работы. Снижаем рутину, ускоряем доступ к знаниям и автоматизируем повторяющиеся задачи.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Разделы</h5>
+        <a href="#why">Проблема</a>
+        <a href="#process">Процесс</a>
+        <a href="#what">Сценарии</a>
+        <a href="#result">Результат</a>
+      </div>
+      <div class="footer-col">
+        <h5>FoFo</h5>
+        <a href="index.html">Все направления</a>
+        <a href="production.html">Видеоаналитика производства</a>
+        <a href="dev.html">Разработка и интеграции</a>
+      </div>
+      <div class="footer-col">
+        <h5>Контакты</h5>
+        <a href="mailto:mac@fofo.io">mac@fofo.io</a>
+        <a href="tel:+79998406869">+7 (999) 840 68 69</a>
+        <a href="https://t.me/marinenkov">t.me/marinenkov</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© FoFo, 2026. Все права защищены.</span>
+      <span>Москва · Россия</span>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "FoFo",
+    "url": "https://fofo.io",
+    "email": "mac@fofo.io",
+    "telephone": "+79998406869",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Москва",
+      "addressCountry": "RU"
+    },
+    "description": "AI-автоматизация рутины: базы знаний, ассистенты, автоматизация отчётов и документов.",
+    "sameAs": ["https://t.me/marinenkov"]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "AI-автоматизация рутины",
+    "provider": { "@type": "Organization", "name": "FoFo", "url": "https://fofo.io" },
+    "description": "Изучаем повторяющиеся задачи команды и внедряем AI-инструменты: базы знаний, ассистенты, автоматизация отчётов, документов и согласований. Сравниваем эффект до и после в цифрах.",
+    "areaServed": "RU",
+    "availableChannel": {
+      "@type": "ServiceChannel",
+      "serviceUrl": "https://fofo.io/automation",
+      "contactType": "sales"
+    }
+  }
+]
+</script>
+
+<script>
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.s-head, .info-card, .accent-formula, .cta-card-auto').forEach(el => {
+  el.classList.add('reveal');
+  io.observe(el);
+});
+</script>
+
+</body>
+</html>

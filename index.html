@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FoFo — Цифровая производительность труда</title>
+<meta name="description" content="Находим, где теряется рабочее время — и превращаем его в результат. Видеоаналитика производства, AI-автоматизация, разработка и интеграции 1С / SAP.">
+<meta name="keywords" content="производительность труда, цифровая производительность, видеоаналитика, AI автоматизация, AI Knowledge Base, разработка 1С, интеграция SAP, потери эффективности, digital lean">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://fofo.io/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="FoFo">
+<meta property="og:title" content="FoFo — Цифровая производительность труда">
+<meta property="og:description" content="Находим, где теряется рабочее время — и превращаем его в результат. Видеоаналитика, AI-автоматизация, разработка и интеграции.">
+<meta property="og:url" content="https://fofo.io/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FoFo — Цифровая производительность труда">
+<meta name="twitter:description" content="Находим, где теряется рабочее время — и превращаем его в результат. Видеоаналитика, AI-автоматизация, разработка и интеграции.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap">
+<style>
+/* ============================================
+   FoFo Platform — design tokens
+   ============================================ */
+:root {
+  --bg:           #efe8de;
+  --bg-deep:      #e6dfd2;
+  --surface:      #ffffff;
+  --surface-soft: #faf7f1;
+  --surface-tint: #f3ede1;
+  --ink-dark:     #111216;
+  --ink:          #0f1012;
+  --ink-2:        #4a4a50;
+  --ink-3:        #8a8a92;
+  --line:         #ece6d8;
+  --line-2:       #d9d2c2;
+  --line-3:       #eeece6;
+  --brand:        #dc5719;
+  --brand-deep:   #b8420c;
+  --brand-soft:   #fbe4d4;
+  --success:      #2a8f4c;
+  --shadow-sm:    0 1px 3px rgba(0,0,0,.04);
+  --shadow-md:    0 8px 24px rgba(20,16,10,.06);
+  --shadow-lg:    0 24px 60px rgba(20,16,10,.10);
+  --radius-sm:    10px;
+  --radius:       16px;
+  --radius-lg:    24px;
+  --radius-xl:    32px;
+
+  --container:    1240px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv02","cv03","cv04","cv11","ss01";
+  line-height: 1.5;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: 0; background: none; }
+.container { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+
+/* ============================================
+   Typography
+   ============================================ */
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1.5px;
+  background: var(--brand);
+  border-radius: 2px;
+}
+.eyebrow.muted { color: var(--ink-3); }
+.eyebrow.muted::before { background: var(--ink-3); }
+.eyebrow.on-dark { color: var(--brand); }
+
+.h-display {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(44px, 6.5vw, 92px);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+.h-display em { color: var(--brand); font-style: normal; }
+.h1 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(34px, 4.2vw, 52px);
+  line-height: 1.06;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+}
+.h2 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(26px, 2.8vw, 36px);
+  line-height: 1.12;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+}
+.h3 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.h4 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.lead {
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 64ch;
+  font-weight: 400;
+}
+.body-xs {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  letter-spacing: 0.005em;
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.005em;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(220,87,25,.25);
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 22px rgba(220,87,25,.32); }
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line-2);
+}
+.btn-ghost:hover { background: var(--surface); border-color: var(--ink); }
+.btn-dark { background: var(--ink-dark); color: #fff; }
+.btn-dark:hover { transform: translateY(-1px); }
+.btn-sm { height: 42px; padding: 0 18px; font-size: 14px; }
+.btn-lg { height: 60px; padding: 0 34px; font-size: 16px; }
+
+/* ============================================
+   Navigation
+   ============================================ */
+.nav {
+  position: sticky;
+  top: 16px;
+  z-index: 50;
+  margin: 16px auto 0;
+  max-width: var(--container);
+  padding: 0 32px;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(0,0,0,0.04);
+  border-radius: 999px;
+  padding: 10px 14px 10px 22px;
+  box-shadow: 0 4px 24px rgba(20,16,10,.06);
+}
+.nav-brand { display: inline-flex; align-items: center; height: 32px; }
+.brand-logo {
+  height: 22px;
+  width: auto;
+  mix-blend-mode: multiply;
+  user-select: none;
+}
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+
+/* Nav menu: 4 inline dropdowns */
+.nav-menu { display: flex; align-items: center; gap: 2px; }
+.nav-dropdown { position: relative; }
+.dd-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 42px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-2);
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  transition: color .15s ease;
+}
+.dd-trigger:hover { color: var(--brand); }
+.dd-trigger.is-current { color: var(--brand); font-weight: 600; }
+.nav-dropdown .chev {
+  font-size: 9px;
+  line-height: 1;
+  display: inline-block;
+  transition: transform .25s ease;
+  opacity: 0.6;
+}
+.nav-dropdown:hover .chev,
+.nav-dropdown:focus-within .chev { transform: rotate(180deg); opacity: 1; color: var(--brand); }
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-top: 12px;
+  min-width: 280px;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 12px 40px rgba(20,16,10,.14);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-6px);
+  transition: opacity .15s, transform .15s;
+  z-index: 100;
+}
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0; right: 0;
+  height: 12px;
+}
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.dd-head {
+  padding: 10px 12px 12px;
+  border-bottom: 1px solid var(--line-3);
+  margin-bottom: 4px;
+}
+.dd-head-title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  margin-bottom: 4px;
+}
+.dd-head-sub {
+  font-size: 11.5px;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+.dropdown-head {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 8px 12px 6px;
+}
+.dd-item {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+  transition: background .12s, color .12s;
+}
+.dd-item:hover {
+  background: var(--surface-soft);
+  color: var(--brand);
+}
+
+@media (max-width: 1100px) {
+  .nav-menu { display: none; }
+}
+
+/* ============================================
+   Hero
+   ============================================ */
+.hero {
+  position: relative;
+  padding: clamp(32px, 5vh, 72px) 0 clamp(40px, 6vh, 88px);
+  overflow: hidden;
+}
+.hero-decor {
+  position: absolute;
+  top: -240px; right: -260px;
+  width: 820px; height: 820px;
+  background: radial-gradient(circle, rgba(220,87,25,0.12) 0%, rgba(220,87,25,0) 60%);
+  pointer-events: none;
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center top, black 0%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse at center top, black 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-top { position: relative; margin-bottom: clamp(24px, 3.5vh, 48px); }
+.hero-top .eyebrow { margin-bottom: clamp(14px, 1.6vh, 22px); }
+.hero-top .h-display {
+  font-size: clamp(34px, calc(2.6vw + 1.8vh), 84px);
+  line-height: 1.0;
+  letter-spacing: -0.032em;
+  max-width: 22ch;
+}
+
+.hero-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 4vw, 56px);
+  align-items: start;
+}
+.hero-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.4vh, 30px);
+}
+.hero-bottom { display: flex; flex-direction: column; gap: clamp(20px, 2.4vh, 30px); }
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .hero-top .h-display { font-size: clamp(32px, 7vw, 56px); max-width: none; }
+  .platform-panel { min-height: 0; }
+}
+.hero-content .lead {
+  margin-bottom: 0;
+  font-size: clamp(16px, calc(0.5vw + 1.05vh), 20px);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 0; }
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2vw, 32px);
+  padding-top: 0;
+  border-top: 0;
+}
+.hero-meta-item .body-xs { margin-bottom: 2px; }
+.hero-meta-item .h4 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(15px, 1.05vw, 18px);
+}
+
+/* Platform panel (hero right) */
+.platform-panel {
+  position: relative;
+  background: var(--ink-dark);
+  border-radius: var(--radius-lg);
+  padding: clamp(24px, 2.2vw, 34px);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255,255,255,0.06);
+  min-height: clamp(380px, 34vw, 470px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  overflow: hidden;
+}
+.platform-panel::before {
+  content: '';
+  position: absolute;
+  right: -160px; bottom: -180px;
+  width: 420px; height: 420px;
+  background: radial-gradient(circle, rgba(220,87,25,0.36) 0%, rgba(220,87,25,0) 68%);
+  pointer-events: none;
+}
+.pp-head {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.pp-head strong {
+  color: var(--brand);
+  letter-spacing: 0.14em;
+}
+.pp-title {
+  position: relative;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 2.6vw, 36px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: #fff;
+}
+.pp-title em { color: var(--brand); font-style: normal; }
+.pp-sub {
+  position: relative;
+  color: rgba(255,255,255,0.66);
+  font-size: 13px;
+  line-height: 1.4;
+  max-width: 38ch;
+}
+.pp-stack {
+  position: relative;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pp-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+  color: #fff;
+}
+.pp-card:hover {
+  background: rgba(255,255,255,0.09);
+  border-color: rgba(220,87,25,0.45);
+  transform: translateY(-1px);
+}
+.pp-card .ico {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(220,87,25,0.18);
+  color: var(--brand);
+  border-radius: 10px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+}
+.pp-card .ico svg { width: 18px; height: 18px; stroke: var(--brand); }
+.pp-card .lbl {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: #fff;
+  letter-spacing: -0.005em;
+  margin-bottom: 2px;
+}
+.pp-card .sub {
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.3;
+}
+.pp-card .arr {
+  color: rgba(255,255,255,0.4);
+  font-size: 16px;
+  transition: color .2s, transform .2s;
+}
+.pp-card:hover .arr { color: var(--brand); transform: translateX(3px); }
+.pp-card.is-soon { cursor: default; opacity: 0.6; }
+.pp-card.is-soon:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.1);
+  transform: none;
+}
+.pp-card .arr-soon {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  padding: 4px 8px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 999px;
+}
+
+/* ============================================
+   Section base
+   ============================================ */
+section.s {
+  padding: 120px 0;
+  position: relative;
+}
+.s-head { max-width: 760px; margin-bottom: 56px; }
+.s-head .eyebrow { margin-bottom: 20px; }
+.s-head .h1 { margin-bottom: 20px; }
+
+.s-light { background: var(--surface); border-top-left-radius: 48px; border-top-right-radius: 48px; margin-top: 60px; }
+.s-warm  { background: var(--bg); }
+.s-soft  { background: var(--surface-soft); }
+
+/* ============================================
+   Problem grid (compact question cards)
+   ============================================ */
+.q-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 900px)  { .q-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .q-grid { grid-template-columns: 1fr; } }
+.q-card {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: border-color .25s ease, background .25s ease;
+}
+.q-card:hover { border-color: var(--brand); }
+.q-card .qm {
+  flex-shrink: 0;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--brand);
+  line-height: 1;
+  margin-top: -1px;
+}
+.q-card .qt {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+/* ============================================
+   Module cards (3 large doorway cards)
+   ============================================ */
+.modules {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 1100px) { .modules { grid-template-columns: 1fr; } }
+
+.module-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px 30px;
+  overflow: hidden;
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+  min-height: 480px;
+  color: var(--ink);
+}
+.module-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--brand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s ease;
+}
+.module-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--ink-dark);
+  box-shadow: var(--shadow-lg);
+}
+.module-card:hover::before { transform: scaleX(1); }
+.module-card.is-soon { cursor: default; opacity: 0.92; }
+.module-card.is-soon:hover {
+  transform: none;
+  border-color: var(--line);
+  box-shadow: none;
+}
+.module-card.is-soon:hover::before { transform: scaleX(0); }
+
+.module-card.dark {
+  background: var(--ink-dark);
+  border-color: transparent;
+  color: #fff;
+}
+.module-card.dark .mod-num { color: rgba(255,255,255,0.4); }
+.module-card.dark .mod-title { color: #fff; }
+.module-card.dark .mod-desc { color: rgba(255,255,255,0.72); }
+.module-card.dark .mod-bullet { color: rgba(255,255,255,0.85); }
+.module-card.dark .mod-bullet .dot { background: var(--brand); }
+.module-card.dark .mod-link { color: var(--brand); border-top-color: rgba(255,255,255,0.12); }
+.module-card.dark:hover { border-color: var(--brand); }
+
+.mod-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.mod-num {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--ink-3);
+}
+.mod-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  background: var(--brand-soft);
+  color: var(--brand-deep);
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.module-card.dark .mod-tag {
+  background: rgba(220,87,25,0.18);
+  color: var(--brand);
+}
+.mod-tag.coming {
+  background: var(--surface-tint);
+  color: var(--ink-3);
+}
+.module-card.dark .mod-tag.coming {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.6);
+}
+
+.mod-title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: clamp(22px, 1.85vw, 26px);
+  line-height: 1.16;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+}
+.mod-desc {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.mod-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 4px;
+}
+.mod-bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.mod-bullet .dot {
+  flex-shrink: 0;
+  margin-top: 7px;
+  width: 5px; height: 5px;
+  background: var(--brand);
+  border-radius: 50%;
+}
+.mod-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--brand);
+  letter-spacing: -0.005em;
+  transition: gap .2s ease;
+}
+.mod-link:hover { gap: 12px; }
+.mod-link.disabled { color: var(--ink-3); cursor: default; pointer-events: none; }
+.module-card.dark .mod-link.disabled { color: rgba(255,255,255,0.45); }
+
+/* ============================================
+   Approach grid
+   ============================================ */
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+@media (max-width: 1024px) { .app-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .app-grid { grid-template-columns: 1fr; } }
+
+.app-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 200px;
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.app-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--brand);
+  box-shadow: var(--shadow-md);
+}
+.app-card .app-num {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: var(--brand);
+}
+.app-card h4 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.app-card p { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; }
+
+/* ============================================
+   Audience grid
+   ============================================ */
+.aud-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+@media (max-width: 1024px) { .aud-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .aud-grid { grid-template-columns: 1fr; } }
+.aud-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.aud-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--brand);
+  box-shadow: var(--shadow-md);
+}
+.aud-card .ico {
+  width: 44px;
+  height: 44px;
+  background: var(--brand-soft);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.aud-card .ico svg { width: 22px; height: 22px; stroke: var(--brand); }
+.aud-card h4 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.aud-card p { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; }
+
+.roles-strip {
+  margin-top: 40px;
+  padding: 24px 28px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+}
+.roles-strip .rs-lbl {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-right: 8px;
+}
+.roles-strip .role {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  padding: 6px 12px;
+  background: var(--surface-soft);
+  border-radius: 999px;
+  border: 1px solid var(--line);
+}
+
+/* ============================================
+   CTA
+   ============================================ */
+.s-cta {
+  background: var(--bg);
+  padding: 60px 0 140px;
+}
+.cta-card {
+  position: relative;
+  background: var(--ink-dark);
+  color: #fff;
+  border-radius: var(--radius-xl);
+  padding: 80px 64px;
+  overflow: hidden;
+  text-align: center;
+}
+.cta-card .cta-decor {
+  position: absolute;
+  bottom: -200px; right: -100px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(220,87,25,0.25) 0%, rgba(220,87,25,0) 65%);
+  pointer-events: none;
+}
+.cta-card .eyebrow { color: var(--brand); justify-content: center; display: inline-flex; }
+.cta-card .eyebrow::before { background: var(--brand); }
+.cta-card .h1 { color: #fff; margin: 18px auto 20px; max-width: 22ch; }
+.cta-card .lead { color: rgba(255,255,255,0.75); margin: 0 auto 36px; max-width: 56ch; }
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+@media (max-width: 900px) { .cta-card { padding: 56px 28px; } }
+
+/* ============================================
+   Footer
+   ============================================ */
+footer {
+  padding: 60px 0 48px;
+  border-top: 1px solid var(--line-2);
+  background: var(--bg);
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+@media (max-width: 900px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .footer-inner { grid-template-columns: 1fr; } }
+.footer-brand .nav-brand { font-size: 22px; margin-bottom: 16px; }
+.footer-brand p { font-size: 13.5px; color: var(--ink-3); line-height: 1.55; max-width: 32ch; }
+.footer-col h5 {
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.footer-col a {
+  display: block;
+  font-size: 14px;
+  color: var(--ink-2);
+  margin-bottom: 10px;
+  transition: color .15s;
+}
+.footer-col a:hover { color: var(--brand); }
+.footer-col .footer-soon {
+  display: block;
+  font-size: 14px;
+  color: var(--ink-3);
+  margin-bottom: 10px;
+}
+.footer-col .footer-soon small {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-left: 4px;
+}
+.footer-bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line-2);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+/* ============================================
+   Scroll reveal
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body id="top">
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand" aria-label="FoFo — главная">
+      <img src="FoFo logo.png" alt="FoFo" class="brand-logo">
+    </a>
+    <div class="nav-menu">
+      <div class="nav-dropdown">
+        <a href="index.html" class="dd-trigger is-current">Потери времени <span class="chev">▾</span></a>
+        <div class="dropdown-menu">
+          <div class="dd-head">
+            <div class="dd-head-title">Потери времени</div>
+            <div class="dd-head-sub">Простои, ожидания, ручная работа</div>
+          </div>
+          <div class="dropdown-head">Разделы</div>
+          <a href="index.html#problem" class="dd-item">Проблема</a>
+          <a href="index.html#modules" class="dd-item">Услуги</a>
+          <a href="index.html#approach" class="dd-item">Подход</a>
+          <a href="index.html#audience" class="dd-item">Для кого</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="production.html" class="dd-trigger">Видеоаналитика <span class="chev">▾</span></a>
+        <div class="dropdown-menu">
+          <div class="dd-head">
+            <div class="dd-head-title">Видеоаналитика производства</div>
+            <div class="dd-head-sub">Производство · OEE · операции · простои</div>
+          </div>
+          <div class="dropdown-head">Разделы</div>
+          <a href="production.html#problem" class="dd-item">Проблема</a>
+          <a href="production.html#solution" class="dd-item">Решение</a>
+          <a href="production.html#case" class="dd-item">Кейс</a>
+          <a href="production.html#roi" class="dd-item">Эффект</a>
+          <a href="production.html#stages" class="dd-item">Этапы</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="automation.html" class="dd-trigger">AI-автоматизация <span class="chev">▾</span></a>
+        <div class="dropdown-menu">
+          <div class="dd-head">
+            <div class="dd-head-title">AI-автоматизация</div>
+            <div class="dd-head-sub">AI-агенты · базы знаний · документы</div>
+          </div>
+          <div class="dropdown-head">Разделы</div>
+          <a href="automation.html#why" class="dd-item">Проблема</a>
+          <a href="automation.html#process" class="dd-item">Процесс</a>
+          <a href="automation.html#what" class="dd-item">Сценарии</a>
+          <a href="automation.html#result" class="dd-item">Результат</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="dev.html" class="dd-trigger">Разработка <span class="chev">▾</span></a>
+        <div class="dropdown-menu">
+          <div class="dd-head">
+            <div class="dd-head-title">Разработка и интеграции</div>
+            <div class="dd-head-sub">1С · SAP · AI / ML · web · mobile</div>
+          </div>
+          <div class="dropdown-head">Разделы</div>
+          <a href="dev.html#team" class="dd-item">Команда</a>
+          <a href="dev.html#directions" class="dd-item">Услуги</a>
+          <a href="dev.html#pricing" class="dd-item">Ставки</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <a href="#cta" class="btn btn-dark btn-sm">Обсудить задачу</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-decor"></div>
+  <div class="hero-grid"></div>
+
+  <div class="container hero-top">
+    <div class="eyebrow">FoFo · Цифровая производительность труда</div>
+    <h1 class="h-display">
+      Производительность труда —
+      <br>в цифрах,
+      <br>
+      <em>а не в ощущениях.</em>
+    </h1>
+  </div>
+
+  <div class="container hero-inner">
+
+    <div class="hero-content">
+      <p class="lead">
+        FoFo работает в трёх направлениях: видеоаналитика производства,
+        AI-автоматизация, разработка под 1С / SAP. Помогаем компаниям
+        находить и устранять скрытые потери эффективности в работе людей,
+        процессов и оборудования.
+      </p>
+      <div class="hero-bottom">
+        <div class="hero-cta">
+          <a href="#cta" class="btn btn-primary btn-lg">Обсудить задачу →</a>
+          <a href="#modules" class="btn btn-ghost btn-lg">Что мы делаем</a>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <div class="body-xs">Где смотрим</div>
+            <div class="h4">производство и офис</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="body-xs">Что ищем</div>
+            <div class="h4">простои и неэффективность</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="body-xs">Что даём</div>
+            <div class="h4">цифры, причины, приоритеты</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="platform-panel">
+      <div class="pp-head">
+        <span>FoFo</span>
+        <strong>3 направления</strong>
+      </div>
+      <div class="pp-title">
+        Три точки входа в <em>производительность.</em>
+      </div>
+      <p class="pp-sub">
+        Каждое направление — самостоятельная услуга с быстрым стартом
+        и измеримым эффектом. Можно начать с любого.
+      </p>
+      <div class="pp-stack">
+        <a href="production.html" class="pp-card">
+          <div class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="6" width="18" height="12" rx="2"/>
+              <path d="M9 22h6M12 18v4"/>
+              <circle cx="12" cy="12" r="2.5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="lbl">Видеоаналитика производства</div>
+            <div class="sub">ПВ / НПВ · OEE · операции · простои</div>
+          </div>
+          <div class="arr">→</div>
+        </a>
+        <a href="automation.html" class="pp-card">
+          <div class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>
+            </svg>
+          </div>
+          <div>
+            <div class="lbl">AI-автоматизация</div>
+            <div class="sub">AI-агенты · базы знаний · документы</div>
+          </div>
+          <div class="arr">→</div>
+        </a>
+        <a href="dev.html" class="pp-card">
+          <div class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+              <line x1="13" y1="4" x2="11" y2="20"/>
+            </svg>
+          </div>
+          <div>
+            <div class="lbl">Разработка и интеграции</div>
+            <div class="sub">1С · SAP · AI / ML · web · mobile</div>
+          </div>
+          <div class="arr">→</div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============ PROBLEM ============ -->
+<section class="s s-light" id="problem">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow muted">Проблема</div>
+      <h2 class="h1">Все загружены. Но результат — не такой, как ожидали.</h2>
+      <p class="lead">
+        В любой компании есть скрытые потери времени, внимания, координации
+        и загрузки ресурсов. Они не лежат на поверхности — но именно из-за них
+        процессы идут медленнее, чем могли бы.
+      </p>
+    </div>
+
+    <div class="q-grid">
+      <div class="q-card"><div class="qm">?</div><div class="qt">Где простаивает оборудование и почему?</div></div>
+      <div class="q-card"><div class="qm">?</div><div class="qt">Где сотрудники теряют время в смене?</div></div>
+      <div class="q-card"><div class="qm">?</div><div class="qt">Где много ручной рутины, которую можно убрать?</div></div>
+      <div class="q-card"><div class="qm">?</div><div class="qt">Почему знания есть, но ими сложно пользоваться?</div></div>
+      <div class="q-card"><div class="qm">?</div><div class="qt">Где узкие места в процессах согласования?</div></div>
+      <div class="q-card"><div class="qm">?</div><div class="qt">Как применить AI с пользой, а не ради хайпа?</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MODULES ============ -->
+<section class="s" id="modules">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow">Услуги</div>
+      <h2 class="h1">Три направления — один подход к производительности.</h2>
+      <p class="lead">
+        Каждое направление — самостоятельная услуга с быстрым стартом и
+        измеримым эффектом. Можно начать с любого, потом достроить остальные.
+      </p>
+    </div>
+
+    <div class="modules">
+      <a href="production.html" class="module-card">
+        <div class="mod-head">
+          <span class="mod-num">01 · ПРОИЗВОДСТВО</span>
+          <span class="mod-tag">результат за 1–2 недели</span>
+        </div>
+        <h3 class="mod-title">Видеоаналитика производства</h3>
+        <p class="mod-desc">
+          Замеряем потери времени на производственных участках через подключение
+          к существующей системе видеонаблюдения.
+        </p>
+        <div class="mod-bullets">
+          <div class="mod-bullet"><span class="dot"></span>Производительное / непроизводительное время</div>
+          <div class="mod-bullet"><span class="dot"></span>Загрузка оборудования и OEE</div>
+          <div class="mod-bullet"><span class="dot"></span>Анализ операций, простоев и наладок</div>
+          <div class="mod-bullet"><span class="dot"></span>Видео-доказательства по каждой минуте</div>
+        </div>
+        <span class="mod-link">Подробнее →</span>
+      </a>
+
+      <a href="automation.html" class="module-card dark">
+        <div class="mod-head">
+          <span class="mod-num">02 · AI</span>
+          <span class="mod-tag">первый сценарий за 2–3 недели</span>
+        </div>
+        <h3 class="mod-title">AI-автоматизация</h3>
+        <p class="mod-desc">
+          Изучаем повторяющиеся задачи команды и внедряем AI-инструменты,
+          которые сокращают время на рутину — на типовых задачах до 3–5 раз.
+        </p>
+        <div class="mod-bullets">
+          <div class="mod-bullet"><span class="dot"></span>AI Knowledge Base — поиск по внутренним данным</div>
+          <div class="mod-bullet"><span class="dot"></span>Автоматизация отчётов и Excel</div>
+          <div class="mod-bullet"><span class="dot"></span>Генерация документов, писем, резюме</div>
+          <div class="mod-bullet"><span class="dot"></span>GigaChat · YandexGPT · корпоративный AI</div>
+        </div>
+        <span class="mod-link">Подробнее →</span>
+      </a>
+
+      <a href="dev.html" class="module-card">
+        <div class="mod-head">
+          <span class="mod-num">03 · ИТ</span>
+          <span class="mod-tag">от 1 специалиста до команды</span>
+        </div>
+        <h3 class="mod-title">Разработка и интеграции</h3>
+        <p class="mod-desc">
+          1С / ERP, AI / ML, web и mobile — опытная команда с 20+ годами в IT.
+          Открытые ставки за час по каждой роли — без скрытых наценок.
+        </p>
+        <div class="mod-bullets">
+          <div class="mod-bullet"><span class="dot"></span>1С / ERP — ERP, УТ, УХ, ДО, БП, ЗУП</div>
+          <div class="mod-bullet"><span class="dot"></span>AI / ML и работа с данными</div>
+          <div class="mod-bullet"><span class="dot"></span>Web и серверная разработка (Java, .NET, Node)</div>
+          <div class="mod-bullet"><span class="dot"></span>Мобильные приложения (Android, iOS)</div>
+        </div>
+        <span class="mod-link">Подробнее →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPROACH ============ -->
+<section class="s s-warm" id="approach">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow muted">Подход</div>
+      <h2 class="h1">Не консультанты с красивыми словами. Практики.</h2>
+      <p class="lead">
+        Заходим в процесс, разбираемся на месте, быстро собираем данные
+        и показываем потери в цифрах. Доводим до конкретных изменений, а не
+        до презентации с выводами.
+      </p>
+    </div>
+
+    <div class="app-grid">
+      <div class="app-card">
+        <div class="app-num">01</div>
+        <h4>По данным, а не «по мнению»</h4>
+        <p>Замеры на реальных процессах: видеоаналитика для производства, аудит времени для офиса, метрики для систем. Без «экспертных оценок» и презентаций.</p>
+      </div>
+      <div class="app-card">
+        <div class="app-num">02</div>
+        <h4>Быстро к первому результату</h4>
+        <p>Не годами рисуем стратегию. Первая диагностика и понятный план — за недели. Видимые улучшения — на горизонте месяцев, а не лет.</p>
+      </div>
+      <div class="app-card">
+        <div class="app-num">03</div>
+        <h4>Под задачу клиента</h4>
+        <p>Не продаём коробку. Собираем решение под конкретный процесс и адаптируем под уже существующие системы.</p>
+      </div>
+      <div class="app-card">
+        <div class="app-num">04</div>
+        <h4>До измеримого эффекта</h4>
+        <p>Цель — не «внедрить технологию», а измеримый эффект в цифрах: меньше потерь, выше производительность, ниже затраты.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AUDIENCE ============ -->
+<section class="s" id="audience">
+  <div class="container">
+    <div class="s-head">
+      <div class="eyebrow muted">Для кого</div>
+      <h2 class="h1">Там, где важна эффективность труда и скорость процессов.</h2>
+    </div>
+
+    <div class="aud-grid">
+      <div class="aud-card">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="8" width="18" height="13" rx="2"/>
+            <path d="M7 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/>
+            <path d="M7 14h.01M12 14h.01M17 14h.01"/>
+          </svg>
+        </div>
+        <h4>Производство и сборка</h4>
+        <p>Цеха, участки, линии упаковки, ручные операции рядом с оборудованием.</p>
+      </div>
+      <div class="aud-card">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-6 9 6v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <path d="M8 14h8M8 17h5"/>
+          </svg>
+        </div>
+        <h4>Склады и логистика</h4>
+        <p>Складские комплексы, комплектация, отгрузка, операции в режиме смен.</p>
+      </div>
+      <div class="aud-card">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 10h20M7 14h4"/>
+          </svg>
+        </div>
+        <h4>Офис и back-office</h4>
+        <p>Финансы, бухгалтерия, HR, юристы, операционная поддержка, shared services.</p>
+      </div>
+      <div class="aud-card">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 17l6-6 4 4 6-6"/>
+            <path d="M14 9h6v6"/>
+          </svg>
+        </div>
+        <h4>Компании с большим документооборотом</h4>
+        <p>Регламенты, инструкции, согласования, базы знаний, типовые запросы.</p>
+      </div>
+    </div>
+
+    <div class="roles-strip">
+      <span class="rs-lbl">с кем работаем:</span>
+      <span class="role">Собственник</span>
+      <span class="role">CEO</span>
+      <span class="role">Директор по производству</span>
+      <span class="role">Операционный директор</span>
+      <span class="role">HRD</span>
+      <span class="role">CIO</span>
+      <span class="role">Руководитель цифровизации</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="s-cta" id="cta">
+  <div class="container">
+    <div class="cta-card">
+      <div class="cta-decor"></div>
+      <div class="eyebrow">С чего начнём</div>
+      <h2 class="h1">Обсудим, где теряется время.</h2>
+      <p class="lead">
+        Расскажите, что хотите улучшить: производственный процесс, офисную
+        рутину или работу внутренних систем. Разберём, что происходит сейчас,
+        где стоит искать потери времени и какой первый шаг даст понятный
+        результат.
+      </p>
+      <div class="cta-btns">
+        <a href="mailto:mac@fofo.io?subject=Запрос%20FoFo" class="btn btn-primary btn-lg">Написать на почту →</a>
+        <a href="https://t.me/marinenkov" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.2)">Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#top" class="nav-brand" aria-label="FoFo — главная" style="margin-bottom: 18px">
+          <img src="FoFo logo.png" alt="FoFo" class="brand-logo" style="height: 26px">
+        </a>
+        <p>Цифровая производительность труда. Находим, где теряется рабочее время, и превращаем его в результат.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Направления</h5>
+        <a href="production.html">Видеоаналитика производства</a>
+        <a href="automation.html">AI-автоматизация</a>
+        <a href="dev.html">Разработка и интеграции</a>
+      </div>
+      <div class="footer-col">
+        <h5>О компании</h5>
+        <a href="#problem">Проблема</a>
+        <a href="#approach">Подход</a>
+        <a href="#audience">Для кого</a>
+        <a href="mailto:mac@fofo.io?subject=Запрос%20презентации%20FoFo">Презентация PDF</a>
+      </div>
+      <div class="footer-col">
+        <h5>Контакты</h5>
+        <a href="mailto:mac@fofo.io">mac@fofo.io</a>
+        <a href="tel:+79998406869">+7 (999) 840 68 69</a>
+        <a href="https://t.me/marinenkov">t.me/marinenkov</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© FoFo, 2026. Все права защищены.</span>
+      <span>Москва · Россия</span>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "FoFo",
+    "url": "https://fofo.io",
+    "email": "mac@fofo.io",
+    "telephone": "+79998406869",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Москва",
+      "addressCountry": "RU"
+    },
+    "description": "Цифровая производительность труда: видеоаналитика производства, AI-автоматизация, разработка и интеграции 1С / SAP.",
+    "sameAs": ["https://t.me/marinenkov"]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Направления FoFo",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Видеоаналитика производства",
+        "url": "https://fofo.io/production"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "AI-автоматизация рутины",
+        "url": "https://fofo.io/automation"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Разработка и интеграции 1С / SAP",
+        "url": "https://fofo.io/"
+      }
+    ]
+  }
+]
+</script>
+
+<script>
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.s-head, .q-card, .module-card, .app-card, .aud-card, .roles-strip, .cta-card').forEach(el => {
+  el.classList.add('reveal');
+  io.observe(el);
+});
+</script>
+
+</body>
+</html>
