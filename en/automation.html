@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,33 +7,32 @@
 (function(){
   try{
     var stored = localStorage.getItem('drpsoft_lang');
-    var file = (location.pathname.split('/').pop() || 'index.html');
-    if(stored === 'en'){ location.replace('en/' + file + location.hash); return; }
+    if(stored === 'ru'){ location.replace('../' + (location.pathname.split('/').pop() || 'index.html') + location.hash); return; }
     if(!stored){
-      var l = (navigator.language || navigator.userLanguage || 'ru').toLowerCase();
-      if(l.indexOf('ru') !== 0){ localStorage.setItem('drpsoft_lang','en'); location.replace('en/' + file + location.hash); }
+      var l = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      if(l.indexOf('ru') === 0){ localStorage.setItem('drpsoft_lang','ru'); location.replace('../' + (location.pathname.split('/').pop() || 'index.html') + location.hash); }
     }
   }catch(e){}
 })();
 </script>
-<title>DRPSOFT — AI-автоматизация рутины: отчёты, документы, база знаний</title>
-<meta name="description" content="Изучаем повторяющиеся задачи команды и внедряем AI-инструменты: базы знаний, ассистенты, автоматизация отчётов и документов. Сравниваем эффект до и после в цифрах.">
-<meta name="keywords" content="AI автоматизация, автоматизация рутины, база знаний AI, AI ассистент для бизнеса, GigaChat, YandexGPT, автоматизация отчётов, автоматизация документов, корпоративный AI, knowledge base">
+<title>DRPSOFT — AI Automation of Routine Work: Reports, Documents, Knowledge Base</title>
+<meta name="description" content="We study your team's repetitive tasks and roll out AI tools: knowledge bases, assistants, automated reports and documents. We compare the before-and-after impact in concrete numbers.">
+<meta name="keywords" content="AI automation, routine automation, AI knowledge base, AI assistant for business, GigaChat, YandexGPT, report automation, document automation, enterprise AI, knowledge base">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://drpsoft.ru/automation">
+<link rel="canonical" href="https://drpsoft.ru/en/automation">
 <link rel="alternate" hreflang="ru" href="https://drpsoft.ru/automation">
 <link rel="alternate" hreflang="en" href="https://drpsoft.ru/en/automation">
 <link rel="alternate" hreflang="x-default" href="https://drpsoft.ru/automation">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <meta property="og:type" content="website">
-<meta property="og:locale" content="ru_RU">
+<meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="DRPSOFT">
-<meta property="og:title" content="DRPSOFT — AI-автоматизация рутины: отчёты, документы, база знаний">
-<meta property="og:description" content="Изучаем повторяющиеся задачи команды и внедряем AI-инструменты: базы знаний, ассистенты, автоматизация отчётов и документов.">
-<meta property="og:url" content="https://drpsoft.ru/automation">
+<meta property="og:title" content="DRPSOFT — AI Automation of Routine Work: Reports, Documents, Knowledge Base">
+<meta property="og:description" content="We study your team's repetitive tasks and roll out AI tools: knowledge bases, assistants, automated reports and documents.">
+<meta property="og:url" content="https://drpsoft.ru/en/automation">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="DRPSOFT — AI-автоматизация рутины: отчёты, документы, база знаний">
-<meta name="twitter:description" content="Изучаем повторяющиеся задачи команды и внедряем AI-инструменты: базы знаний, ассистенты, автоматизация отчётов и документов.">
+<meta name="twitter:title" content="DRPSOFT — AI Automation of Routine Work: Reports, Documents, Knowledge Base">
+<meta name="twitter:description" content="We study your team's repetitive tasks and roll out AI tools: knowledge bases, assistants, automated reports and documents.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap">
@@ -794,11 +793,11 @@ footer {
 .cta-card-auto .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 @media (max-width: 900px) { .cta-card-auto { padding: 56px 28px; } }
 
-/* Language switcher */
 .lang-switch { display:inline-flex; align-items:center; gap:2px; padding:3px; background:var(--surface-tint); border:1px solid var(--line-2); border-radius:999px; }
 .lang-switch a { display:inline-flex; align-items:center; justify-content:center; min-width:34px; height:30px; padding:0 10px; font-size:12.5px; font-weight:600; color:var(--ink-3); border-radius:999px; letter-spacing:0.02em; transition:background .15s,color .15s; }
 .lang-switch a.is-active { background:var(--brand); color:#fff; }
 .lang-switch a:not(.is-active):hover { color:var(--brand); }
+
 </style>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -819,73 +818,73 @@ footer {
 <!-- ============ NAV ============ -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-brand" aria-label="DRPSoft — главная">
-      <img src="logo.png" alt="DRPSoft" class="brand-logo">
+    <a href="index.html" class="nav-brand" aria-label="DRPSoft — home">
+      <img src="../logo.png" alt="DRPSoft" class="brand-logo">
     </a>
     <div class="nav-menu">
       <div class="nav-dropdown">
-        <a href="index.html" class="dd-trigger">Потери времени <span class="chev">▾</span></a>
+        <a href="index.html" class="dd-trigger">Time losses <span class="chev">▾</span></a>
         <div class="dropdown-menu">
           <div class="dd-head">
-            <div class="dd-head-title">Потери времени</div>
-            <div class="dd-head-sub">Простои, ожидания, ручная работа</div>
+            <div class="dd-head-title">Time losses</div>
+            <div class="dd-head-sub">Downtime, waiting, manual work</div>
           </div>
-          <div class="dropdown-head">Разделы</div>
-          <a href="index.html#problem" class="dd-item">Проблема</a>
-          <a href="index.html#modules" class="dd-item">Услуги</a>
-          <a href="index.html#approach" class="dd-item">Подход</a>
-          <a href="index.html#audience" class="dd-item">Для кого</a>
+          <div class="dropdown-head">Sections</div>
+          <a href="index.html#problem" class="dd-item">Problem</a>
+          <a href="index.html#modules" class="dd-item">Services</a>
+          <a href="index.html#approach" class="dd-item">Approach</a>
+          <a href="index.html#audience" class="dd-item">Who it's for</a>
         </div>
       </div>
       <div class="nav-dropdown">
-        <a href="production.html" class="dd-trigger">Видеоаналитика <span class="chev">▾</span></a>
+        <a href="production.html" class="dd-trigger">Video analytics <span class="chev">▾</span></a>
         <div class="dropdown-menu">
           <div class="dd-head">
-            <div class="dd-head-title">Видеоаналитика производства</div>
-            <div class="dd-head-sub">Производство · OEE · операции · простои</div>
+            <div class="dd-head-title">Production video analytics</div>
+            <div class="dd-head-sub">Production · OEE · operations · downtime</div>
           </div>
-          <div class="dropdown-head">Разделы</div>
-          <a href="production.html#problem" class="dd-item">Проблема</a>
-          <a href="production.html#solution" class="dd-item">Решение</a>
-          <a href="production.html#case" class="dd-item">Кейс</a>
-          <a href="production.html#roi" class="dd-item">Эффект</a>
-          <a href="production.html#stages" class="dd-item">Этапы</a>
+          <div class="dropdown-head">Sections</div>
+          <a href="production.html#problem" class="dd-item">Problem</a>
+          <a href="production.html#solution" class="dd-item">Solution</a>
+          <a href="production.html#case" class="dd-item">Case study</a>
+          <a href="production.html#roi" class="dd-item">Impact</a>
+          <a href="production.html#stages" class="dd-item">Stages</a>
         </div>
       </div>
       <div class="nav-dropdown">
-        <a href="automation.html" class="dd-trigger is-current">AI-автоматизация <span class="chev">▾</span></a>
+        <a href="automation.html" class="dd-trigger is-current">AI automation <span class="chev">▾</span></a>
         <div class="dropdown-menu">
           <div class="dd-head">
-            <div class="dd-head-title">AI-автоматизация</div>
-            <div class="dd-head-sub">AI-агенты · базы знаний · документы</div>
+            <div class="dd-head-title">AI automation</div>
+            <div class="dd-head-sub">AI agents · knowledge bases · documents</div>
           </div>
-          <div class="dropdown-head">Разделы</div>
-          <a href="automation.html#why" class="dd-item">Проблема</a>
-          <a href="automation.html#process" class="dd-item">Процесс</a>
-          <a href="automation.html#what" class="dd-item">Сценарии</a>
-          <a href="automation.html#result" class="dd-item">Результат</a>
+          <div class="dropdown-head">Sections</div>
+          <a href="automation.html#why" class="dd-item">Problem</a>
+          <a href="automation.html#process" class="dd-item">Process</a>
+          <a href="automation.html#what" class="dd-item">Scenarios</a>
+          <a href="automation.html#result" class="dd-item">Outcome</a>
         </div>
       </div>
       <div class="nav-dropdown">
-        <a href="dev.html" class="dd-trigger">Разработка <span class="chev">▾</span></a>
+        <a href="dev.html" class="dd-trigger">Development <span class="chev">▾</span></a>
         <div class="dropdown-menu">
           <div class="dd-head">
-            <div class="dd-head-title">Разработка и интеграции</div>
-            <div class="dd-head-sub">1С · SAP · AI / ML · web · mobile</div>
+            <div class="dd-head-title">Development & integrations</div>
+            <div class="dd-head-sub">1C · SAP · AI / ML · web · mobile</div>
           </div>
-          <div class="dropdown-head">Разделы</div>
-          <a href="dev.html#team" class="dd-item">Команда</a>
-          <a href="dev.html#directions" class="dd-item">Услуги</a>
-          <a href="dev.html#pricing" class="dd-item">Ставки</a>
+          <div class="dropdown-head">Sections</div>
+          <a href="dev.html#team" class="dd-item">Team</a>
+          <a href="dev.html#directions" class="dd-item">Services</a>
+          <a href="dev.html#pricing" class="dd-item">Rates</a>
         </div>
       </div>
     </div>
     <div class="nav-actions">
-      <div class="lang-switch" role="group" aria-label="Язык / Language">
-        <a href="automation.html" hreflang="ru" class="is-active" data-lang-ru>RU</a>
-        <a href="en/automation.html" hreflang="en" data-lang-en>EN</a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a href="../automation.html" hreflang="ru" data-lang-ru>RU</a>
+        <a href="automation.html" hreflang="en" class="is-active" data-lang-en>EN</a>
       </div>
-      <a href="#cta" class="btn btn-dark btn-sm">Обсудить задачу</a>
+      <a href="#cta" class="btn btn-dark btn-sm">Discuss your task</a>
     </div>
   </div>
 </nav>
@@ -896,10 +895,10 @@ footer {
   <div class="hero-grid"></div>
 
   <div class="container hero-top">
-    <div class="eyebrow">AI-автоматизация ежедневной работы</div>
+    <div class="eyebrow">AI automation of everyday work</div>
     <h1 class="h-display">
-      Сокращаем время на отчёты, документы
-      <em>и поиск информации.</em>
+      We cut the time spent on reports, documents
+      <em>and finding information.</em>
     </h1>
   </div>
 
@@ -907,27 +906,27 @@ footer {
 
     <div class="hero-content">
       <p class="lead">
-        Изучаем, как команда работает с отчётами, Excel, документами, почтой,
-        внутренними системами и базами знаний. Находим повторяющиеся задачи
-        и внедряем AI-инструменты, которые сокращают время на рутину.
+        We study how your team works with reports, Excel, documents, email,
+        internal systems and knowledge bases. We pinpoint the repetitive tasks
+        and roll out AI tools that cut the time spent on routine work.
       </p>
       <div class="hero-bottom">
         <div class="hero-cta">
-          <a href="#cta" class="btn btn-primary btn-lg">Обсудить автоматизацию →</a>
-          <a href="#what" class="btn btn-ghost btn-lg">Что можно автоматизировать</a>
+          <a href="#cta" class="btn btn-primary btn-lg">Discuss automation →</a>
+          <a href="#what" class="btn btn-ghost btn-lg">What you can automate</a>
         </div>
         <div class="hero-meta">
           <div class="hero-meta-item">
-            <div class="body-xs">Старт</div>
-            <div class="h4">с одного процесса</div>
+            <div class="body-xs">Start</div>
+            <div class="h4">with a single process</div>
           </div>
           <div class="hero-meta-item">
-            <div class="body-xs">Инструменты</div>
-            <div class="h4">GigaChat · YandexGPT · корп. AI</div>
+            <div class="body-xs">Tools</div>
+            <div class="h4">GigaChat · YandexGPT · enterprise AI</div>
           </div>
           <div class="hero-meta-item">
-            <div class="body-xs">Эффект</div>
-            <div class="h4">сравнение до / после</div>
+            <div class="body-xs">Impact</div>
+            <div class="h4">before / after comparison</div>
           </div>
         </div>
       </div>
@@ -935,27 +934,27 @@ footer {
 
     <div class="sp-panel">
       <div class="sp-head">
-        <span>После автоматизации</span>
-        <strong>Показываем эффект в цифрах</strong>
+        <span>After automation</span>
+        <strong>We show the impact in numbers</strong>
       </div>
 
-      <div class="sp-kpi">до 3–5× <span>на типовых задачах<br>после внедрения</span></div>
+      <div class="sp-kpi">up to 3–5× <span>on typical tasks<br>after rollout</span></div>
       <p class="sp-note">
-        Убираем повторяющиеся действия и показываем эффект в часах и деньгах.
+        We remove repetitive actions and show the impact in hours and money.
       </p>
 
       <div class="sp-grid">
         <div class="sp-card">
-          <div class="task">Отчёты и Excel</div>
-          <div class="times"><s>3 ч</s> → <b>1 ч</b></div>
+          <div class="task">Reports & Excel</div>
+          <div class="times"><s>3 h</s> → <b>1 h</b></div>
         </div>
         <div class="sp-card">
-          <div class="task">Поиск в базе знаний</div>
-          <div class="times"><s>30 мин</s> → <b>5 мин</b></div>
+          <div class="task">Knowledge base search</div>
+          <div class="times"><s>30 min</s> → <b>5 min</b></div>
         </div>
         <div class="sp-card">
-          <div class="task">Документы и письма</div>
-          <div class="times"><s>40 мин</s> → <b>10 мин</b></div>
+          <div class="task">Documents & emails</div>
+          <div class="times"><s>40 min</s> → <b>10 min</b></div>
         </div>
       </div>
 
@@ -968,31 +967,31 @@ footer {
 <section class="s s-why" id="why">
   <div class="container">
     <div class="s-head">
-      <div class="eyebrow muted">Проблема</div>
-      <h2 class="h1">Все при деле. Но процессы идут медленнее, чем должны.</h2>
+      <div class="eyebrow muted">Problem</div>
+      <h2 class="h1">Everyone's busy. But processes move slower than they should.</h2>
       <p class="lead">
-        Формально работа идёт весь день. Но значительная часть времени уходит
-        не на результат, а на поиск нужного файла, переписывание данных,
-        уточнения у коллег и повторяющиеся операции.
+        On paper, work goes on all day. But a large share of the time goes
+        not toward results, but toward hunting for the right file, retyping data,
+        checking with colleagues and repeating the same operations.
       </p>
     </div>
 
     <div class="cards-grid cards-4">
       <div class="info-card">
-        <h3>Поиск информации</h3>
-        <p>Регламенты, инструкции, документы и данные есть — но сотрудникам сложно быстро найти нужный ответ.</p>
+        <h3>Finding information</h3>
+        <p>The policies, instructions, documents and data are all there — but employees struggle to find the right answer quickly.</p>
       </div>
       <div class="info-card">
-        <h3>Ручные отчёты и Excel</h3>
-        <p>Данные собираются вручную, копируются между файлами, проверяются и сводятся в таблицы.</p>
+        <h3>Manual reports & Excel</h3>
+        <p>Data is gathered by hand, copied between files, double-checked and consolidated into spreadsheets.</p>
       </div>
       <div class="info-card">
-        <h3>Повторяющиеся документы</h3>
-        <p>Письма, договоры, служебные записки, отчёты и резюме встреч готовятся по одним и тем же шаблонам.</p>
+        <h3>Repetitive documents</h3>
+        <p>Emails, contracts, memos, reports and meeting notes are produced from the same templates over and over.</p>
       </div>
       <div class="info-card">
-        <h3>Согласования и ожидания</h3>
-        <p>Процессы тормозят из-за ожидания ответов, статусов, уточнений и ручных напоминаний.</p>
+        <h3>Approvals & waiting</h3>
+        <p>Processes stall waiting on responses, statuses, clarifications and manual reminders.</p>
       </div>
     </div>
   </div>
@@ -1002,40 +1001,40 @@ footer {
 <section class="s s-process" id="process">
   <div class="container">
     <div class="s-head">
-      <div class="eyebrow">Процесс</div>
-      <h2 class="h1">Сначала разбираемся в процессе, потом внедряем инструменты.</h2>
+      <div class="eyebrow">Process</div>
+      <h2 class="h1">First we understand the process, then we roll out the tools.</h2>
       <p class="lead">
-        Сначала смотрим, как сотрудники реально работают и где теряется время.
-        Потом собираем инициативы команды, подбираем инструменты и внедряем
-        там, где эффект будет понятным и измеримым.
+        First we look at how employees actually work and where time is lost.
+        Then we collect the team's ideas, select the right tools and deploy them
+        where the impact will be clear and measurable.
       </p>
     </div>
 
     <div class="cards-grid cards-5">
       <div class="info-card">
         <div class="step-num">01</div>
-        <h4>Изучаем текущую работу</h4>
-        <p>Смотрим, с какими задачами, отчётами, таблицами, документами, системами и согласованиями сотрудники работают каждый день.</p>
+        <h4>Study the current work</h4>
+        <p>We look at the tasks, reports, spreadsheets, documents, systems and approvals employees deal with every day.</p>
       </div>
       <div class="info-card">
         <div class="step-num">02</div>
-        <h4>Находим рутину и потери времени</h4>
-        <p>Фиксируем, где сотрудники тратят время на поиск, переписывание данных, подготовку отчётов и ожидание ответов.</p>
+        <h4>Identify routine work and time losses</h4>
+        <p>We pinpoint where employees spend time searching, retyping data, preparing reports and waiting for answers.</p>
       </div>
       <div class="info-card">
         <div class="step-num">03</div>
-        <h4>Собираем инициативы команды</h4>
-        <p>Выясняем, что сами сотрудники хотели бы автоматизировать: какие задачи раздражают, где не хватает базы знаний, шаблонов или помощника.</p>
+        <h4>Collect the team's ideas</h4>
+        <p>We find out what employees themselves would like to automate: which tasks frustrate them, where they lack a knowledge base, templates or an assistant.</p>
       </div>
       <div class="info-card">
         <div class="step-num">04</div>
-        <h4>Подбираем AI-инструменты</h4>
-        <p>GigaChat, YandexGPT, корпоративные AI-ассистенты, knowledge base, автоматизация отчётов, Excel, генерация документов, интеграции с 1С / ERP / CRM / BI.</p>
+        <h4>Select the AI tools</h4>
+        <p>GigaChat, YandexGPT, enterprise AI assistants, knowledge base, report automation, Excel, document generation, integrations with 1C / ERP / CRM / BI.</p>
       </div>
       <div class="info-card">
         <div class="step-num">05</div>
-        <h4>Сравниваем до / после</h4>
-        <p>Замеряем, сколько времени уходило на процесс до внедрения, что изменилось после и какой эффект получила команда.</p>
+        <h4>Compare before / after</h4>
+        <p>We measure how long the process took before rollout, what changed afterward and the impact the team gained.</p>
       </div>
     </div>
   </div>
@@ -1045,47 +1044,47 @@ footer {
 <section class="s s-what" id="what">
   <div class="container">
     <div class="s-head">
-      <div class="eyebrow muted">Сценарии</div>
-      <h2 class="h1">Автоматизируем не всё подряд, а конкретные повторяющиеся задачи.</h2>
+      <div class="eyebrow muted">Scenarios</div>
+      <h2 class="h1">We don't automate everything — just specific repetitive tasks.</h2>
       <p class="lead">
-        Эффект появляется не в «большой трансформации», а в конкретных
-        ежедневных задачах — там, где сотрудники теряют время на одно и то же.
+        The impact comes not from a "big transformation," but from specific
+        everyday tasks — exactly where employees keep losing time on the same things.
       </p>
     </div>
 
     <div class="cards-grid cards-5">
       <div class="info-card tint">
-        <h4>Работа с данными</h4>
-        <p>Excel, отчёты, сводки, проверка данных, подготовка аналитики.</p>
+        <h4>Working with data</h4>
+        <p>Excel, reports, summaries, data validation, analytics preparation.</p>
       </div>
       <div class="info-card tint">
-        <h4>Документы</h4>
-        <p>Генерация текстов, шаблоны, договоры, служебные записки, резюме встреч.</p>
+        <h4>Documents</h4>
+        <p>Text generation, templates, contracts, memos, meeting notes.</p>
       </div>
       <div class="info-card tint">
-        <h4>Внутренние знания</h4>
-        <p>Регламенты, инструкции, база знаний, поиск ответов, onboarding.</p>
+        <h4>Internal knowledge</h4>
+        <p>Policies, instructions, knowledge base, answer search, onboarding.</p>
       </div>
       <div class="info-card tint">
-        <h4>Рутина сотрудников</h4>
-        <p>Повторяющиеся задачи, переписывание данных, подготовка писем, обработка заявок.</p>
+        <h4>Employee routine</h4>
+        <p>Repetitive tasks, retyping data, drafting emails, processing requests.</p>
       </div>
       <div class="info-card tint">
-        <h4>Управление процессами</h4>
-        <p>Согласования, статусы, напоминания, контроль SLA, workflow automation.</p>
+        <h4>Process management</h4>
+        <p>Approvals, statuses, reminders, SLA tracking, workflow automation.</p>
       </div>
     </div>
 
     <div class="accent-formula">
-      <div class="h3">Убираем рутину, которая мешает команде работать на результат.</div>
+      <div class="h3">We strip out the routine work that keeps the team from focusing on results.</div>
       <div class="flow">
-        <span class="step-chip">Замеряем как сейчас</span>
+        <span class="step-chip">Measure the current state</span>
         <span class="arr">→</span>
-        <span class="step-chip">Находим рутину</span>
+        <span class="step-chip">Identify the routine</span>
         <span class="arr">→</span>
-        <span class="step-chip">Внедряем AI</span>
+        <span class="step-chip">Roll out AI</span>
         <span class="arr">→</span>
-        <span class="step-chip">До / после</span>
+        <span class="step-chip">Before / after</span>
       </div>
     </div>
   </div>
@@ -1095,32 +1094,32 @@ footer {
 <section class="s s-result" id="result">
   <div class="container">
     <div class="s-head">
-      <div class="eyebrow muted">Результат</div>
-      <h2 class="h1">Не просто «внедрили AI» — а сократили время на конкретные задачи.</h2>
+      <div class="eyebrow muted">Outcome</div>
+      <h2 class="h1">Not just "we deployed AI" — we cut the time on specific tasks.</h2>
       <p class="lead">
-        После внедрения компания получает не абстрактный AI-инструмент, а набор
-        конкретных улучшений: какие задачи ускорили, сколько ручных действий
-        убрали, где появился быстрый поиск, какие отчёты или документы начали
-        готовиться быстрее.
+        After rollout, the company gets not an abstract AI tool, but a set of
+        concrete improvements: which tasks were sped up, how many manual actions
+        were removed, where fast search appeared, and which reports or documents
+        now get prepared faster.
       </p>
     </div>
 
     <div class="cards-grid cards-4">
       <div class="info-card">
-        <h3>Освобождённые часы команды</h3>
-        <p>Сколько часов в месяц команда получает обратно от убранной рутины.</p>
+        <h3>Hours freed up for the team</h3>
+        <p>How many hours per month the team gets back from the routine work that was removed.</p>
       </div>
       <div class="info-card">
-        <h3>Ускоренные процессы</h3>
-        <p>Конкретные задачи с цифрами «до и после»: например, отчёт — было 3 часа, стало 30 минут.</p>
+        <h3>Faster processes</h3>
+        <p>Specific tasks with "before and after" numbers: for example, a report that took 3 hours now takes 30 minutes.</p>
       </div>
       <div class="info-card">
-        <h3>AI-инструменты в работе</h3>
-        <p>Что осталось работать в команде после внедрения: агенты, базы знаний, шаблоны.</p>
+        <h3>AI tools in daily use</h3>
+        <p>What stays working in the team after rollout: agents, knowledge bases, templates.</p>
       </div>
       <div class="info-card dark">
-        <h3>План расширения</h3>
-        <p>Следующие сценарии и команды, куда логично распространить автоматизацию.</p>
+        <h3>Expansion plan</h3>
+        <p>The next scenarios and teams where it makes sense to extend the automation.</p>
       </div>
     </div>
   </div>
@@ -1131,16 +1130,16 @@ footer {
   <div class="container">
     <div class="cta-card-auto">
       <div class="cta-decor"></div>
-      <div class="eyebrow">Начните с одного процесса</div>
-      <h2 class="h1">Один отчёт, одно согласование, одна задача — и понятный план автоматизации.</h2>
+      <div class="eyebrow">Start with one process</div>
+      <h2 class="h1">One report, one approval, one task — and a clear automation plan.</h2>
       <p class="lead">
-        Выберите одну команду и 2–3 сценария: отчёт, процесс согласования,
-        поиск в базе знаний или повторяющуюся задачу. Мы разберём, как это
-        работает сейчас, покажем, где теряется время, и составим план автоматизации.
+        Pick one team and 2–3 scenarios: a report, an approval process,
+        a knowledge base search or a repetitive task. We'll break down how it
+        works today, show where time is lost, and build an automation plan.
       </p>
       <div class="cta-btns">
-        <a href="mailto:info@drpsoft.ru" class="btn btn-primary btn-lg">Обсудить автоматизацию →</a>
-        <a href="production.html" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.2)">Видеоаналитика производства →</a>
+        <a href="mailto:info@drpsoft.ru" class="btn btn-primary btn-lg">Discuss automation →</a>
+        <a href="production.html" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.2)">Production video analytics →</a>
       </div>
     </div>
   </div>
@@ -1151,34 +1150,34 @@ footer {
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
-        <a href="#top" class="nav-brand" aria-label="DRPSoft — вверх страницы" style="margin-bottom: 18px">
-          <img src="logo.png" alt="DRPSoft" class="brand-logo" style="height: 26px">
+        <a href="#top" class="nav-brand" aria-label="DRPSoft — back to top" style="margin-bottom: 18px">
+          <img src="../logo.png" alt="DRPSoft" class="brand-logo" style="height: 26px">
         </a>
-        <p>AI-автоматизация ежедневной работы. Снижаем рутину, ускоряем доступ к знаниям и автоматизируем повторяющиеся задачи.</p>
+        <p>AI automation of everyday work. We reduce routine work, speed up access to knowledge and automate repetitive tasks.</p>
       </div>
       <div class="footer-col">
-        <h5>Разделы</h5>
-        <a href="#why">Проблема</a>
-        <a href="#process">Процесс</a>
-        <a href="#what">Сценарии</a>
-        <a href="#result">Результат</a>
+        <h5>Sections</h5>
+        <a href="#why">Problem</a>
+        <a href="#process">Process</a>
+        <a href="#what">Scenarios</a>
+        <a href="#result">Outcome</a>
       </div>
       <div class="footer-col">
         <h5>DRPSoft</h5>
-        <a href="index.html">Все направления</a>
-        <a href="production.html">Видеоаналитика производства</a>
-        <a href="dev.html">Разработка и интеграции</a>
+        <a href="index.html">All directions</a>
+        <a href="production.html">Production video analytics</a>
+        <a href="dev.html">Development & integrations</a>
       </div>
       <div class="footer-col">
-        <h5>Контакты</h5>
+        <h5>Contacts</h5>
         <a href="mailto:info@drpsoft.ru">info@drpsoft.ru</a>
-        <a href="tel:+79201560081">+7 (920) 156-00-81</a>
+        <a href="tel:+971501569601">+971 50 156 96 01</a>
         <a href="https://t.me/avp80">Telegram</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026. Все права защищены.</span>
-      <span>Москва · Россия</span>
+      <span>© 2026. All rights reserved.</span>
+      <span>Moscow · Russia</span>
     </div>
   </div>
 </footer>
@@ -1191,25 +1190,25 @@ footer {
     "name": "DRPSoft",
     "url": "https://drpsoft.ru",
     "email": "info@drpsoft.ru",
-    "telephone": "+79201560081",
+    "telephone": "+971501569601",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Москва",
+      "addressLocality": "Moscow",
       "addressCountry": "RU"
     },
-    "description": "AI-автоматизация рутины: базы знаний, ассистенты, автоматизация отчётов и документов.",
+    "description": "AI automation of routine work: knowledge bases, assistants, automated reports and documents.",
     "sameAs": ["https://t.me/avp80"]
   },
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "AI-автоматизация рутины",
+    "name": "AI automation of routine work",
     "provider": { "@type": "Organization", "name": "DRPSoft", "url": "https://drpsoft.ru" },
-    "description": "Изучаем повторяющиеся задачи команды и внедряем AI-инструменты: базы знаний, ассистенты, автоматизация отчётов, документов и согласований. Сравниваем эффект до и после в цифрах.",
+    "description": "We study a team's repetitive tasks and roll out AI tools: knowledge bases, assistants, automation of reports, documents and approvals. We compare the before-and-after impact in concrete numbers.",
     "areaServed": "RU",
     "availableChannel": {
       "@type": "ServiceChannel",
-      "serviceUrl": "https://drpsoft.ru/automation",
+      "serviceUrl": "https://drpsoft.ru/en/automation",
       "contactType": "sales"
     }
   }
@@ -1225,6 +1224,7 @@ document.querySelectorAll('.s-head, .info-card, .accent-formula, .cta-card-auto'
   io.observe(el);
 });
 </script>
+
 <script>document.querySelectorAll('.lang-switch a').forEach(function(a){a.addEventListener('click',function(){localStorage.setItem('drpsoft_lang', this.getAttribute('hreflang'));});});</script>
 
 </body>

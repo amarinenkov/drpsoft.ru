@@ -1,27 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://drpsoft.ru/</loc>
-    <lastmod>2026-06-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://drpsoft.ru/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://drpsoft.ru/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://drpsoft.ru/"/>
+    <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://drpsoft.ru/production</loc>
-    <lastmod>2026-06-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://drpsoft.ru/production"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://drpsoft.ru/en/production"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://drpsoft.ru/production"/>
+    <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://drpsoft.ru/automation</loc>
-    <lastmod>2026-06-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://drpsoft.ru/automation"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://drpsoft.ru/en/automation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://drpsoft.ru/automation"/>
+    <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://drpsoft.ru/dev</loc>
-    <lastmod>2026-06-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://drpsoft.ru/dev"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://drpsoft.ru/en/dev"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://drpsoft.ru/dev"/>
+    <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://drpsoft.ru/en/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://drpsoft.ru/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://drpsoft.ru/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://drpsoft.ru/"/>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://drpsoft.ru/en/production</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://drpsoft.ru/production"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://drpsoft.ru/en/production"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://drpsoft.ru/production"/>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://drpsoft.ru/en/automation</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://drpsoft.ru/automation"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://drpsoft.ru/en/automation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://drpsoft.ru/automation"/>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://drpsoft.ru/en/dev</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://drpsoft.ru/dev"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://drpsoft.ru/en/dev"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://drpsoft.ru/dev"/>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

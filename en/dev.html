@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,33 +7,32 @@
 (function(){
   try{
     var stored = localStorage.getItem('drpsoft_lang');
-    var file = (location.pathname.split('/').pop() || 'index.html');
-    if(stored === 'en'){ location.replace('en/' + file + location.hash); return; }
+    if(stored === 'ru'){ location.replace('../' + (location.pathname.split('/').pop() || 'index.html') + location.hash); return; }
     if(!stored){
-      var l = (navigator.language || navigator.userLanguage || 'ru').toLowerCase();
-      if(l.indexOf('ru') !== 0){ localStorage.setItem('drpsoft_lang','en'); location.replace('en/' + file + location.hash); }
+      var l = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      if(l.indexOf('ru') === 0){ localStorage.setItem('drpsoft_lang','ru'); location.replace('../' + (location.pathname.split('/').pop() || 'index.html') + location.hash); }
     }
   }catch(e){}
 })();
 </script>
-<title>DRPSOFT — Разработка и интеграции: 1С, web, mobile, AI / ML</title>
-<meta name="description" content="Опытная IT-команда: 20+ лет в разработке. Web и серверная разработка, мобильные приложения, 1С / ERP, AI / ML. Прозрачные почасовые ставки — открыто и без скрытых наценок.">
-<meta name="keywords" content="разработка ПО, заказная разработка, разработка 1С, разработка SAP, интеграция систем, мобильная разработка, AI разработка, ML разработка, прайс разработка, ставки разработчиков">
+<title>DRPSOFT — Development &amp; Integrations: 1C, web, mobile, AI / ML</title>
+<meta name="description" content="Seasoned IT team: 20+ years in development. Web and server-side development, mobile apps, 1C / ERP, AI / ML. Transparent hourly rates — open, with no hidden markups.">
+<meta name="keywords" content="software development, custom development, 1C development, SAP development, system integration, mobile development, AI development, ML development, development pricing, developer rates">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://drpsoft.ru/dev">
-<link rel="alternate" hreflang="ru" href="https://drpsoft.ru/dev">
+<link rel="canonical" href="https://drpsoft.ru/en/dev">
 <link rel="alternate" hreflang="en" href="https://drpsoft.ru/en/dev">
+<link rel="alternate" hreflang="ru" href="https://drpsoft.ru/dev">
 <link rel="alternate" hreflang="x-default" href="https://drpsoft.ru/dev">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <meta property="og:type" content="website">
-<meta property="og:locale" content="ru_RU">
+<meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="DRPSOFT">
-<meta property="og:title" content="DRPSOFT — Разработка и интеграции: 1С, web, mobile, AI / ML">
-<meta property="og:description" content="Опытная IT-команда: 20+ лет в разработке. Web, mobile, 1С, AI / ML. Прозрачные почасовые ставки.">
-<meta property="og:url" content="https://drpsoft.ru/dev">
+<meta property="og:title" content="DRPSOFT — Development &amp; Integrations: 1C, web, mobile, AI / ML">
+<meta property="og:description" content="Seasoned IT team: 20+ years in development. Web, mobile, 1C, AI / ML. Transparent hourly rates.">
+<meta property="og:url" content="https://drpsoft.ru/en/dev">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="DRPSOFT — Разработка и интеграции: 1С, web, mobile, AI / ML">
-<meta name="twitter:description" content="Опытная IT-команда: 20+ лет в разработке. Web, mobile, 1С, AI / ML. Прозрачные почасовые ставки.">
+<meta name="twitter:title" content="DRPSOFT — Development &amp; Integrations: 1C, web, mobile, AI / ML">
+<meta name="twitter:description" content="Seasoned IT team: 20+ years in development. Web, mobile, 1C, AI / ML. Transparent hourly rates.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap">
@@ -817,8 +816,6 @@ footer {
   transition: opacity .8s ease, transform .8s ease;
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* Language switcher */
 .lang-switch { display:inline-flex; align-items:center; gap:2px; padding:3px; background:var(--surface-tint); border:1px solid var(--line-2); border-radius:999px; }
 .lang-switch a { display:inline-flex; align-items:center; justify-content:center; min-width:34px; height:30px; padding:0 10px; font-size:12.5px; font-weight:600; color:var(--ink-3); border-radius:999px; letter-spacing:0.02em; transition:background .15s,color .15s; }
 .lang-switch a.is-active { background:var(--brand); color:#fff; }
@@ -843,73 +840,73 @@ footer {
 <!-- ============ NAV ============ -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-brand" aria-label="DRPSoft — главная">
-      <img src="logo.png" alt="DRPSoft" class="brand-logo">
+    <a href="index.html" class="nav-brand" aria-label="DRPSoft — home">
+      <img src="../logo.png" alt="DRPSoft" class="brand-logo">
     </a>
     <div class="nav-menu">
       <div class="nav-dropdown">
-        <a href="index.html" class="dd-trigger">Потери времени <span class="chev">▾</span></a>
+        <a href="index.html" class="dd-trigger">Time losses <span class="chev">▾</span></a>
         <div class="dropdown-menu">
           <div class="dd-head">
-            <div class="dd-head-title">Потери времени</div>
-            <div class="dd-head-sub">Простои, ожидания, ручная работа</div>
+            <div class="dd-head-title">Time losses</div>
+            <div class="dd-head-sub">Downtime, waiting, manual work</div>
           </div>
-          <div class="dropdown-head">Разделы</div>
-          <a href="index.html#problem" class="dd-item">Проблема</a>
-          <a href="index.html#modules" class="dd-item">Услуги</a>
-          <a href="index.html#approach" class="dd-item">Подход</a>
-          <a href="index.html#audience" class="dd-item">Для кого</a>
+          <div class="dropdown-head">Sections</div>
+          <a href="index.html#problem" class="dd-item">Problem</a>
+          <a href="index.html#modules" class="dd-item">Services</a>
+          <a href="index.html#approach" class="dd-item">Approach</a>
+          <a href="index.html#audience" class="dd-item">Who it's for</a>
         </div>
       </div>
       <div class="nav-dropdown">
-        <a href="production.html" class="dd-trigger">Видеоаналитика <span class="chev">▾</span></a>
+        <a href="production.html" class="dd-trigger">Video analytics <span class="chev">▾</span></a>
         <div class="dropdown-menu">
           <div class="dd-head">
-            <div class="dd-head-title">Видеоаналитика производства</div>
-            <div class="dd-head-sub">Производство · OEE · операции · простои</div>
+            <div class="dd-head-title">Production video analytics</div>
+            <div class="dd-head-sub">Production · OEE · operations · downtime</div>
           </div>
-          <div class="dropdown-head">Разделы</div>
-          <a href="production.html#problem" class="dd-item">Проблема</a>
-          <a href="production.html#solution" class="dd-item">Решение</a>
-          <a href="production.html#case" class="dd-item">Кейс</a>
-          <a href="production.html#roi" class="dd-item">Эффект</a>
-          <a href="production.html#stages" class="dd-item">Этапы</a>
+          <div class="dropdown-head">Sections</div>
+          <a href="production.html#problem" class="dd-item">Problem</a>
+          <a href="production.html#solution" class="dd-item">Solution</a>
+          <a href="production.html#case" class="dd-item">Case study</a>
+          <a href="production.html#roi" class="dd-item">Impact</a>
+          <a href="production.html#stages" class="dd-item">Stages</a>
         </div>
       </div>
       <div class="nav-dropdown">
-        <a href="automation.html" class="dd-trigger">AI-автоматизация <span class="chev">▾</span></a>
+        <a href="automation.html" class="dd-trigger">AI automation <span class="chev">▾</span></a>
         <div class="dropdown-menu">
           <div class="dd-head">
-            <div class="dd-head-title">AI-автоматизация</div>
-            <div class="dd-head-sub">AI-агенты · базы знаний · документы</div>
+            <div class="dd-head-title">AI automation</div>
+            <div class="dd-head-sub">AI agents · knowledge bases · documents</div>
           </div>
-          <div class="dropdown-head">Разделы</div>
-          <a href="automation.html#why" class="dd-item">Проблема</a>
-          <a href="automation.html#process" class="dd-item">Процесс</a>
-          <a href="automation.html#what" class="dd-item">Сценарии</a>
-          <a href="automation.html#result" class="dd-item">Результат</a>
+          <div class="dropdown-head">Sections</div>
+          <a href="automation.html#why" class="dd-item">Problem</a>
+          <a href="automation.html#process" class="dd-item">Process</a>
+          <a href="automation.html#what" class="dd-item">Scenarios</a>
+          <a href="automation.html#result" class="dd-item">Result</a>
         </div>
       </div>
       <div class="nav-dropdown">
-        <a href="dev.html" class="dd-trigger is-current">Разработка <span class="chev">▾</span></a>
+        <a href="dev.html" class="dd-trigger is-current">Development <span class="chev">▾</span></a>
         <div class="dropdown-menu">
           <div class="dd-head">
-            <div class="dd-head-title">Разработка и интеграции</div>
-            <div class="dd-head-sub">1С · SAP · AI / ML · web · mobile</div>
+            <div class="dd-head-title">Development &amp; integrations</div>
+            <div class="dd-head-sub">1C · SAP · AI / ML · web · mobile</div>
           </div>
-          <div class="dropdown-head">Разделы</div>
-          <a href="dev.html#team" class="dd-item">Команда</a>
-          <a href="dev.html#directions" class="dd-item">Услуги</a>
-          <a href="dev.html#pricing" class="dd-item">Ставки</a>
+          <div class="dropdown-head">Sections</div>
+          <a href="dev.html#team" class="dd-item">Team</a>
+          <a href="dev.html#directions" class="dd-item">Services</a>
+          <a href="dev.html#pricing" class="dd-item">Rates</a>
         </div>
       </div>
     </div>
     <div class="nav-actions">
-      <div class="lang-switch" role="group" aria-label="Язык / Language">
-        <a href="dev.html" hreflang="ru" class="is-active" data-lang-ru>RU</a>
-        <a href="en/dev.html" hreflang="en" data-lang-en>EN</a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a href="../dev.html" hreflang="ru" data-lang-ru>RU</a>
+        <a href="dev.html" hreflang="en" class="is-active" data-lang-en>EN</a>
       </div>
-      <a href="#cta" class="btn btn-dark btn-sm">Обсудить задачу</a>
+      <a href="#cta" class="btn btn-dark btn-sm">Discuss your task</a>
     </div>
   </div>
 </nav>
@@ -920,10 +917,10 @@ footer {
   <div class="hero-grid"></div>
 
   <div class="container hero-top">
-    <div class="eyebrow">Разработка и интеграции</div>
+    <div class="eyebrow">Development &amp; integrations</div>
     <h1 class="h-display">
-      20+ лет в IT.<br>
-      <em>Команда экспертов<br>под ваш проект.</em>
+      20+ years in IT.<br>
+      <em>A team of experts<br>for your project.</em>
     </h1>
   </div>
 
@@ -931,27 +928,27 @@ footer {
 
     <div class="hero-content">
       <p class="lead">
-        Когда нужна не просто разработка, а команда, которая вникает в бизнес
-        и доводит проект до результата. Подключаемся точечно или закрываем
-        весь цикл — от архитектуры до запуска.
+        When you need more than just development — a team that understands the
+        business and drives the project to a result. We plug in for specific
+        tasks or own the full cycle, from architecture to launch.
       </p>
       <div class="hero-bottom">
         <div class="hero-cta">
-          <a href="#cta" class="btn btn-primary btn-lg">Обсудить проект →</a>
-          <a href="#pricing" class="btn btn-ghost btn-lg">Смотреть ставки</a>
+          <a href="#cta" class="btn btn-primary btn-lg">Discuss your project →</a>
+          <a href="#pricing" class="btn btn-ghost btn-lg">View rates</a>
         </div>
         <div class="hero-meta">
           <div class="hero-meta-item">
-            <div class="body-xs">Опыт</div>
-            <div class="h4">20+ лет в IT</div>
+            <div class="body-xs">Experience</div>
+            <div class="h4">20+ years in IT</div>
           </div>
           <div class="hero-meta-item">
-            <div class="body-xs">Формат</div>
-            <div class="h4">команда под задачу</div>
+            <div class="body-xs">Format</div>
+            <div class="h4">team built for the task</div>
           </div>
           <div class="hero-meta-item">
-            <div class="body-xs">Старт</div>
-            <div class="h4">1–2 недели</div>
+            <div class="body-xs">Start</div>
+            <div class="h4">1–2 weeks</div>
           </div>
         </div>
       </div>
@@ -959,11 +956,11 @@ footer {
 
     <div class="stack-panel">
       <div class="sp-head">
-        <span>Услуги</span>
-        <strong>направления</strong>
+        <span>Services</span>
+        <strong>capabilities</strong>
       </div>
-      <div class="sp-headline">Полный цикл — от проектирования <em>до эксплуатации.</em></div>
-      <p class="sp-sub">Аналитика → Проектирование → Разработка → Тестирование → Эксплуатация</p>
+      <div class="sp-headline">Full cycle — from design <em>to operations.</em></div>
+      <p class="sp-sub">Analysis → Design → Development → Testing → Operations</p>
 
       <div class="sp-list">
         <div class="sp-list-item">
@@ -974,8 +971,8 @@ footer {
             </svg>
           </span>
           <span>
-            <span class="name">1С · SAP</span>
-            <span class="meta">Архитектура · аналитика · разработка · интеграции</span>
+            <span class="name">1C · SAP</span>
+            <span class="meta">Architecture · analysis · development · integrations</span>
           </span>
         </div>
         <div class="sp-list-item">
@@ -986,8 +983,8 @@ footer {
             </svg>
           </span>
           <span>
-            <span class="name">AI / ML и аналитика</span>
-            <span class="meta">Модели · данные · BI · аналитические системы</span>
+            <span class="name">AI / ML and analytics</span>
+            <span class="meta">Models · data · BI · analytical systems</span>
           </span>
         </div>
         <div class="sp-list-item">
@@ -999,8 +996,8 @@ footer {
             </svg>
           </span>
           <span>
-            <span class="name">Web, mobile и backend</span>
-            <span class="meta">Кабинеты · сервисы · приложения · API</span>
+            <span class="name">Web, mobile and backend</span>
+            <span class="meta">Portals · services · apps · APIs</span>
           </span>
         </div>
       </div>
@@ -1013,45 +1010,45 @@ footer {
 <section class="s s-light" id="team">
   <div class="container">
     <div class="s-head">
-      <div class="eyebrow muted">Команда</div>
-      <h2 class="h1">Опытные сеньоры, тимлиды и архитекторы.</h2>
+      <div class="eyebrow muted">Team</div>
+      <h2 class="h1">Seasoned seniors, team leads and architects.</h2>
     </div>
 
     <div class="team-inner">
       <div class="team-text">
         <p>
-          <strong>Более 20 лет в IT-разработке.</strong> В команде — разработчики,
-          аналитики, архитекторы, DevOps, QA, дизайнеры и руководители проектов
-          с опытом 3–15+ лет.
+          <strong>Over 20 years in IT development.</strong> The team includes
+          developers, analysts, architects, DevOps, QA, designers and project
+          managers with 3–15+ years of experience.
         </p>
         <p>
-          Делаем корпоративные системы и ERP-внедрения, высоконагруженные
-          сервисы, мобильные приложения и AI-решения.
+          We build enterprise systems and ERP rollouts, high-load services,
+          mobile apps and AI solutions.
         </p>
         <p>
-          Команда формируется под задачу — от одного специалиста на консультацию
-          до полной проектной команды на месяцы. Можем зайти на старте проекта,
-          забрать систему на поддержку или усилить ваш ин-хаус выделенными
-          сотрудниками.
+          The team is assembled around your task — from a single specialist for
+          a consultation to a full project team for months. We can come in at the
+          start of a project, take a system into support, or strengthen your
+          in-house team with dedicated staff.
         </p>
       </div>
 
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-num"><em>20+</em></div>
-          <div class="stat-label">лет в IT-разработке</div>
+          <div class="stat-label">years in IT development</div>
         </div>
         <div class="stat-card">
           <div class="stat-num">3–15</div>
-          <div class="stat-label">лет средний опыт специалистов</div>
+          <div class="stat-label">years of average specialist experience</div>
         </div>
         <div class="stat-card">
           <div class="stat-num">4</div>
-          <div class="stat-label">направления разработки</div>
+          <div class="stat-label">development practices</div>
         </div>
         <div class="stat-card">
           <div class="stat-num">7+</div>
-          <div class="stat-label">ролей в команде: от аналитика до архитектора</div>
+          <div class="stat-label">team roles: from analyst to architect</div>
         </div>
       </div>
     </div>
@@ -1062,55 +1059,55 @@ footer {
 <section class="s s-warm" id="directions">
   <div class="container">
     <div class="s-head">
-      <div class="eyebrow">Услуги</div>
-      <h2 class="h1">Четыре направления — один проектный подход.</h2>
+      <div class="eyebrow">Services</div>
+      <h2 class="h1">Four practices — one project approach.</h2>
       <p class="lead">
-        От продукта на этапе MVP до развития и поддержки корпоративных систем.
-        Подбираем команду и стек под конкретную задачу.
+        From an MVP-stage product to the evolution and support of enterprise
+        systems. We match the team and stack to the specific task.
       </p>
     </div>
 
     <div class="dir-grid">
       <div class="dir-card">
-        <div class="dir-tag">01 · 1С</div>
-        <h3>Разработка и поддержка 1С</h3>
-        <p>Доработка конфигураций, интеграции между системами, отчёты и обработки. Поддержка действующих внедрений.</p>
+        <div class="dir-tag">01 · 1C</div>
+        <h3>1C development and support</h3>
+        <p>Configuration enhancements, integrations between systems, reports and data processors. Support for live deployments.</p>
         <div class="dir-stack">
-          <span class="dir-chip">1С: ERP</span>
-          <span class="dir-chip">УТ</span>
-          <span class="dir-chip">УХ</span>
-          <span class="dir-chip">ДО</span>
-          <span class="dir-chip">БП</span>
-          <span class="dir-chip">ЗУП</span>
+          <span class="dir-chip">1C: ERP</span>
+          <span class="dir-chip">UT (Trade Mgmt)</span>
+          <span class="dir-chip">UH (Consolidation)</span>
+          <span class="dir-chip">DO (Doc Flow)</span>
+          <span class="dir-chip">BP (Accounting)</span>
+          <span class="dir-chip">ZUP (Payroll/HR)</span>
         </div>
       </div>
 
       <div class="dir-card">
         <div class="dir-tag">02 · SAP</div>
-        <h3>Разработка и поддержка SAP</h3>
-        <p>Доработки, интеграции и сопровождение SAP-ландшафта. Помогаем связать SAP с 1С, web-сервисами и внутренними системами.</p>
+        <h3>SAP development and support</h3>
+        <p>Enhancements, integrations and ongoing support of the SAP landscape. We help connect SAP with 1C, web services and internal systems.</p>
         <div class="dir-stack">
           <span class="dir-chip">SAP ERP</span>
           <span class="dir-chip">ABAP</span>
-          <span class="dir-chip">интеграции</span>
+          <span class="dir-chip">integrations</span>
         </div>
       </div>
 
       <div class="dir-card">
         <div class="dir-tag">03 · AI / DATA</div>
-        <h3>AI / ML и аналитика данных</h3>
-        <p>Модели машинного обучения, обработка данных, BI-отчётность и аналитические системы.</p>
+        <h3>AI / ML and data analytics</h3>
+        <p>Machine learning models, data processing, BI reporting and analytical systems.</p>
         <div class="dir-stack">
           <span class="dir-chip">Machine Learning</span>
           <span class="dir-chip">Data Engineering</span>
-          <span class="dir-chip">BI · аналитика</span>
+          <span class="dir-chip">BI · analytics</span>
         </div>
       </div>
 
       <div class="dir-card">
         <div class="dir-tag">04 · WEB / MOBILE</div>
-        <h3>Web, мобильная и серверная разработка</h3>
-        <p>Backend-сервисы, API, микросервисы, личные кабинеты, SPA и мобильные приложения. От архитектуры до запуска и поддержки.</p>
+        <h3>Web, mobile and server-side development</h3>
+        <p>Backend services, APIs, microservices, customer portals, SPAs and mobile apps. From architecture to launch and support.</p>
         <div class="dir-stack">
           <span class="dir-chip">Java</span>
           <span class="dir-chip">Python</span>
@@ -1126,14 +1123,14 @@ footer {
     </div>
 
     <div class="dir-support">
-      <span class="lbl">в составе команды:</span>
+      <span class="lbl">on the team:</span>
       <span class="role">DevOps</span>
-      <span class="role">QA / автотесты</span>
-      <span class="role">Аналитики</span>
-      <span class="role">UI/UX-дизайн</span>
-      <span class="role">Тимлид</span>
-      <span class="role">Руководитель проекта</span>
-      <span class="role">Архитектор</span>
+      <span class="role">QA / test automation</span>
+      <span class="role">Analysts</span>
+      <span class="role">UI/UX design</span>
+      <span class="role">Team lead</span>
+      <span class="role">Project manager</span>
+      <span class="role">Architect</span>
     </div>
   </div>
 </section>
@@ -1142,89 +1139,89 @@ footer {
 <section class="s" id="pricing">
   <div class="container">
     <div class="s-head">
-      <div class="eyebrow muted">Ставки</div>
-      <h2 class="h1">Ставки специалистов.</h2>
+      <div class="eyebrow muted">Rates</div>
+      <h2 class="h1">Specialist rates.</h2>
       <p class="lead">
-        Открытые ставки за час работы — без скрытых наценок. Команда
-        разработки и 1С-команда показаны отдельными блоками: у них разные
-        специализации и логика оценки.
+        Open hourly rates — with no hidden markups. The development team and the
+        1C team are shown as separate blocks: they have different specializations
+        and estimation logic.
       </p>
     </div>
 
     <p class="price-intro">
-      Все ставки в рублях за час, без НДС. Финальная стоимость проекта
-      зависит от состава команды, длительности и сложности задач.
+      All rates are in rubles per hour, VAT excluded. The final project cost
+      depends on the team composition, duration and complexity of the tasks.
     </p>
 
     <!-- Block 1: Development -->
     <div class="price-block">
       <div class="price-block-head">
-        <div class="price-block-title">Команда разработки</div>
-        <div class="price-block-sub">₽/час · без НДС</div>
+        <div class="price-block-title">Development team</div>
+        <div class="price-block-sub">₽/hour · VAT excl.</div>
       </div>
       <div class="tbl-wrap">
         <table class="tbl">
           <thead>
             <tr>
-              <th>Специалист</th>
+              <th>Specialist</th>
               <th class="num-h">Middle</th>
               <th class="num-h">Senior</th>
               <th class="num-h">Lead</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td class="role">Backend-разработчик</td><td class="num">3 250</td><td class="num">3 500</td><td class="num">4 000</td></tr>
-            <tr><td class="role">Frontend-разработчик</td><td class="num">3 000</td><td class="num">3 250</td><td class="num">3 750</td></tr>
-            <tr><td class="role">Mobile-разработчик</td><td class="num">3 250</td><td class="num">3 625</td><td class="num">4 000</td></tr>
-            <tr><td class="role">Аналитик</td><td class="num">3 250</td><td class="num">3 500</td><td class="num">3 750</td></tr>
+            <tr><td class="role">Backend developer</td><td class="num">3 250</td><td class="num">3 500</td><td class="num">4 000</td></tr>
+            <tr><td class="role">Frontend developer</td><td class="num">3 000</td><td class="num">3 250</td><td class="num">3 750</td></tr>
+            <tr><td class="role">Mobile developer</td><td class="num">3 250</td><td class="num">3 625</td><td class="num">4 000</td></tr>
+            <tr><td class="role">Analyst</td><td class="num">3 250</td><td class="num">3 500</td><td class="num">3 750</td></tr>
             <tr><td class="role">DevOps Engineer</td><td class="num">3 500</td><td class="num">3 750</td><td class="num">4 125</td></tr>
             <tr><td class="role">QA Engineer</td><td class="num">2 500</td><td class="num">2 750</td><td class="num">3 000</td></tr>
             <tr><td class="role">QA Automation Engineer</td><td class="num">3 000</td><td class="num">3 250</td><td class="num">3 500</td></tr>
             <tr><td class="role">Data Engineer</td><td class="num">3 500</td><td class="num">3 750</td><td class="num">4 000</td></tr>
             <tr><td class="role">ML Engineer</td><td class="num">3 500</td><td class="num">4 000</td><td class="num">4 500</td></tr>
-            <tr><td class="role">UI / UX-дизайнер</td><td class="num">2 750</td><td class="num">3 000</td><td class="num">3 250</td></tr>
-            <tr><td class="role">Технический писатель</td><td class="num">2 750</td><td class="num">3 000</td><td class="num dash">—</td></tr>
-            <tr><td class="role">Архитектор</td><td class="num dash">—</td><td class="num">4 500</td><td class="num dash">—</td></tr>
-            <tr><td class="role">Руководитель проекта</td><td class="num">3 250</td><td class="num">4 250</td><td class="num dash">—</td></tr>
+            <tr><td class="role">UI / UX designer</td><td class="num">2 750</td><td class="num">3 000</td><td class="num">3 250</td></tr>
+            <tr><td class="role">Technical writer</td><td class="num">2 750</td><td class="num">3 000</td><td class="num dash">—</td></tr>
+            <tr><td class="role">Architect</td><td class="num dash">—</td><td class="num">4 500</td><td class="num dash">—</td></tr>
+            <tr><td class="role">Project manager</td><td class="num">3 250</td><td class="num">4 250</td><td class="num dash">—</td></tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- Block 2: 1С -->
+    <!-- Block 2: 1C -->
     <div class="price-block">
       <div class="price-block-head">
-        <div class="price-block-title">1С-команда</div>
-        <div class="price-block-sub">₽/час · без НДС · опыт 3–15+ лет (ERP, УТ, УХ, ДО, БП, ЗУП)</div>
+        <div class="price-block-title">1C team</div>
+        <div class="price-block-sub">₽/hour · VAT excl. · 3–15+ years of experience (ERP, UT, UH, DO, BP, ZUP)</div>
       </div>
       <div class="tbl-wrap">
         <table class="tbl">
           <thead>
             <tr>
-              <th>Роль</th>
-              <th>Основные задачи</th>
-              <th class="num-h">Ставка ₽/час</th>
+              <th>Role</th>
+              <th>Core responsibilities</th>
+              <th class="num-h">Rate ₽/hour</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="role">1С-разработчик</td>
-              <td class="desc">Доработка конфигураций, интеграции, отчёты и обработки</td>
+              <td class="role">1C developer</td>
+              <td class="desc">Configuration enhancements, integrations, reports and data processors</td>
               <td class="num">3 400</td>
             </tr>
             <tr>
-              <td class="role">1С-аналитик</td>
-              <td class="desc">Сбор требований, постановка задач, описание бизнес-процессов</td>
+              <td class="role">1C analyst</td>
+              <td class="desc">Requirements gathering, task definition, business process documentation</td>
               <td class="num">3 600</td>
             </tr>
             <tr>
-              <td class="role">1С-архитектор</td>
-              <td class="desc">Архитектура решений, аудит, проектирование сложных интеграций</td>
+              <td class="role">1C architect</td>
+              <td class="desc">Solution architecture, audits, design of complex integrations</td>
               <td class="num">3 900</td>
             </tr>
             <tr>
-              <td class="role">Консультант 1С</td>
-              <td class="desc">Внедрение, обучение пользователей, функциональная поддержка</td>
+              <td class="role">1C consultant</td>
+              <td class="desc">Implementation, user training, functional support</td>
               <td class="num">2 800</td>
             </tr>
           </tbody>
@@ -1233,9 +1230,9 @@ footer {
     </div>
 
     <div class="price-note">
-      Финальная оценка зависит от состава команды, сроков и сложности задач.
-      Возможны фиксированные пакеты (Fixed Price), Time &amp; Material и выделенная
-      команда — формат сотрудничества подбираем под проект.
+      The final estimate depends on the team composition, timeline and complexity
+      of the tasks. Fixed Price packages, Time &amp; Material and a dedicated team
+      are all available — we tailor the engagement model to the project.
     </div>
   </div>
 </section>
@@ -1245,15 +1242,15 @@ footer {
   <div class="container">
     <div class="cta-card">
       <div class="cta-decor"></div>
-      <div class="eyebrow">Расскажите о проекте</div>
-      <h2 class="h1">Обсудим, какая команда нужна для вашей задачи.</h2>
+      <div class="eyebrow">Tell us about your project</div>
+      <h2 class="h1">Let's discuss the team your task needs.</h2>
       <p class="lead">
-        Опишите задачу — мы предложим состав команды, оценку трудоёмкости
-        и формат сотрудничества. Можем стартовать с консультации или короткого
-        первого этапа с конкретным результатом.
+        Describe your task — we'll propose a team composition, an effort estimate
+        and an engagement model. We can start with a consultation or a short
+        first stage with a concrete deliverable.
       </p>
       <div class="cta-btns">
-        <a href="mailto:info@drpsoft.ru?subject=Запрос%20DRPSoft%20%E2%80%94%20разработка" class="btn btn-primary btn-lg">Написать на почту →</a>
+        <a href="mailto:info@drpsoft.ru?subject=DRPSoft%20%E2%80%94%20development" class="btn btn-primary btn-lg">Email us →</a>
         <a href="https://t.me/avp80" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.2)">Telegram</a>
       </div>
     </div>
@@ -1265,33 +1262,33 @@ footer {
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
-        <a href="index.html" class="nav-brand" aria-label="DRPSoft — главная" style="margin-bottom: 18px">
-          <img src="logo.png" alt="DRPSoft" class="brand-logo" style="height: 26px">
+        <a href="index.html" class="nav-brand" aria-label="DRPSoft — home" style="margin-bottom: 18px">
+          <img src="../logo.png" alt="DRPSoft" class="brand-logo" style="height: 26px">
         </a>
-        <p>Опытная IT-команда: разработка, интеграции, 1С, AI / ML. Прозрачные ставки за час без НДС.</p>
+        <p>Seasoned IT team: development, integrations, 1C, AI / ML. Transparent hourly rates, VAT excluded.</p>
       </div>
       <div class="footer-col">
-        <h5>Разделы</h5>
-        <a href="#team">Команда</a>
-        <a href="#directions">Услуги</a>
-        <a href="#pricing">Ставки</a>
+        <h5>Sections</h5>
+        <a href="#team">Team</a>
+        <a href="#directions">Services</a>
+        <a href="#pricing">Rates</a>
       </div>
       <div class="footer-col">
         <h5>DRPSoft</h5>
-        <a href="index.html">Все направления</a>
-        <a href="production.html">Видеоаналитика производства</a>
-        <a href="automation.html">AI-автоматизация</a>
+        <a href="index.html">All practices</a>
+        <a href="production.html">Production video analytics</a>
+        <a href="automation.html">AI automation</a>
       </div>
       <div class="footer-col">
-        <h5>Контакты</h5>
+        <h5>Contacts</h5>
         <a href="mailto:info@drpsoft.ru">info@drpsoft.ru</a>
-        <a href="tel:+79201560081">+7 (920) 156-00-81</a>
+        <a href="tel:+971501569601">+971 50 156 96 01</a>
         <a href="https://t.me/avp80">Telegram</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026. Все права защищены.</span>
-      <span>Москва · Россия</span>
+      <span>© 2026. All rights reserved.</span>
+      <span>Moscow · Russia</span>
     </div>
   </div>
 </footer>
@@ -1304,21 +1301,21 @@ footer {
     "name": "DRPSoft",
     "url": "https://drpsoft.ru",
     "email": "info@drpsoft.ru",
-    "telephone": "+79201560081",
+    "telephone": "+971501569601",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Москва",
+      "addressLocality": "Moscow",
       "addressCountry": "RU"
     },
-    "description": "Разработка ПО и интеграции: web, mobile, 1С / ERP, AI / ML. Опытная команда с 20+ годами в IT.",
+    "description": "Software development and integrations: web, mobile, 1C / ERP, AI / ML. A seasoned team with 20+ years in IT.",
     "sameAs": ["https://t.me/avp80"]
   },
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Разработка ПО и интеграции",
+    "name": "Software development and integrations",
     "provider": { "@type": "Organization", "name": "DRPSoft", "url": "https://drpsoft.ru" },
-    "description": "Разработка web и backend-систем, мобильных приложений, 1С / ERP-доработки и интеграции, внедрение AI / ML и аналитики данных. Опытная команда с почасовой оплатой.",
+    "description": "Development of web and backend systems, mobile apps, 1C / ERP enhancements and integrations, AI / ML implementation and data analytics. A seasoned team with hourly billing.",
     "areaServed": "RU"
   }
 ]
@@ -1333,6 +1330,7 @@ document.querySelectorAll('.s-head, .stat-card, .dir-card, .dir-support, .price-
   io.observe(el);
 });
 </script>
+
 <script>document.querySelectorAll('.lang-switch a').forEach(function(a){a.addEventListener('click',function(){localStorage.setItem('drpsoft_lang', this.getAttribute('hreflang'));});});</script>
 
 </body>

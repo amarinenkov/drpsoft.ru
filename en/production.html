@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,33 +7,32 @@
 (function(){
   try{
     var stored = localStorage.getItem('drpsoft_lang');
-    var file = (location.pathname.split('/').pop() || 'index.html');
-    if(stored === 'en'){ location.replace('en/' + file + location.hash); return; }
+    if(stored === 'ru'){ location.replace('../' + (location.pathname.split('/').pop() || 'index.html') + location.hash); return; }
     if(!stored){
-      var l = (navigator.language || navigator.userLanguage || 'ru').toLowerCase();
-      if(l.indexOf('ru') !== 0){ localStorage.setItem('drpsoft_lang','en'); location.replace('en/' + file + location.hash); }
+      var l = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      if(l.indexOf('ru') === 0){ localStorage.setItem('drpsoft_lang','ru'); location.replace('../' + (location.pathname.split('/').pop() || 'index.html') + location.hash); }
     }
   }catch(e){}
 })();
 </script>
-<title>DRPSOFT — Видеоаналитика производства: ПВ/НПВ, OEE, потери времени</title>
-<meta name="description" content="Замеряем производительное и непроизводительное время на участке: работа сотрудников, оборудования, операции сборки. Находим потери и точки роста — за 1–2 недели.">
-<meta name="keywords" content="видеоаналитика производства, измерение производительности, диагностика производственного участка, потери на производстве, ПВ НПВ, хронометраж, простои оборудования, OEE, промышленный AI">
+<title>DRPSOFT — Production video analytics: productive/non-productive time, OEE, time losses</title>
+<meta name="description" content="We measure productive and non-productive time on the shop floor: how employees and equipment work, assembly operations. We find losses and growth opportunities — in 1–2 weeks.">
+<meta name="keywords" content="production video analytics, productivity measurement, shop floor diagnostics, manufacturing losses, productive non-productive time, time study, equipment downtime, OEE, industrial AI">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://drpsoft.ru/production">
+<link rel="canonical" href="https://drpsoft.ru/en/production">
 <link rel="alternate" hreflang="ru" href="https://drpsoft.ru/production">
 <link rel="alternate" hreflang="en" href="https://drpsoft.ru/en/production">
 <link rel="alternate" hreflang="x-default" href="https://drpsoft.ru/production">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <meta property="og:type" content="website">
-<meta property="og:locale" content="ru_RU">
+<meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="DRPSOFT">
-<meta property="og:title" content="DRPSOFT — Видеоаналитика производства: ПВ/НПВ, OEE, потери времени">
-<meta property="og:description" content="Замеряем производительное и непроизводительное время на участке. Находим потери и точки роста — результат за 1–2 недели.">
-<meta property="og:url" content="https://drpsoft.ru/production">
+<meta property="og:title" content="DRPSOFT — Production video analytics: productive/non-productive time, OEE, time losses">
+<meta property="og:description" content="We measure productive and non-productive time on the shop floor. We find losses and growth opportunities — results in 1–2 weeks.">
+<meta property="og:url" content="https://drpsoft.ru/en/production">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="DRPSOFT — Видеоаналитика производства: ПВ/НПВ, OEE, потери времени">
-<meta name="twitter:description" content="Замеряем производительное и непроизводительное время на участке. Находим потери и точки роста — результат за 1–2 недели.">
+<meta name="twitter:title" content="DRPSOFT — Production video analytics: productive/non-productive time, OEE, time losses">
+<meta name="twitter:description" content="We measure productive and non-productive time on the shop floor. We find losses and growth opportunities — results in 1–2 weeks.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap">
@@ -1236,8 +1235,6 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* Language switcher */
 .lang-switch { display:inline-flex; align-items:center; gap:2px; padding:3px; background:var(--surface-tint); border:1px solid var(--line-2); border-radius:999px; }
 .lang-switch a { display:inline-flex; align-items:center; justify-content:center; min-width:34px; height:30px; padding:0 10px; font-size:12.5px; font-weight:600; color:var(--ink-3); border-radius:999px; letter-spacing:0.02em; transition:background .15s,color .15s; }
 .lang-switch a.is-active { background:var(--brand); color:#fff; }
@@ -1262,73 +1259,73 @@ footer {
 <!-- ============ NAV ============ -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-brand" aria-label="DRPSoft — главная">
-      <img src="logo.png" alt="DRPSoft" class="brand-logo">
+    <a href="index.html" class="nav-brand" aria-label="DRPSoft — home">
+      <img src="../logo.png" alt="DRPSoft" class="brand-logo">
     </a>
     <div class="nav-menu">
       <div class="nav-dropdown">
-        <a href="index.html" class="dd-trigger">Потери времени <span class="chev">▾</span></a>
+        <a href="index.html" class="dd-trigger">Time losses <span class="chev">▾</span></a>
         <div class="dropdown-menu">
           <div class="dd-head">
-            <div class="dd-head-title">Потери времени</div>
-            <div class="dd-head-sub">Простои, ожидания, ручная работа</div>
+            <div class="dd-head-title">Time losses</div>
+            <div class="dd-head-sub">Downtime, waiting, manual work</div>
           </div>
-          <div class="dropdown-head">Разделы</div>
-          <a href="index.html#problem" class="dd-item">Проблема</a>
-          <a href="index.html#modules" class="dd-item">Услуги</a>
-          <a href="index.html#approach" class="dd-item">Подход</a>
-          <a href="index.html#audience" class="dd-item">Для кого</a>
+          <div class="dropdown-head">Sections</div>
+          <a href="index.html#problem" class="dd-item">Problem</a>
+          <a href="index.html#modules" class="dd-item">Services</a>
+          <a href="index.html#approach" class="dd-item">Approach</a>
+          <a href="index.html#audience" class="dd-item">Who it's for</a>
         </div>
       </div>
       <div class="nav-dropdown">
-        <a href="production.html" class="dd-trigger is-current">Видеоаналитика <span class="chev">▾</span></a>
+        <a href="production.html" class="dd-trigger is-current">Video analytics <span class="chev">▾</span></a>
         <div class="dropdown-menu">
           <div class="dd-head">
-            <div class="dd-head-title">Видеоаналитика производства</div>
-            <div class="dd-head-sub">Производство · OEE · операции · простои</div>
+            <div class="dd-head-title">Production video analytics</div>
+            <div class="dd-head-sub">Manufacturing · OEE · operations · downtime</div>
           </div>
-          <div class="dropdown-head">Разделы</div>
-          <a href="production.html#problem" class="dd-item">Проблема</a>
-          <a href="production.html#solution" class="dd-item">Решение</a>
-          <a href="production.html#case" class="dd-item">Кейс</a>
-          <a href="production.html#roi" class="dd-item">Эффект</a>
-          <a href="production.html#stages" class="dd-item">Этапы</a>
+          <div class="dropdown-head">Sections</div>
+          <a href="production.html#problem" class="dd-item">Problem</a>
+          <a href="production.html#solution" class="dd-item">Solution</a>
+          <a href="production.html#case" class="dd-item">Case study</a>
+          <a href="production.html#roi" class="dd-item">Impact</a>
+          <a href="production.html#stages" class="dd-item">Stages</a>
         </div>
       </div>
       <div class="nav-dropdown">
-        <a href="automation.html" class="dd-trigger">AI-автоматизация <span class="chev">▾</span></a>
+        <a href="automation.html" class="dd-trigger">AI automation <span class="chev">▾</span></a>
         <div class="dropdown-menu">
           <div class="dd-head">
-            <div class="dd-head-title">AI-автоматизация</div>
-            <div class="dd-head-sub">AI-агенты · базы знаний · документы</div>
+            <div class="dd-head-title">AI automation</div>
+            <div class="dd-head-sub">AI agents · knowledge bases · documents</div>
           </div>
-          <div class="dropdown-head">Разделы</div>
-          <a href="automation.html#why" class="dd-item">Проблема</a>
-          <a href="automation.html#process" class="dd-item">Процесс</a>
-          <a href="automation.html#what" class="dd-item">Сценарии</a>
-          <a href="automation.html#result" class="dd-item">Результат</a>
+          <div class="dropdown-head">Sections</div>
+          <a href="automation.html#why" class="dd-item">Problem</a>
+          <a href="automation.html#process" class="dd-item">Process</a>
+          <a href="automation.html#what" class="dd-item">Scenarios</a>
+          <a href="automation.html#result" class="dd-item">Result</a>
         </div>
       </div>
       <div class="nav-dropdown">
-        <a href="dev.html" class="dd-trigger">Разработка <span class="chev">▾</span></a>
+        <a href="dev.html" class="dd-trigger">Development <span class="chev">▾</span></a>
         <div class="dropdown-menu">
           <div class="dd-head">
-            <div class="dd-head-title">Разработка и интеграции</div>
-            <div class="dd-head-sub">1С · SAP · AI / ML · web · mobile</div>
+            <div class="dd-head-title">Development & integrations</div>
+            <div class="dd-head-sub">1C · SAP · AI / ML · web · mobile</div>
           </div>
-          <div class="dropdown-head">Разделы</div>
-          <a href="dev.html#team" class="dd-item">Команда</a>
-          <a href="dev.html#directions" class="dd-item">Услуги</a>
-          <a href="dev.html#pricing" class="dd-item">Ставки</a>
+          <div class="dropdown-head">Sections</div>
+          <a href="dev.html#team" class="dd-item">Team</a>
+          <a href="dev.html#directions" class="dd-item">Services</a>
+          <a href="dev.html#pricing" class="dd-item">Rates</a>
         </div>
       </div>
     </div>
     <div class="nav-actions">
-      <div class="lang-switch" role="group" aria-label="Язык / Language">
-        <a href="production.html" hreflang="ru" class="is-active" data-lang-ru>RU</a>
-        <a href="en/production.html" hreflang="en" data-lang-en>EN</a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a href="../production.html" hreflang="ru" data-lang-ru>RU</a>
+        <a href="production.html" hreflang="en" class="is-active" data-lang-en>EN</a>
       </div>
-      <a href="#cta" class="btn btn-dark btn-sm">Обсудить задачу</a>
+      <a href="#cta" class="btn btn-dark btn-sm">Discuss your task</a>
     </div>
   </div>
 </nav>
@@ -1339,11 +1336,11 @@ footer {
   <div class="hero-grid"></div>
 
   <div class="container hero-top">
-    <div class="eyebrow">Видеоаналитика производства · Замер ПВ / НПВ</div>
+    <div class="eyebrow">Production video analytics · Productive / non-productive time measurement</div>
     <h1 class="h-display">
-      Директор: «Наши работают больше 60% времени».
+      Director: “Our people work more than 60% of the time.”
       <br>
-      <em>Замерили — 36%.</em>
+      <em>We measured — 36%.</em>
     </h1>
   </div>
 
@@ -1351,28 +1348,28 @@ footer {
 
     <div class="hero-content">
       <p class="lead">
-        Замеряем производительное и непроизводительное время на производственном
-        участке: работу сотрудников и оборудования, операции сборки, ожидания
-        и любые повторяющиеся действия. Показываем потери и точки роста —
-        до изменений и после внедрения.
+        We measure productive and non-productive time on the shop floor:
+        how employees and equipment work, assembly operations, waiting
+        and any repetitive actions. We reveal losses and growth opportunities —
+        before changes and after implementation.
       </p>
       <div class="hero-bottom">
         <div class="hero-cta">
-          <a href="#cta" class="btn btn-primary btn-lg">Заказать диагностику участка →</a>
-          <a href="#case" class="btn btn-ghost btn-lg">Смотреть кейс</a>
+          <a href="#cta" class="btn btn-primary btn-lg">Order a shop floor diagnostic →</a>
+          <a href="#case" class="btn btn-ghost btn-lg">View the case study</a>
         </div>
         <div class="hero-meta">
           <div class="hero-meta-item">
-            <div class="body-xs">Первый результат</div>
-            <div class="h4">1–2 недели</div>
+            <div class="body-xs">First results</div>
+            <div class="h4">1–2 weeks</div>
           </div>
           <div class="hero-meta-item">
-            <div class="body-xs">Участок</div>
-            <div class="h4">сборка, станки, линии</div>
+            <div class="body-xs">Shop floor</div>
+            <div class="h4">assembly, machines, lines</div>
           </div>
           <div class="hero-meta-item">
-            <div class="body-xs">Без капвложений</div>
-            <div class="h4">в инфраструктуру</div>
+            <div class="body-xs">No capital expense</div>
+            <div class="h4">in infrastructure</div>
           </div>
         </div>
       </div>
@@ -1380,8 +1377,8 @@ footer {
 
     <div class="hero-visual">
       <div class="hero-stat-copy">
-        <div class="kicker">результат замера</div>
-        <div class="title">Реальная производительность</div>
+        <div class="kicker">measurement result</div>
+        <div class="title">Real productivity</div>
       </div>
 
       <div class="hero-stat-inline">
@@ -1390,21 +1387,21 @@ footer {
         </div>
       </div>
 
-      <div class="hero-stat-note">в работе. Остальное — простои, наладка, ожидания</div>
+      <div class="hero-stat-note">at work. The rest is idle time, setup, waiting</div>
 
       <div class="hero-proof-detail">
         <div class="shop-label">
-          <div class="body-xs"><span class="live-dot"></span> Цех №3 · участок сборки · смена 1</div>
+          <div class="body-xs"><span class="live-dot"></span> Workshop No.3 · assembly area · shift 1</div>
         </div>
 
         <div class="time-bar">
-          <div class="time-seg seg-work"><b>2:53</b><span>работа</span></div>
-          <div class="time-seg seg-idle"><b>3:20</b><span>простой</span></div>
-          <div class="time-seg seg-setup compact"><b>1:00</b><span>наладка</span></div>
-          <div class="time-seg seg-empty compact"><b>0:47</b><span>пусто</span></div>
+          <div class="time-seg seg-work"><b>2:53</b><span>work</span></div>
+          <div class="time-seg seg-idle"><b>3:20</b><span>idle</span></div>
+          <div class="time-seg seg-setup compact"><b>1:00</b><span>setup</span></div>
+          <div class="time-seg seg-empty compact"><b>0:47</b><span>empty</span></div>
         </div>
 
-        <div class="shift-explain">2:53 продуктивной работы из 8 часов смены = 36%.</div>
+        <div class="shift-explain">2:53 of productive work out of an 8-hour shift = 36%.</div>
       </div>
 
     </div>
@@ -1416,41 +1413,41 @@ footer {
 <section class="s s-problem" id="problem">
   <div class="container">
     <div class="s-head">
-      <div class="eyebrow muted">Проблема</div>
-      <h2 class="h1">Кажется, что производство работает.</h2>
+      <div class="eyebrow muted">Problem</div>
+      <h2 class="h1">It looks like production is running.</h2>
       <p class="lead">
-        Никто точно не знает, сколько времени реально работает участок,
-        где теряются минуты смены и сколько из них — полезная работа,
-        а сколько — ожидание, простой или вспомогательные операции.
+        No one knows exactly how much time the shop floor actually works,
+        where the minutes of a shift are lost, and how many of them are
+        useful work versus waiting, idle time or supporting operations.
       </p>
     </div>
 
     <div class="problem-grid">
       <div class="problem-card">
         <div class="num">01</div>
-        <div class="h4">Сколько времени реально работает участок</div>
+        <div class="h4">How much time the shop floor actually works</div>
       </div>
       <div class="problem-card">
         <div class="num">02</div>
-        <div class="h4">Сколько занимает каждая операция</div>
+        <div class="h4">How long each operation takes</div>
       </div>
       <div class="problem-card">
         <div class="num">03</div>
-        <div class="h4">Сколько времени уходит на ожидание между операциями</div>
+        <div class="h4">How much time is spent waiting between operations</div>
       </div>
       <div class="problem-card">
         <div class="num">04</div>
-        <div class="h4">Где производительное, а где непроизводительное время</div>
+        <div class="h4">Where time is productive and where it is non-productive</div>
       </div>
       <div class="problem-card">
         <div class="num">05</div>
-        <div class="h4">Где скрытые потери внутри смены</div>
+        <div class="h4">Where the hidden losses are within a shift</div>
       </div>
     </div>
 
     <div class="problem-quote">
       <div class="problem-quote-icon">!</div>
-      <div class="h3">На участке говорят: «работаем в обычном режиме». Но план проседает, а где именно теряется время — не видно.</div>
+      <div class="h3">On the floor everyone says: “we’re working as usual.” But the plan slips, and exactly where time is lost stays invisible.</div>
     </div>
   </div>
 </section>
@@ -1459,39 +1456,39 @@ footer {
 <section class="s s-solution" id="solution">
   <div class="container">
     <div class="s-head">
-      <div class="eyebrow">Решение</div>
-      <h2 class="h1">Замеряем — и показываем в цифрах.</h2>
+      <div class="eyebrow">Solution</div>
+      <h2 class="h1">We measure — and show it in numbers.</h2>
       <p class="lead">
-        Не консалтинг. Не аудит. Конкретное измерение того, что реально
-        происходит на участке — с видео-доказательствами по каждой минуте смены.
+        Not consulting. Not an audit. A concrete measurement of what really
+        happens on the floor — with video evidence for every minute of the shift.
       </p>
     </div>
 
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
-        <h4 class="h4">Съёмка</h4>
-        <p>Используем текущую систему видеонаблюдения на участке, при необходимости подключаемся к сигналам с оборудования.</p>
+        <h4 class="h4">Capture</h4>
+        <p>We use the existing video surveillance system on the floor and, if needed, connect to signals from the equipment.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <h4 class="h4">Разметка</h4>
-        <p>Размечаем операции: работа, ожидание, наладка, перемещение, простой, вспомогательные действия, отсутствие оператора.</p>
+        <h4 class="h4">Labeling</h4>
+        <p>We label operations: work, waiting, setup, movement, idle, supporting actions, operator absence.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <h4 class="h4">Расчёт</h4>
-        <p>Производительное и непроизводительное время, загрузка, время цикла, повторяющиеся задержки.</p>
+        <h4 class="h4">Calculation</h4>
+        <p>Productive and non-productive time, utilization, cycle time, recurring delays.</p>
       </div>
       <div class="step">
         <div class="step-num">04</div>
-        <h4 class="h4">Отчёт</h4>
-        <p>Где потери, сколько, во что это конвертируется в деньгах, что конкретно улучшить в первую очередь.</p>
+        <h4 class="h4">Report</h4>
+        <p>Where the losses are, how big they are, what they translate into in money, and what specifically to improve first.</p>
       </div>
       <div class="step">
         <div class="step-num">05</div>
-        <h4 class="h4">До / После</h4>
-        <p>После внедрения изменений — повторный замер с конкретными цифрами роста производительности.</p>
+        <h4 class="h4">Before / After</h4>
+        <p>Once changes are implemented — a repeat measurement with concrete figures for productivity growth.</p>
       </div>
     </div>
   </div>
@@ -1502,24 +1499,24 @@ footer {
   <div class="container case-inner">
 
     <div class="case-text">
-      <div class="eyebrow muted">Кейс</div>
+      <div class="eyebrow muted">Case study</div>
       <h2 class="h1 mt-3" style="margin-top:24px">
-        Из 8 часов смены — <em>только 2:53</em> реальной работы.
+        Out of an 8-hour shift — <em>only 2:53</em> of real work.
       </h2>
       <p class="lead" style="margin-top:24px">
-        Сборочный участок, ~30 рабочих мест, полуавтоматические станки.
-        До замера директор по производству был уверен: «наши сотрудники
-        работают более чем на&nbsp;60%». Замер показал — <strong>36%</strong>.
-        И сразу стало видно конкретные точки потерь.
+        Assembly area, ~30 workstations, semi-automatic machines.
+        Before the measurement, the production director was certain: “our
+        employees work more than&nbsp;60%.” The measurement showed — <strong>36%</strong>.
+        And the specific points of loss became immediately visible.
       </p>
       <p class="body" style="margin-top:24px;font-size:15px">
-        Все цифры подтверждены видеозаписью — каждую минуту можно пересмотреть.
-        Это не «экспертное мнение», а измерение факта.
+        Every figure is backed by video — any minute can be reviewed again.
+        This is not an “expert opinion,” but a measurement of fact.
       </p>
     </div>
 
     <div class="case-visual">
-      <div class="body-xs" style="margin-bottom:8px;text-transform:uppercase;letter-spacing:0.12em">Загрузка оборудования</div>
+      <div class="body-xs" style="margin-bottom:8px;text-transform:uppercase;letter-spacing:0.12em">Equipment utilization</div>
       <div class="case-clock">
         <span class="big tnum">2:53</span>
         <span class="arrow">/</span>
@@ -1530,23 +1527,23 @@ footer {
         <div class="case-bar-fill"></div>
       </div>
       <div class="case-bar-label">
-        <span>0 ч</span>
+        <span>0 h</span>
         <span style="color:var(--brand-deep);font-weight:600">36%</span>
-        <span>8 ч</span>
+        <span>8 h</span>
       </div>
 
       <div class="case-stats">
         <div class="case-stat">
           <div class="num brand tnum">64%</div>
-          <div class="label">непроизводительного времени</div>
+          <div class="label">of non-productive time</div>
         </div>
         <div class="case-stat">
           <div class="num tnum">5:07</div>
-          <div class="label">потерь внутри смены</div>
+          <div class="label">of losses within the shift</div>
         </div>
         <div class="case-stat">
           <div class="num tnum">30</div>
-          <div class="label">станков на участке</div>
+          <div class="label">machines on the floor</div>
         </div>
       </div>
     </div>
@@ -1558,11 +1555,11 @@ footer {
 <section class="s s-roi" id="roi">
   <div class="container">
     <div class="s-head">
-      <div class="eyebrow">Эффект</div>
-      <h2 class="h1">Даже +5% производительности — заметные деньги уже в первый месяц.</h2>
+      <div class="eyebrow">Impact</div>
+      <h2 class="h1">Even +5% productivity is meaningful money in the very first month.</h2>
       <p class="lead">
-        Пример: участок сборки газовых котлов, 20 сотрудников.
-        Подвигайте ползунок — посмотрите, как растёт прибыль с ростом производительности.
+        Example: a gas boiler assembly area, 20 employees.
+        Move the slider — see how profit grows as productivity rises.
       </p>
     </div>
 
@@ -1571,28 +1568,28 @@ footer {
       <div class="calc-controls">
         <div class="calc-row">
           <label>
-            <span class="name">Рост производительности</span>
+            <span class="name">Productivity gain</span>
             <span class="val"><em id="pctOut">5</em>%</span>
           </label>
           <input type="range" id="pct" min="3" max="50" value="5" step="1">
         </div>
         <div class="calc-row">
           <label>
-            <span class="name">Выпуск изделий в день, шт</span>
+            <span class="name">Units produced per day</span>
             <span class="val"><span id="outpOut">50</span></span>
           </label>
           <input type="range" id="outp" min="20" max="500" value="50" step="10">
         </div>
         <div class="calc-row">
           <label>
-            <span class="name">Маржа с изделия, ₽</span>
+            <span class="name">Margin per unit, ₽</span>
             <span class="val"><span id="marOut">12 000</span></span>
           </label>
           <input type="range" id="mar" min="2000" max="50000" value="12000" step="1000">
         </div>
         <div class="calc-row">
           <label>
-            <span class="name">Рабочих дней в месяц</span>
+            <span class="name">Working days per month</span>
             <span class="val"><span id="daysOut">22</span></span>
           </label>
           <input type="range" id="days" min="15" max="30" value="22" step="1">
@@ -1601,19 +1598,19 @@ footer {
 
       <div class="calc-result">
         <div class="body-xs" style="color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px">
-          Дополнительная прибыль
+          Additional profit
         </div>
         <div class="calc-amount">+<em id="profitOut">660 000</em>&nbsp;₽</div>
-        <div class="calc-period">в месяц · при тех же ресурсах</div>
+        <div class="calc-period">per month · with the same resources</div>
 
         <div class="calc-yearly">
-          <span class="label">В год это</span>
+          <span class="label">Per year that’s</span>
           <span class="amount tnum">+<span id="yearOut">7 920 000</span>&nbsp;₽</span>
         </div>
 
         <p class="calc-fineprint">
-          Расчёт без расширения штата, без нового оборудования, без строительства цеха.
-          Только за счёт более эффективного использования текущего времени и ресурсов.
+          Calculated without adding headcount, without new equipment, without building a new workshop.
+          Purely through more efficient use of existing time and resources.
         </p>
       </div>
 
@@ -1625,8 +1622,8 @@ footer {
 <section class="s s-vs">
   <div class="container">
     <div class="s-head">
-      <div class="eyebrow muted">Чем отличаемся</div>
-      <h2 class="h1">Не обещаем эффективность. Показываем потери в цифрах.</h2>
+      <div class="eyebrow muted">How we’re different</div>
+      <h2 class="h1">We don’t promise efficiency. We show losses in numbers.</h2>
     </div>
 
     <div class="vs-wrap">
@@ -1634,61 +1631,61 @@ footer {
         <thead>
           <tr>
             <th></th>
-            <th>Хронометраж нормировщиком</th>
-            <th>Консалтинг / аудит</th>
-            <th>Датчики на оборудовании</th>
-            <th class="fofo-col">DRPSoft · видеоаналитика</th>
+            <th>Time study by a specialist</th>
+            <th>Consulting / audit</th>
+            <th>Equipment sensors</th>
+            <th class="fofo-col">DRPSoft · video analytics</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Срок старта</td>
-            <td>недели</td>
-            <td>месяцы</td>
-            <td>месяцы</td>
-            <td class="fofo">1–2 недели</td>
+            <td>Time to start</td>
+            <td>weeks</td>
+            <td>months</td>
+            <td>months</td>
+            <td class="fofo">1–2 weeks</td>
           </tr>
           <tr>
-            <td>Стоимость старта</td>
-            <td>средняя</td>
-            <td>высокая</td>
-            <td>очень высокая</td>
-            <td class="fofo">низкая</td>
+            <td>Cost to start</td>
+            <td>medium</td>
+            <td>high</td>
+            <td>very high</td>
+            <td class="fofo">low</td>
           </tr>
           <tr>
-            <td>Формат контроля</td>
-            <td>разово</td>
-            <td>разово</td>
-            <td>постоянно, но только машина</td>
-            <td class="fofo">постоянно: люди + оборудование</td>
+            <td>Monitoring format</td>
+            <td>one-off</td>
+            <td>one-off</td>
+            <td>continuous, but machine only</td>
+            <td class="fofo">continuous: people + equipment</td>
           </tr>
           <tr>
-            <td>Видит людей и операции</td>
-            <td>да (выборка)</td>
-            <td>да (выборка)</td>
-            <td>нет — только машину</td>
-            <td class="fofo">да (вся смена)</td>
+            <td>Sees people and operations</td>
+            <td>yes (sampled)</td>
+            <td>yes (sampled)</td>
+            <td>no — machine only</td>
+            <td class="fofo">yes (entire shift)</td>
           </tr>
           <tr>
-            <td>Видит оборудование</td>
-            <td>косвенно</td>
-            <td>косвенно</td>
-            <td>да</td>
-            <td class="fofo">да</td>
+            <td>Sees equipment</td>
+            <td>indirectly</td>
+            <td>indirectly</td>
+            <td>yes</td>
+            <td class="fofo">yes</td>
           </tr>
           <tr>
-            <td>Объективность</td>
-            <td>субъективно</td>
-            <td>экспертное мнение</td>
-            <td>данные с датчиков</td>
-            <td class="fofo">видео-доказательства</td>
+            <td>Objectivity</td>
+            <td>subjective</td>
+            <td>expert opinion</td>
+            <td>sensor data</td>
+            <td class="fofo">video evidence</td>
           </tr>
           <tr>
-            <td>Результат в деньгах</td>
-            <td>нет</td>
-            <td>редко</td>
-            <td>косвенно</td>
-            <td class="fofo">сразу</td>
+            <td>Result in money</td>
+            <td>no</td>
+            <td>rarely</td>
+            <td>indirectly</td>
+            <td class="fofo">immediately</td>
           </tr>
         </tbody>
       </table>
@@ -1700,40 +1697,40 @@ footer {
 <section class="s s-stages" id="stages">
   <div class="container">
     <div class="s-head">
-      <div class="eyebrow muted">Этапы</div>
-      <h2 class="h1">Диагностика — только вход. Дальше можно достраивать систему.</h2>
+      <div class="eyebrow muted">Stages</div>
+      <h2 class="h1">The diagnostic is just the entry point. From there you can build out the system.</h2>
       <p class="lead">
-        Каждая ступень — отдельный понятный шаг с измеримым результатом.
-        Не нужно решаться сразу на «трансформацию».
+        Each step is a separate, clear stage with a measurable result.
+        There’s no need to commit to a full “transformation” right away.
       </p>
     </div>
 
     <div class="stages">
       <div class="stage now">
-        <div class="stage-now-mark">Старт</div>
-        <span class="stage-pill">Этап 1</span>
-        <h4 class="h4">Измерение ПВ / НПВ</h4>
-        <p>Замер производительного и непроизводительного времени на участке.</p>
+        <div class="stage-now-mark">Start</div>
+        <span class="stage-pill">Stage 1</span>
+        <h4 class="h4">Productive / non-productive time measurement</h4>
+        <p>Measuring productive and non-productive time on the floor.</p>
       </div>
       <div class="stage">
-        <span class="stage-pill">Этап 2</span>
-        <h4 class="h4">Аналитика причин</h4>
-        <p>Почему возникают простои, что повторяется, где системные потери.</p>
+        <span class="stage-pill">Stage 2</span>
+        <h4 class="h4">Root-cause analytics</h4>
+        <p>Why downtime occurs, what repeats, and where the systemic losses are.</p>
       </div>
       <div class="stage">
-        <span class="stage-pill">Этап 3</span>
-        <h4 class="h4">Рекомендации</h4>
-        <p>Конкретные изменения процессов с ожидаемым эффектом.</p>
+        <span class="stage-pill">Stage 3</span>
+        <h4 class="h4">Recommendations</h4>
+        <p>Specific process changes with their expected impact.</p>
       </div>
       <div class="stage">
-        <span class="stage-pill">Этап 4</span>
-        <h4 class="h4">Интеграция</h4>
-        <p>Связь с ERP, 1С, BI — данные с участка попадают в финансовый контур.</p>
+        <span class="stage-pill">Stage 4</span>
+        <h4 class="h4">Integration</h4>
+        <p>Connection to ERP, 1C, BI — shop floor data feeds into the financial loop.</p>
       </div>
       <div class="stage">
-        <span class="stage-pill">Этап 5</span>
-        <h4 class="h4">AI и помощник мастера</h4>
-        <p>Прогнозирование загрузки, цифровой помощник мастера, рекомендации в реальном времени.</p>
+        <span class="stage-pill">Stage 5</span>
+        <h4 class="h4">AI and supervisor assistant</h4>
+        <p>Workload forecasting, a digital assistant for the shift supervisor, and real-time recommendations.</p>
       </div>
     </div>
   </div>
@@ -1743,8 +1740,8 @@ footer {
 <section class="s s-audience">
   <div class="container">
     <div class="s-head">
-      <div class="eyebrow muted">Где виден эффект</div>
-      <h2 class="h1">Когда диагностика быстро даёт пользу</h2>
+      <div class="eyebrow muted">Where the impact shows</div>
+      <h2 class="h1">When the diagnostic delivers value fast</h2>
     </div>
 
     <div class="aud-grid">
@@ -1756,8 +1753,8 @@ footer {
             <path d="M7 14h.01M12 14h.01M17 14h.01"/>
           </svg>
         </div>
-        <h3 class="h3">Есть ручной труд: сборка, работа со станками или операции без оборудования</h3>
-        <p>Сотрудник влияет на ритм, простои, ожидания, наладку и вспомогательные операции.</p>
+        <h3 class="h3">There’s manual labor: assembly, machine work, or operations without equipment</h3>
+        <p>The worker influences pace, idle time, waiting, setup and supporting operations.</p>
       </div>
       <div class="aud-card">
         <div class="ico">
@@ -1766,8 +1763,8 @@ footer {
             <path d="M9 21V12h6v9"/>
           </svg>
         </div>
-        <h3 class="h3">Есть повторяющиеся операции и смены</h3>
-        <p>Можно сравнивать участки, смены и операции — и видеть, где стабильно теряется время.</p>
+        <h3 class="h3">There are repetitive operations and shifts</h3>
+        <p>You can compare areas, shifts and operations — and see where time is consistently lost.</p>
       </div>
       <div class="aud-card">
         <div class="ico">
@@ -1776,8 +1773,8 @@ footer {
             <path d="M12 7v5l3 2"/>
           </svg>
         </div>
-        <h3 class="h3">Есть ощущение потерь, но нет точных цифр</h3>
-        <p>План есть, отклонения есть, но непонятно, что именно съедает смену и где начинать улучшения.</p>
+        <h3 class="h3">There’s a sense of losses, but no exact numbers</h3>
+        <p>There’s a plan and there are deviations, but it’s unclear what exactly eats up the shift and where to start improving.</p>
       </div>
     </div>
   </div>
@@ -1791,16 +1788,16 @@ footer {
       <div class="cta-inner">
 
         <div>
-          <div class="eyebrow">Начните с одного участка</div>
-          <h2 class="h1">Измерим потери времени в производственном процессе.</h2>
+          <div class="eyebrow">Start with a single area</div>
+          <h2 class="h1">We’ll measure the time losses in your production process.</h2>
           <p class="lead">
-            Бесплатная первичная консультация. Покажем, как замер будет
-            выглядеть именно на вашем участке, и предложим план работ
-            с понятным результатом и сроками.
+            A free initial consultation. We’ll show how the measurement would
+            look on your specific shop floor and propose a work plan
+            with a clear result and timeline.
           </p>
           <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px">
-            <a href="mailto:info@drpsoft.ru" class="btn btn-primary btn-lg">Заказать диагностику →</a>
-            <a href="mailto:info@drpsoft.ru?subject=Запрос%20презентации%20DRPSoft" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.2)">Получить презентацию</a>
+            <a href="mailto:info@drpsoft.ru" class="btn btn-primary btn-lg">Order a diagnostic →</a>
+            <a href="mailto:info@drpsoft.ru?subject=DRPSoft%20presentation%20request" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.2)">Get the presentation</a>
           </div>
         </div>
 
@@ -1808,22 +1805,22 @@ footer {
           <div class="cta-step">
             <b>1</b>
             <div class="txt">
-              <div class="h4">Заявка и созвон</div>
-              Обсуждаем участок, оборудование, цели и формат работы.
+              <div class="h4">Request and call</div>
+              We discuss the floor, the equipment, your goals and the way of working.
             </div>
           </div>
           <div class="cta-step">
             <b>2</b>
             <div class="txt">
-              <div class="h4">Выезд и съёмка</div>
-              Подключаемся к текущей системе видеонаблюдения, фиксируем смену, размечаем операции по нашей методологии.
+              <div class="h4">On-site visit and capture</div>
+              We connect to the existing video surveillance system, record a shift, and label operations using our methodology.
             </div>
           </div>
           <div class="cta-step">
             <b>3</b>
             <div class="txt">
-              <div class="h4">Отчёт через 1–2 недели</div>
-              Цифры по каждой операции и рабочему месту, карта потерь и точки роста — в деньгах.
+              <div class="h4">Report in 1–2 weeks</div>
+              Figures for every operation and workstation, a map of losses and growth opportunities — in money.
             </div>
           </div>
         </div>
@@ -1838,34 +1835,34 @@ footer {
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
-        <a href="#top" class="nav-brand" aria-label="DRPSoft — вверх страницы" style="margin-bottom: 18px">
-          <img src="logo.png" alt="DRPSoft" class="brand-logo" style="height: 26px">
+        <a href="#top" class="nav-brand" aria-label="DRPSoft — back to top" style="margin-bottom: 18px">
+          <img src="../logo.png" alt="DRPSoft" class="brand-logo" style="height: 26px">
         </a>
-        <p>Видеоаналитика производства. Измеряем, как реально работает участок — и превращаем потери в рост.</p>
+        <p>Production video analytics. We measure how the shop floor really works — and turn losses into growth.</p>
       </div>
       <div class="footer-col">
-        <h5>Разделы</h5>
-        <a href="#problem">Проблема</a>
-        <a href="#solution">Решение</a>
-        <a href="#case">Кейс</a>
-        <a href="#roi">Эффект</a>
+        <h5>Sections</h5>
+        <a href="#problem">Problem</a>
+        <a href="#solution">Solution</a>
+        <a href="#case">Case study</a>
+        <a href="#roi">Impact</a>
       </div>
       <div class="footer-col">
         <h5>DRPSoft</h5>
-        <a href="index.html">Все направления</a>
-        <a href="automation.html">AI-автоматизация</a>
-        <a href="dev.html">Разработка и интеграции</a>
+        <a href="index.html">All services</a>
+        <a href="automation.html">AI automation</a>
+        <a href="dev.html">Development & integrations</a>
       </div>
       <div class="footer-col">
-        <h5>Контакты</h5>
+        <h5>Contacts</h5>
         <a href="mailto:info@drpsoft.ru">info@drpsoft.ru</a>
-        <a href="tel:+79201560081">+7 (920) 156-00-81</a>
+        <a href="tel:+971501569601">+971 50 156 96 01</a>
         <a href="https://t.me/avp80">Telegram</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026. Все права защищены.</span>
-      <span>Москва · Россия</span>
+      <span>© 2026. All rights reserved.</span>
+      <span>Moscow · Russia</span>
     </div>
   </div>
 </footer>
@@ -1878,21 +1875,21 @@ footer {
     "name": "DRPSoft",
     "url": "https://drpsoft.ru",
     "email": "info@drpsoft.ru",
-    "telephone": "+79201560081",
+    "telephone": "+971501569601",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Москва",
+      "addressLocality": "Moscow",
       "addressCountry": "RU"
     },
-    "description": "Измерение производительности труда на производстве. Замеряем производительное и непроизводительное время на участке, находим потери и точки роста в цифрах.",
+    "description": "Labor productivity measurement in manufacturing. We measure productive and non-productive time on the shop floor, finding losses and growth opportunities in numbers.",
     "sameAs": ["https://t.me/avp80"]
   },
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Диагностика производительности производственного участка",
+    "name": "Production shop floor productivity diagnostic",
     "provider": { "@type": "Organization", "name": "DRPSoft", "url": "https://drpsoft.ru" },
-    "description": "Замеряем производительное и непроизводительное время на производственном участке: работа сотрудников, оборудования и операций сборки. Выявляем потери, простои и точки роста в цифрах за 1–2 недели.",
+    "description": "We measure productive and non-productive time on the production shop floor: the work of employees, equipment and assembly operations. We identify losses, downtime and growth opportunities in numbers within 1–2 weeks.",
     "areaServed": "RU",
     "availableChannel": {
       "@type": "ServiceChannel",
@@ -1940,6 +1937,7 @@ document.querySelectorAll('.s-head, .problem-card, .step, .case-visual, .case-te
   io.observe(el);
 });
 </script>
+
 <script>document.querySelectorAll('.lang-switch a').forEach(function(a){a.addEventListener('click',function(){localStorage.setItem('drpsoft_lang', this.getAttribute('hreflang'));});});</script>
 
 </body>
