@@ -353,10 +353,84 @@ button { font-family: inherit; cursor: pointer; border: 0; background: none; }
   color: var(--brand);
 }
 
+/* Burger button — hidden on desktop */
+.nav-burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 42px; height: 42px;
+  border-radius: 999px;
+  color: var(--ink);
+  transition: background .15s, color .15s;
+}
+.nav-burger:hover { background: var(--surface-tint); color: var(--brand); }
+.nav-burger svg { width: 20px; height: 20px; }
+.nav-burger .ic-close { display: none; }
+.nav-burger.is-open .ic-open { display: none; }
+.nav-burger.is-open .ic-close { display: block; }
+
+/* Mobile panel */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(20,16,10,0.32);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+.mobile-nav.is-open { opacity: 1; pointer-events: auto; }
+.mobile-nav-sheet {
+  position: absolute;
+  top: 88px; left: 16px; right: 16px;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  background: rgba(255,255,255,0.98);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 24px;
+  padding: 14px;
+  box-shadow: 0 24px 60px rgba(20,16,10,.18);
+  transform: translateY(-10px);
+  transition: transform .22s ease;
+}
+.mobile-nav.is-open .mobile-nav-sheet { transform: translateY(0); }
+.mn-group { padding: 6px 4px 12px; border-bottom: 1px solid var(--line-3); }
+.mn-group:last-of-type { border-bottom: 0; }
+.mn-group > a.mn-title {
+  display: block;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  padding: 10px 10px 8px;
+}
+.mn-group > a.mn-title.is-current { color: var(--brand); }
+.mn-sub {
+  display: flex;
+  flex-direction: column;
+}
+.mn-sub a {
+  padding: 8px 10px 8px 22px;
+  font-size: 14px;
+  color: var(--ink-2);
+  border-radius: 8px;
+}
+.mn-sub a:hover { background: var(--surface-soft); color: var(--brand); }
+.mobile-nav-cta {
+  display: flex;
+  margin-top: 12px;
+}
+.mobile-nav-cta .btn { width: 100%; }
+
 @media (max-width: 1100px) {
   .nav-menu { display: none; }
-}
-@media (max-width: 860px) {
+  .nav-burger { display: inline-flex; }
+  .mobile-nav { display: block; }
   .nav-actions .btn-dark { display: none; }
 }
 
@@ -885,9 +959,58 @@ footer {
         <a href="automation.html" hreflang="en" class="is-active" data-lang-en>EN</a>
       </div>
       <a href="#cta" class="btn btn-dark btn-sm">Discuss your task</a>
+      <button class="nav-burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg class="ic-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
     </div>
   </div>
 </nav>
+
+<!-- ============ MOBILE NAV ============ -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-sheet">
+    <div class="mn-group">
+      <a href="index.html" class="mn-title">Time losses</a>
+      <div class="mn-sub">
+        <a href="index.html#problem">Problem</a>
+        <a href="index.html#modules">Services</a>
+        <a href="index.html#approach">Approach</a>
+        <a href="index.html#audience">Who it's for</a>
+      </div>
+    </div>
+    <div class="mn-group">
+      <a href="production.html" class="mn-title">Video analytics</a>
+      <div class="mn-sub">
+        <a href="production.html#problem">Problem</a>
+        <a href="production.html#solution">Solution</a>
+        <a href="production.html#case">Case study</a>
+        <a href="production.html#roi">Impact</a>
+        <a href="production.html#stages">Stages</a>
+      </div>
+    </div>
+    <div class="mn-group">
+      <a href="automation.html" class="mn-title is-current">AI automation</a>
+      <div class="mn-sub">
+        <a href="automation.html#why">Problem</a>
+        <a href="automation.html#process">Process</a>
+        <a href="automation.html#what">Scenarios</a>
+        <a href="automation.html#result">Result</a>
+      </div>
+    </div>
+    <div class="mn-group">
+      <a href="dev.html" class="mn-title">Development</a>
+      <div class="mn-sub">
+        <a href="dev.html#team">Team</a>
+        <a href="dev.html#directions">Services</a>
+        <a href="dev.html#pricing">Rates</a>
+      </div>
+    </div>
+    <div class="mobile-nav-cta">
+      <a href="#cta" class="btn btn-dark btn-sm">Discuss your task</a>
+    </div>
+  </div>
+</div>
 
 <!-- ============ HERO ============ -->
 <header class="hero">
@@ -1226,6 +1349,22 @@ document.querySelectorAll('.s-head, .info-card, .accent-formula, .cta-card-auto'
 </script>
 
 <script>document.querySelectorAll('.lang-switch a').forEach(function(a){a.addEventListener('click',function(){localStorage.setItem('drpsoft_lang', this.getAttribute('hreflang'));});});</script>
+<script>
+(function(){
+  var b = document.querySelector('.nav-burger'), m = document.getElementById('mobileNav');
+  if(!b || !m) return;
+  function set(open){
+    b.classList.toggle('is-open', open);
+    m.classList.toggle('is-open', open);
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  b.addEventListener('click', function(){ set(!m.classList.contains('is-open')); });
+  m.addEventListener('click', function(e){ if(e.target === m) set(false); });
+  m.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ set(false); }); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') set(false); });
+})();
+</script>
 
 </body>
 </html>
